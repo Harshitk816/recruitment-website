@@ -41,8 +41,8 @@ export const Header: React.FC = () => {
  
   const navItems = [
     { href: '/', label: 'Home' },
-    { href: '#services', label: 'Services' },
-    { href: '#industries', label: 'Industries' },
+    { href: '/services', label: 'Services' },
+    { href: '/industries', label: 'Industries' },
     { href: '/about', label: 'About' },
     { href: '/contact', label: 'Contact' }
   ];
@@ -81,10 +81,10 @@ export const Header: React.FC = () => {
       >
         <Container>
           <div className="flex items-center justify-between py-4">
-            {/* Logo */}
+            
             <Logo />
 
-            {/* Desktop Navigation */}
+          
             <nav className="hidden lg:flex items-center space-x-8">
               {navItems.map((item) => (
                 <Link
@@ -98,7 +98,7 @@ export const Header: React.FC = () => {
               ))}
             </nav>
 
-            {/* Desktop CTA Buttons */}
+            
             <div className="hidden lg:flex items-center space-x-4">
               <Button variant="outline" href="#contact">
                 Get Quote
@@ -108,7 +108,7 @@ export const Header: React.FC = () => {
               </Button>
             </div>
 
-            {/* Mobile Menu Button */}
+           
             <button
               onClick={toggleMenu}
               className="lg:hidden p-2 rounded-md hover:bg-gray-100 transition-colors"
@@ -118,13 +118,13 @@ export const Header: React.FC = () => {
                 animate={{ rotate: isMenuOpen ? 180 : 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+                {isMenuOpen ? <FiX size={24} className="text-blue-600"/> : <FiMenu size={24} className="text-blue-600"/>}
               </motion.div>
             </button>
           </div>
         </Container>
 
-        {/* Mobile Menu */}
+        
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -153,7 +153,7 @@ export const Header: React.FC = () => {
                     </motion.div>
                   ))}
                   
-                  {/* Mobile Contact Info */}
+              
                   <div className="pt-4 border-t border-gray-200 space-y-3">
                     <div className="flex items-center space-x-2 text-gray-600">
                       <FiMail className="text-blue-600" />
@@ -165,7 +165,7 @@ export const Header: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Mobile CTA Buttons */}
+             
                   <div className="pt-4 space-y-3">
                     <Button 
                       variant="outline" 
