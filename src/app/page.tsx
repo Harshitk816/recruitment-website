@@ -12,7 +12,7 @@ export default function Home() {
       <Industries />
       <About />
        <WhatsAppWidget
-        phoneNumber="919876543210" 
+        phoneNumber="918700192565" 
         defaultMessage="Hi! I'm interested in Workeraa's recruitment services."
       />
       {/* Other sections will go here */}

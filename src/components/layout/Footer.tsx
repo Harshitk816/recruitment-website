@@ -72,11 +72,11 @@ export const Footer: React.FC = () => {
               <div className="space-y-3 mb-6">
                 <div className="flex items-center space-x-3">
                   <FiMail className="text-blue-400" />
-                  <span className="text-gray-300">contact@workeraa.com</span>
+                  <span className="text-gray-300">connect@workeraa.co.in</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <FiPhone className="text-green-400" />
-                  <span className="text-gray-300">+91 98765 43210</span>
+                  <span className="text-gray-300">+91 8700192565, +91 9599656760</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <FiMapPin className="text-purple-400" />
@@ -89,7 +89,6 @@ export const Footer: React.FC = () => {
                 {[
                   { icon: FiLinkedin, href: '#', color: 'hover:text-blue-400' },
                   { icon: FiTwitter, href: '#', color: 'hover:text-blue-300' },
-                  { icon: FiFacebook, href: '#', color: 'hover:text-blue-500' },
                   { icon: FiInstagram, href: '#', color: 'hover:text-pink-400' }
                 ].map((social, index) => (
                   <motion.a
