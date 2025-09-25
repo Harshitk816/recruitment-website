@@ -74,6 +74,89 @@ const industriesData = [
       { title: "Business Development", icon: FiBriefcase },
       { title: "Brand Managers", icon: FiAward }
     ]
+  },
+   {
+    id: 4,
+    name: "Manufacturing & Operations",
+    subtitle: "Skilled workforce powering industries",
+    description: "We provide skilled professionals to ensure streamlined operations and productivity.",
+    icon: FiUsers,
+    primaryColor: "text-yellow-600",
+    bgGradient: "from-yellow-400 to-yellow-200",
+    bgColor: "bg-yellow-50",
+    iconBg: "bg-yellow-100",
+    borderColor: "border-yellow-200",
+    roles: [
+      { title: "Production Managers", icon: FiBriefcase },
+      { title: "Quality Control", icon: FiAward },
+      { title: "Operations Supervisors", icon: FiBarChart }
+    ]
+  },
+  {
+    id: 5,
+    name: "Healthcare & Pharma",
+    subtitle: "Compassionate & qualified experts in care",
+    description: "From nurses to pharmacists, access compassionate experts ensuring best standards.",
+    icon: FiUsers,
+    primaryColor: "text-pink-600",
+    bgGradient: "from-pink-400 to-pink-200",
+    bgColor: "bg-pink-50",
+    iconBg: "bg-pink-100",
+    borderColor: "border-pink-200",
+    roles: [
+      { title: "Nurses", icon: FiTarget },
+      { title: "Pharmacists", icon: FiAward },
+      { title: "Healthcare Administrators", icon: FiBriefcase }
+    ]
+  },
+  {
+    id: 6,
+    name: "Retail & E-Commerce",
+    subtitle: "Building customer-first businesses",
+    description: "Recruit talented professionals to enhance your retail and online presence.",
+    icon: FiUsers,
+    primaryColor: "text-red-600",
+    bgGradient: "from-red-400 to-red-200",
+    bgColor: "bg-red-50",
+    iconBg: "bg-red-100",
+    borderColor: "border-red-200",
+    roles: [
+      { title: "Store Managers", icon: FiBriefcase },
+      { title: "E-Com Specialists", icon: FiCode },
+      { title: "Merchandisers", icon: FiAward }
+    ]
+  },
+  {
+    id: 7,
+    name: "Logistics & Supply Chain",
+    subtitle: "Efficiency through the right talent",
+    description: "Logistics and supply chain specialists for end-to-end operational excellence.",
+    icon: FiUsers,
+    primaryColor: "text-orange-600",
+    bgGradient: "from-orange-400 to-orange-200",
+    bgColor: "bg-orange-50",
+    iconBg: "bg-orange-100",
+    borderColor: "border-orange-200",
+    roles: [
+      { title: "Logistics Coordinators", icon: FiTarget },
+      { title: "Supply Chain Analysts", icon: FiBriefcase }
+    ]
+  },
+  {
+    id: 8,
+    name: "BPO & Customer Support",
+    subtitle: "Voices that build stronger connections",
+    description: "Find the best voices to represent and support your customers world-wide.",
+    icon: FiUsers,
+    primaryColor: "text-teal-600",
+    bgGradient: "from-teal-400 to-teal-200",
+    bgColor: "bg-teal-50",
+    iconBg: "bg-teal-100",
+    borderColor: "border-teal-200",
+    roles: [
+      { title: "Customer Support Executives", icon: FiBriefcase },
+      { title: "BPO Team Leads", icon: FiAward }
+    ]
   }
 ];
 

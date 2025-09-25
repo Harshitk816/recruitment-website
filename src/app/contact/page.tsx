@@ -293,7 +293,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Email</h4>
-                    <p className="text-gray-600">contact@workeraa.com</p>
+                    <p className="text-gray-600">connect@workeraa.co.in</p>
                   </div>
                 </div>
 
@@ -304,7 +304,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Phone</h4>
-                    <p className="text-gray-600">+91 98765 43210</p>
+                    <p className="text-gray-600">+91 8700192565, +91 9599656760</p>
                   </div>
                 </div>
 
