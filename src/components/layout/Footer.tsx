@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Container } from '../ui/Container';
+import { Logo } from '../ui/Logo'; // Import the Logo component
 import { motion } from 'framer-motion';
 import { 
   FiMail, 
@@ -11,8 +12,6 @@ import {
   FiTwitter,
   FiFacebook,
   FiInstagram,
-  FiUsers,
-  FiTrendingUp,
   FiArrowRight
 } from 'react-icons/fi';
 
@@ -47,7 +46,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <footer className="bg-gradient-to-br from-gray-700 to-gray-600 text-white">
       <Container>
         {/* Main Footer Content */}
         <div className="py-16">
@@ -55,13 +54,7 @@ export const Footer: React.FC = () => {
             {/* Company Info */}
             <div className="lg:col-span-2">
               {/* Logo */}
-              <Link href="/" className="flex items-center space-x-2 text-2xl font-bold mb-6">
-                <div className="flex items-center">
-                  <FiUsers className="text-blue-400 mr-1" />
-                  <FiTrendingUp className="text-green-400" />
-                </div>
-                <span className="text-white">Workeraa</span>
-              </Link>
+              <Logo size="lg" className="mb-6" />
 
               <p className="text-gray-300 leading-relaxed mb-6">
                 Connecting exceptional talent with innovative companies across India and beyond. 
@@ -72,11 +65,11 @@ export const Footer: React.FC = () => {
               <div className="space-y-3 mb-6">
                 <div className="flex items-center space-x-3">
                   <FiMail className="text-blue-400" />
-                  <span className="text-gray-300">connect@workeraa.co.in</span>
+                  <span className="text-gray-300">contact@workeraa.com</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <FiPhone className="text-green-400" />
-                  <span className="text-gray-300">+91 8700192565, +91 9599656760</span>
+                  <span className="text-gray-300">+91 98765 43210</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <FiMapPin className="text-purple-400" />
@@ -89,6 +82,7 @@ export const Footer: React.FC = () => {
                 {[
                   { icon: FiLinkedin, href: '#', color: 'hover:text-blue-400' },
                   { icon: FiTwitter, href: '#', color: 'hover:text-blue-300' },
+                  { icon: FiFacebook, href: '#', color: 'hover:text-blue-500' },
                   { icon: FiInstagram, href: '#', color: 'hover:text-pink-400' }
                 ].map((social, index) => (
                   <motion.a
@@ -163,10 +157,23 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Footer */}
         <div className="border-t border-gray-700 py-8">
-          <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-400 text-sm">
               © {currentYear} Workeraa. All rights reserved.
             </div>
+            
+            <div className="flex space-x-6 text-sm">
+              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                Terms of Service
+              </Link>
+              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                Cookie Policy
+              </Link>
+            </div>
+
           </div>
         </div>
       </Container>

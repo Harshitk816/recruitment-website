@@ -239,7 +239,7 @@ export const Services: React.FC = () => {
           </div>
           
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            <span className="text-blue-600">Hire Smarter,</span> Grow Faster
+            <span className="text-blue-600">Innovation Hired,</span> Growth Inspired
           </h2>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">

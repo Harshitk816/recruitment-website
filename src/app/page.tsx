@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Services />
       <Industries />
+      <Services />
       <About />
        <WhatsAppWidget
         phoneNumber="918700192565" 

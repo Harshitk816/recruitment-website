@@ -3,28 +3,9 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Container } from '../ui/Container';
 import { Button } from '../ui/Button';
-import { FiUsers, FiTrendingUp, FiMenu, FiX, FiPhone, FiMail } from 'react-icons/fi';
+import { Logo } from '../ui/Logo'; // Import the Logo component
+import { FiMenu, FiX, FiPhone, FiMail } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const Logo: React.FC<{ size?: 'sm' | 'md' | 'lg' }> = ({ size = 'md' }) => {
-  const sizes = {
-    sm: 'text-lg',
-    md: 'text-xl',
-    lg: 'text-2xl'
-  };
-
-  return (
-    <Link href="/" className={`flex items-center space-x-2 ${sizes[size]} font-bold`}>
-      <div className="flex items-center">
-        <FiUsers className="text-blue-600 mr-1" />
-        <FiTrendingUp className="text-green-500" />
-      </div>
-      <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">
-        Workeraa
-      </span>
-    </Link>
-  );
-};
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,7 +19,6 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
- 
   const navItems = [
     { href: '/', label: 'Home' },
     { href: '/services', label: 'Services' },
@@ -51,6 +31,7 @@ export const Header: React.FC = () => {
 
   return (
     <>
+      {/* Top Bar */}
       <div className="bg-gray-900 text-white text-sm py-2 hidden md:block">
         <Container>
           <div className="flex justify-between items-center">
@@ -65,13 +46,13 @@ export const Header: React.FC = () => {
               </div>
             </div>
             <div className="text-gray-300">
-              Hire Smarter, Grow Faster
+              Where Talent Meets Tomorrow
             </div>
           </div>
         </Container>
       </div>
 
-     
+      {/* Main Header */}
       <header 
         className={`sticky top-0 z-50 transition-all duration-300 ${
           isScrolled 
@@ -81,10 +62,10 @@ export const Header: React.FC = () => {
       >
         <Container>
           <div className="flex items-center justify-between py-4">
-            
-            <Logo />
+            {/* Logo */}
+            <Logo size="xxs" />
 
-          
+            {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
               {navItems.map((item) => (
                 <Link
@@ -98,7 +79,7 @@ export const Header: React.FC = () => {
               ))}
             </nav>
 
-            
+            {/* Desktop Buttons */}
             <div className="hidden lg:flex items-center space-x-4">
               <Button variant="outline" href="#contact">
                 Get Quote
@@ -108,7 +89,7 @@ export const Header: React.FC = () => {
               </Button>
             </div>
 
-           
+            {/* Mobile Menu Toggle */}
             <button
               onClick={toggleMenu}
               className="lg:hidden p-2 rounded-md hover:bg-gray-100 transition-colors"
@@ -124,7 +105,7 @@ export const Header: React.FC = () => {
           </div>
         </Container>
 
-        
+        {/* Mobile Menu */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -153,7 +134,7 @@ export const Header: React.FC = () => {
                     </motion.div>
                   ))}
                   
-              
+                  {/* Contact Info */}
                   <div className="pt-4 border-t border-gray-200 space-y-3">
                     <div className="flex items-center space-x-2 text-gray-600">
                       <FiMail className="text-blue-600" />
@@ -165,7 +146,7 @@ export const Header: React.FC = () => {
                     </div>
                   </div>
 
-             
+                  {/* Mobile Buttons */}
                   <div className="pt-4 space-y-3">
                     <Button 
                       variant="outline" 

@@ -1,25 +1,41 @@
-// Temporary Logo Component (src/components/ui/Logo.tsx)
+'use client';
 import React from 'react';
-import { FiUsers, FiTrendingUp } from 'react-icons/fi';
+import Link from 'next/link';
+import Image from 'next/image';
 
-export const Logo: React.FC<{ size?: 'sm' | 'md' | 'lg' }> = ({ 
-  size = 'md' 
+interface LogoProps {
+  size?: 'xxs'|'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  className?: string;
+}
+
+export const Logo: React.FC<LogoProps> = ({ 
+  size = 'md', 
+  className = ''
 }) => {
-  const sizes = {
-    sm: 'text-xl',
-    md: 'text-2xl', 
-    lg: 'text-3xl'
+  const dimensions = {
+    xxs: { width: 60, height: 16 },
+    xs: { width: 80, height: 18 },
+    sm: { width: 100, height: 28 },
+    md: { width: 140, height: 38 },
+    lg: { width: 180, height: 48 },
+    xl: { width: 240, height: 64 }
   };
 
+  const { width, height } = dimensions[size];
+
   return (
-    <div className={`flex items-center space-x-2 ${sizes[size]} font-bold`}>
-      <div className="flex items-center">
-        <FiUsers className="text-blue-600 mr-1" />
-        <FiTrendingUp className="text-green-500" />
-      </div>
-      <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">
-        Workeraa
-      </span>
-    </div>
+    <Link 
+      href="/" 
+      className={`flex items-center transition-opacity hover:opacity-80 ${className}`}
+    >
+      <Image
+        src="/images/logo/workeraa.png"
+        alt="Workeraa - Premium Recruitment Solutions"
+        width={width}
+        height={height}
+        priority
+        className="object-contain"
+      />
+    </Link>
   );
 };
