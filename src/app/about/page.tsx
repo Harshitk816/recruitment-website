@@ -7,7 +7,7 @@ export default function AboutPage() {
       <About />
       {/* WhatsApp Widget */}
       <WhatsAppWidget 
-        phoneNumber="919876543210" 
+        phoneNumber="918700192565" 
         defaultMessage="Hi! I found your about page and I'm interested in Workeraa's services."
       />
     </main>

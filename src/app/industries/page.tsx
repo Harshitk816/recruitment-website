@@ -2,6 +2,7 @@
 import { Industries } from '@/components/sections/Industries';
 import { WhatsAppWidget } from '@/components/sections/Whatsapp';
 import { Container } from '@/components/ui/Container';
+import { Button } from '@/components/ui/Button';
 import { motion } from 'framer-motion';
 import { 
   FiMonitor, 
@@ -13,6 +14,17 @@ import {
 } from 'react-icons/fi';
 
 const IndustriesPageContent = () => {
+  // Function to scroll to Industries section
+  const scrollToRoles = () => {
+    const industriesSection = document.getElementById('industries');
+    if (industriesSection) {
+      industriesSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <div className="py-12 bg-white">
       <Container>
@@ -84,10 +96,25 @@ const IndustriesPageContent = () => {
 };
 
 export default function IndustriesPage() {
+  // Function to scroll to Industries section
+  const scrollToRoles = () => {
+    const industriesSection = document.getElementById('industries');
+    if (industriesSection) {
+      industriesSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <main>
       <IndustriesPageContent />
-      <Industries />
+      
+      {/* Add id to Industries section for scrolling */}
+      <div id="industries">
+        <Industries />
+      </div>
       
       {/* Success Stories Section */}
       <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
@@ -154,7 +181,7 @@ export default function IndustriesPage() {
         </Container>
       </section>
 
-      {/* Industry-Specific CTA */}
+      {/* Industry-Specific CTA - UPDATED BUTTONS */}
       <section className="py-20 bg-white">
         <Container>
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-white text-center">
@@ -165,10 +192,19 @@ export default function IndustriesPage() {
               Let us connect you with top-tier professionals who understand your industry inside and out.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-white text-blue-600 hover:bg-gray-100 rounded-lg font-semibold transition-all">
+              {/* UPDATED: Schedule Consultation links to /contact */}
+              <Button 
+                href="/contact"
+                className="px-8 py-4 bg-white !text-blue-600 hover:bg-gray-100 rounded-lg font-semibold transition-all"
+              >
                 Schedule Consultation
-              </button>
-              <button className="px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-blue-600 rounded-lg font-semibold transition-all">
+              </Button>
+              
+              {/* UPDATED: View All Positions scrolls to roles section */}
+              <button 
+                onClick={scrollToRoles}
+                className="px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-blue-600 rounded-lg font-semibold transition-all"
+              >
                 View All Positions
               </button>
             </div>
@@ -176,8 +212,9 @@ export default function IndustriesPage() {
         </Container>
       </section>
 
+      {/* UPDATED WHATSAPP WITH REAL PHONE NUMBER */}
       <WhatsAppWidget 
-        phoneNumber="919876543210" 
+        phoneNumber="918700192565" 
         defaultMessage="Hi! I'm interested in industry-specific recruitment services."
       />
     </main>

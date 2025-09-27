@@ -91,7 +91,7 @@ const servicesData = [
   }
 ];
 
-// Individual Service Card Component - FIXED VERSION
+// Individual Service Card Component
 interface ServiceCardProps {
   service: typeof servicesData[0];
   index: number;
@@ -116,7 +116,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
         hover:${service.bgColor}
       `}>
         
-        {/* Icon - FIXED */}
+        {/* Icon */}
         <motion.div
           whileHover={{ scale: 1.1, rotate: 5 }}
           className={`
@@ -142,7 +142,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
             {service.description}
           </p>
 
-          {/* Features list - FIXED */}
+          {/* Features list */}
           <ul className="space-y-3 mb-6">
             {service.features.map((feature, idx) => (
               <motion.li
@@ -159,23 +159,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
               </motion.li>
             ))}
           </ul>
-
-          {/* Learn More Button */}
-          <motion.div
-            whileHover={{ x: 5 }}
-            className={`flex items-center space-x-2 ${service.primaryColor} hover:opacity-80 cursor-pointer transition-all`}
-          >
-            <span className="font-medium">Learn More</span>
-            <FiArrowRight className="text-sm transition-transform group-hover:translate-x-1" />
-          </motion.div>
         </div>
 
-        {/* Decorative elements - FIXED */}
+        {/* Decorative elements */}
         <div className="absolute top-4 right-4 w-16 h-16 opacity-10">
           <div className={`w-full h-full rounded-full ${service.iconBg}`} />
         </div>
         
-        {/* Additional decorative circle */}
         <div className="absolute bottom-4 right-4 w-8 h-8 opacity-20">
           <div className={`w-full h-full rounded-full ${service.iconBg}`} />
         </div>
@@ -184,7 +174,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
   );
 };
 
-// Stats Component for Services - FIXED
+// Stats Component for Services
 const ServiceStats: React.FC = () => {
   const stats = [
     { icon: FiUsers, number: "500+", label: "Companies Served", color: "text-blue-600", bg: "bg-blue-100" },
@@ -259,7 +249,7 @@ export const Services: React.FC = () => {
           ))}
         </div>
 
-        {/* Call to Action */}
+        {/* Call to Action - UPDATED */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -274,20 +264,15 @@ export const Services: React.FC = () => {
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Let's discuss your specific requirements and create a customized recruitment strategy that delivers results.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {/* UPDATED: Single button linking to /contact */}
+            <div className="flex justify-center">
               <Button 
+                href="/contact"
                 variant="secondary" 
                 size="lg"
                 className="!bg-white !text-blue-600 hover:!bg-blue-700 hover:!text-white !border-0 transition-all duration-200"
               >
                 Get Free Consultation
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="border-2 border-white text-white hover:bg-white hover:!text-blue-600"
-              >
-                View Success Stories
               </Button>
             </div>
           </div>

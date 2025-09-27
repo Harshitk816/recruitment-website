@@ -100,7 +100,7 @@ export default function ContactPage() {
           </motion.div>
         </Container>
         <WhatsAppWidget 
-          phoneNumber="919876543210" 
+          phoneNumber="918700192565" 
           defaultMessage="Hi! I'm interested in discussing my hiring needs with Workeraa."
         />
       </main>
@@ -360,7 +360,7 @@ export default function ContactPage() {
 
       {/* WhatsApp Widget */}
       <WhatsAppWidget 
-        phoneNumber="919876543210" 
+        phoneNumber="918700192565" 
         defaultMessage="Hi! I'm interested in discussing my hiring needs with Workeraa."
       />
     </main>

@@ -20,28 +20,22 @@ export const Footer: React.FC = () => {
 
   const footerLinks = {
     services: [
-      { label: 'Executive Search', href: '/services#executive' },
-      { label: 'Permanent Hiring', href: '/services#permanent' },
-      { label: 'Contract Staffing', href: '/services#contract' },
-      { label: 'Flexible Solutions', href: '/services#flexible' }
+      { label: 'Executive Search', href: '/services' },
+      { label: 'Permanent Hiring', href: '/services' },
+      { label: 'Contract Staffing', href: '/services' },
+      { label: 'Flexible Solutions', href: '/services' }
     ],
     industries: [
-      { label: 'IT & Technology', href: '/industries#it' },
-      { label: 'Finance & Accounting', href: '/industries#finance' },
-      { label: 'Sales & Marketing', href: '/industries#sales' },
+      { label: 'IT & Technology', href: '/industries' },
+      { label: 'Finance & Accounting', href: '/industries' },
+      { label: 'Sales & Marketing', href: '/industries' },
       { label: 'View All Industries', href: '/industries' }
     ],
     company: [
       { label: 'About Us', href: '/about' },
-      { label: 'Our Process', href: '/services#process' },
-      { label: 'Success Stories', href: '/industries#stories' },
+      { label: 'Our Services', href: '/services' },
+      { label: 'Industries We Serve', href: '/industries' },
       { label: 'Contact', href: '/contact' }
-    ],
-    resources: [
-      { label: 'Career Tips', href: '#' },
-      { label: 'Hiring Guide', href: '#' },
-      { label: 'Industry Insights', href: '#' },
-      { label: 'FAQ', href: '#' }
     ]
   };
 
@@ -50,7 +44,7 @@ export const Footer: React.FC = () => {
       <Container>
         {/* Main Footer Content */}
         <div className="py-16">
-          <div className="grid lg:grid-cols-5 gap-8">
+          <div className="grid lg:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="lg:col-span-2">
               {/* Logo */}
@@ -61,39 +55,72 @@ export const Footer: React.FC = () => {
                 We specialize in IT, Finance, Sales & Marketing recruitment with a proven track record of success.
               </p>
 
-              {/* Contact Info */}
+              {/* UPDATED Contact Info with Real Data */}
               <div className="space-y-3 mb-6">
-                <div className="flex items-center space-x-3">
+                <a 
+                  href="mailto:connect@workeraa.co.in"
+                  className="flex items-center space-x-3 hover:text-blue-200 transition-colors"
+                >
                   <FiMail className="text-blue-400" />
-                  <span className="text-gray-300">contact@workeraa.com</span>
-                </div>
-                <div className="flex items-center space-x-3">
+                  <span className="text-gray-300">connect@workeraa.co.in</span>
+                </a>
+                <a 
+                  href="tel:+918700192565"
+                  className="flex items-center space-x-3 hover:text-green-200 transition-colors"
+                >
                   <FiPhone className="text-green-400" />
-                  <span className="text-gray-300">+91 98765 43210</span>
-                </div>
+                  <span className="text-gray-300">+91 8700192565</span>
+                </a>
+                <a 
+                  href="tel:+919599656760"
+                  className="flex items-center space-x-3 hover:text-green-200 transition-colors"
+                >
+                  <FiPhone className="text-green-400" />
+                  <span className="text-gray-300">+91 9599656760</span>
+                </a>
                 <div className="flex items-center space-x-3">
                   <FiMapPin className="text-purple-400" />
                   <span className="text-gray-300">India</span>
                 </div>
               </div>
 
-              {/* Social Links */}
+              {/* UPDATED Social Links with Real LinkedIn */}
               <div className="flex space-x-4">
-                {[
-                  { icon: FiLinkedin, href: '#', color: 'hover:text-blue-400' },
-                  { icon: FiTwitter, href: '#', color: 'hover:text-blue-300' },
-                  { icon: FiFacebook, href: '#', color: 'hover:text-blue-500' },
-                  { icon: FiInstagram, href: '#', color: 'hover:text-pink-400' }
-                ].map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.href}
-                    whileHover={{ scale: 1.2, y: -2 }}
-                    className={`w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-gray-300 transition-all ${social.color}`}
-                  >
-                    <social.icon className="text-lg" />
-                  </motion.a>
-                ))}
+                <motion.a
+                  href="https://www.linkedin.com/company/workeraa/?viewAsMember=true"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-gray-300 transition-all hover:text-blue-400"
+                >
+                  <FiLinkedin className="text-lg" />
+                </motion.a>
+                {/* Other social links commented out for now since we only have LinkedIn */}
+                
+                <motion.a
+                  // href=""
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-gray-300 transition-all hover:text-blue-300"
+                >
+                  <FiTwitter className="text-lg" />
+                </motion.a>
+                <motion.a
+                  // href=""
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-gray-300 transition-all hover:text-blue-500"
+                >
+                  <FiInstagram className="text-lg" />
+                  
+                </motion.a>
+                {/* 
+                <motion.a
+                  href=""
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-gray-300 transition-all hover:text-pink-400"
+                >
+                  <FiFacebook className="text-lg" />
+                </motion.a>
+                */}
               </div>
             </div>
 
@@ -102,24 +129,6 @@ export const Footer: React.FC = () => {
               <h3 className="text-lg font-semibold mb-6">Services</h3>
               <ul className="space-y-3">
                 {footerLinks.services.map((link, index) => (
-                  <li key={index}>
-                    <Link 
-                      href={link.href}
-                      className="text-gray-300 hover:text-white transition-colors flex items-center group"
-                    >
-                      <FiArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-all" />
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Industries Links */}
-            <div>
-              <h3 className="text-lg font-semibold mb-6">Industries</h3>
-              <ul className="space-y-3">
-                {footerLinks.industries.map((link, index) => (
                   <li key={index}>
                     <Link 
                       href={link.href}
@@ -150,6 +159,7 @@ export const Footer: React.FC = () => {
                 ))}
               </ul>
 
+              {/* Newsletter Signup */}
               
             </div>
           </div>
@@ -162,18 +172,7 @@ export const Footer: React.FC = () => {
               © {currentYear} Workeraa. All rights reserved.
             </div>
             
-            <div className="flex space-x-6 text-sm">
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                Terms of Service
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                Cookie Policy
-              </Link>
-            </div>
-
+        
           </div>
         </div>
       </Container>

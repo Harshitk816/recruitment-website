@@ -9,7 +9,7 @@ interface WhatsAppWidgetProps {
 }
 
 export const WhatsAppWidget: React.FC<WhatsAppWidgetProps> = ({
-  phoneNumber = "919876543210",
+  phoneNumber = "918700192565",
   defaultMessage = "Hi! I'm interested in your recruitment services."
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -160,7 +160,7 @@ export const WhatsAppWidget: React.FC<WhatsAppWidgetProps> = ({
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Type your message..."
-                  className="w-full p-3 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
+                  className="w-full p-3 border border-gray-300 text-gray-700 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
                   rows={3}
                 />
                 

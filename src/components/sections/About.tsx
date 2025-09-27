@@ -54,24 +54,37 @@ const FounderCardPrimary: React.FC<{
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
+              {/* ADDED: Phone click functionality */}
+              <a 
+                href={`tel:+91${phone}`}
+                className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2 hover:bg-opacity-20 transition-all cursor-pointer"
+              >
                 <FiPhone className="text-blue-800" />
                 <span className="text-sm text-blue-800">{phone}</span>
-              </div>
-              <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
+              </a>
+              {/* ADDED: Email click functionality */}
+              <a 
+                href={`mailto:${email}`}
+                className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2 hover:bg-opacity-20 transition-all cursor-pointer"
+              >
                 <FiMail className="text-blue-800" />
                 <span className="text-sm text-blue-800">{email}</span>
-              </div>
+              </a>
             </div>
 
             <div className="flex space-x-4">
-              <button className="bg-white text-blue-900 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all flex items-center space-x-2">
+              {/* ADDED: Email click functionality */}
+              <a 
+                href={`mailto:${email}`}
+                className="bg-white text-blue-900 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all flex items-center space-x-2"
+              >
                 <FiMail className="text-sm" />
                 <span>Connect</span>
-              </button>
-              <button className="border border-white border-opacity-30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:bg-opacity-10 transition-all">
+              </a>
+              {/* COMMENTED: LinkedIn button for Akash */}
+              {/* <button className="border border-white border-opacity-30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:bg-opacity-10 transition-all">
                 LinkedIn
-              </button>
+              </button> */}
             </div>
           </div>
 
@@ -149,24 +162,42 @@ const FounderCardSecondary: React.FC<{
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
+              {/* ADDED: Phone click functionality */}
+              <a 
+                href={`tel:+91${phone}`}
+                className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2 hover:bg-opacity-20 transition-all cursor-pointer"
+              >
                 <FiPhone className="text-emerald-500" />
                 <span className="text-sm text-emerald-500">{phone}</span>
-              </div>
-              <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
+              </a>
+              {/* ADDED: Email click functionality */}
+              <a 
+                href={`mailto:${email}`}
+                className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2 hover:bg-opacity-20 transition-all cursor-pointer"
+              >
                 <FiMail className="text-emerald-500" />
                 <span className="text-sm text-emerald-500">{email}</span>
-              </div>
+              </a>
             </div>
 
             <div className="flex space-x-4">
-              <button className="bg-white text-emerald-700 px-6 py-3 rounded-xl font-semibold hover:bg-emerald-50 transition-all flex items-center space-x-2">
+              {/* ADDED: Email click functionality */}
+              <a 
+                href={`mailto:${email}`}
+                className="bg-white text-emerald-700 px-6 py-3 rounded-xl font-semibold hover:bg-emerald-50 transition-all flex items-center space-x-2"
+              >
                 <FiMail className="text-sm" />
                 <span>Connect</span>
-              </button>
-              <button className="border border-white border-opacity-30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:bg-opacity-10 transition-all">
+              </a>
+              {/* ADDED: Alisha's LinkedIn functionality */}
+              <a 
+                href="https://www.linkedin.com/company/workeraa/?viewAsMember=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-white border-opacity-30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-emerald-500 hover:bg-opacity-10 transition-all"
+              >
                 LinkedIn
-              </button>
+              </a>
             </div>
           </div>
         </div>

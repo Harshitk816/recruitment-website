@@ -373,13 +373,14 @@ export const Industries: React.FC = () => {
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Our recruitment expertise extends beyond these core sectors. Let's discuss your specific industry needs and talent requirements.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-6 py-3 text-lg font-medium bg-white text-gray-900 hover:bg-gray-100 hover:text-gray-800 rounded-lg transition-all duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2">
+            <div className="flex justify-center">
+              <Button 
+                href="/contact"
+                size="lg"
+                className="bg-white !text-gray-900 hover:bg-gray-100 hover:text-gray-800 shadow-md focus:ring-white focus:ring-offset-2"
+              >
                 Discuss Your Needs
-              </button>
-              <button className="px-6 py-3 text-lg font-medium border-2 border-white text-white hover:bg-white hover:text-gray-900 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2">
-                View All Services
-              </button>
+              </Button>
             </div>
           </div>
         </motion.div>

@@ -11,14 +11,13 @@ import {
   FiStar,
   FiCheckCircle 
 } from 'react-icons/fi';
+import { Link } from 'lucide-react';
 
 // Hero Image Placeholder Component
 const HeroImagePlaceholder: React.FC = () => {
   return (
     <div className="relative">
-      {/* Main placeholder container */}
       <div className="w-full h-[400px] md:h-[500px] bg-gradient-to-br from-blue-50 via-white to-green-50 rounded-2xl shadow-xl overflow-hidden">
-        {/* Geometric shapes for visual interest */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-10 left-10 w-20 h-20 bg-blue-500 rounded-full"></div>
           <div className="absolute top-32 right-16 w-16 h-16 bg-green-500 rounded-lg rotate-45"></div>
@@ -26,10 +25,8 @@ const HeroImagePlaceholder: React.FC = () => {
           <div className="absolute bottom-32 right-32 w-8 h-8 bg-yellow-500 rounded-full"></div>
         </div>
         
-        {/* Central content */}
         <div className="flex items-center justify-center h-full relative z-10">
           <div className="text-center space-y-6">
-            {/* Professional icons representing recruitment */}
             <div className="flex justify-center space-x-6 text-4xl">
               <motion.div
                 animate={{ rotate: 360 }}
@@ -137,7 +134,6 @@ export const Hero: React.FC = () => {
 
       <Container className="relative z-10">
         <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
-          {/* Left Column - Content */}
           <div className="mb-12 lg:mb-0">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -187,11 +183,14 @@ export const Hero: React.FC = () => {
               </div>
 
               {/* CTA Buttons */}
+              
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                <Link>
+              </Link>
                 <Button 
                   size="lg" 
                   className="group"
-                  href="#contact"
+                  href="/contact"
                 >
                   Get Started Today
                   <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
@@ -199,7 +198,7 @@ export const Hero: React.FC = () => {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  href="#services"
+                  href="/services"
                 >
                   Explore Services
                 </Button>

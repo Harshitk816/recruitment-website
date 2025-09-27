@@ -129,7 +129,7 @@ export default function ServicesPage() {
       </section>
 
       <WhatsAppWidget 
-        phoneNumber="919876543210" 
+        phoneNumber="918700192565" 
         defaultMessage="Hi! I'm interested in learning more about your recruitment services."
       />
     </main>
