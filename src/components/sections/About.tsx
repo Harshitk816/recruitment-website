@@ -10,7 +10,6 @@ import {
   FiHeart,
   FiTrendingUp,
   FiCheckCircle,
-  FiLinkedin,
   FiMail,
   FiPhone
 } from 'react-icons/fi';

@@ -7,7 +7,6 @@ import {
   FiZap, 
   FiLayers, 
   FiRotateCw,
-  FiArrowRight,
   FiCheck,
   FiUsers,
   FiTarget

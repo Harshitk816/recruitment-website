@@ -7,10 +7,7 @@ import { motion } from 'framer-motion';
 import { 
   FiMonitor, 
   FiDollarSign, 
-  FiTrendingUp,
-  FiUsers,
-  FiTarget,
-  FiAward
+  FiTrendingUp
 } from 'react-icons/fi';
 
 const IndustriesPageContent = () => {
