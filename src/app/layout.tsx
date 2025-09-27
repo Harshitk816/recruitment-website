@@ -1,15 +1,19 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
-import { LoadingWrapper } from '@/components/layout/LoadingWrapper';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { LoadingWrapper } from "@/components/layout/LoadingWrapper";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Workeraa - Premium Recruitment Solutions',
-  description: 'Where Talent Meets Tomorrow. Professional recruitment services across India.',
+  title: "Workeraa - Premium Recruitment Solutions",
+  description:
+    "Where Talent Meets Tomorrow. Professional recruitment services across India.",
+    icons: {
+    icon: "/favicon.ico", 
+  },
 };
 
 export default function RootLayout({

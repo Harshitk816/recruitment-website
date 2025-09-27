@@ -1,7 +1,7 @@
-'use client';
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FiMessageCircle, FiX, FiSend } from 'react-icons/fi';
+"use client";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiMessageCircle, FiX, FiSend } from "react-icons/fi";
 
 interface WhatsAppWidgetProps {
   phoneNumber?: string;
@@ -10,7 +10,7 @@ interface WhatsAppWidgetProps {
 
 export const WhatsAppWidget: React.FC<WhatsAppWidgetProps> = ({
   phoneNumber = "918700192565",
-  defaultMessage = "Hi! I'm interested in your recruitment services."
+  defaultMessage = "Hi! I'm interested in your recruitment services.",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState(defaultMessage);
@@ -22,13 +22,13 @@ export const WhatsAppWidget: React.FC<WhatsAppWidgetProps> = ({
   // FIXED: Handle send message with proper timing
   const handleSendMessage = () => {
     if (!message.trim()) return;
-    
+
     const encodedMessage = encodeURIComponent(message.trim());
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    
+
     // Open WhatsApp first
-    const whatsappWindow = window.open(whatsappUrl, '_blank');
-    
+    const whatsappWindow = window.open(whatsappUrl, "_blank");
+
     // Only close widget if WhatsApp opened successfully
     if (whatsappWindow) {
       // Add a small delay to ensure the window opens
@@ -48,8 +48,8 @@ export const WhatsAppWidget: React.FC<WhatsAppWidgetProps> = ({
   const quickMessages = [
     "I need help with recruitment services",
     "I want to hire IT professionals",
-    "I'm looking for job opportunities", 
-    "I need executive search services"
+    "I'm looking for job opportunities",
+    "I need executive search services",
   ];
 
   return (
@@ -96,7 +96,7 @@ export const WhatsAppWidget: React.FC<WhatsAppWidgetProps> = ({
           transition={{
             duration: 2,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
           className="absolute inset-0 bg-green-400 rounded-full -z-10"
         />
@@ -120,7 +120,9 @@ export const WhatsAppWidget: React.FC<WhatsAppWidgetProps> = ({
                 </div>
                 <div>
                   <h3 className="font-semibold">Workeraa Support</h3>
-                  <p className="text-sm opacity-90">Typically replies instantly</p>
+                  <p className="text-sm opacity-90">
+                    Typically replies instantly
+                  </p>
                 </div>
               </div>
             </div>
@@ -131,14 +133,17 @@ export const WhatsAppWidget: React.FC<WhatsAppWidgetProps> = ({
               <div className="mb-4">
                 <div className="bg-gray-100 p-3 rounded-xl rounded-bl-sm max-w-xs">
                   <p className="text-sm text-gray-800">
-                    Hi there! 👋 Thanks for visiting Workeraa. How can we help you today?
+                    Hi there! 👋 Thanks for visiting Workeraa. How can we help
+                    you today?
                   </p>
                 </div>
               </div>
 
               {/* Quick Messages */}
               <div className="mb-4">
-                <p className="text-xs text-gray-500 mb-3 font-medium">Quick messages:</p>
+                <p className="text-xs text-gray-500 mb-3 font-medium">
+                  Quick messages:
+                </p>
                 <div className="space-y-2">
                   {quickMessages.map((msg, index) => (
                     <motion.button
@@ -163,7 +168,7 @@ export const WhatsAppWidget: React.FC<WhatsAppWidgetProps> = ({
                   className="w-full p-3 border border-gray-300 text-gray-700 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm"
                   rows={3}
                 />
-                
+
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}

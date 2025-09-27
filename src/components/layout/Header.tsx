@@ -1,11 +1,11 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Container } from '../ui/Container';
-import { Button } from '../ui/Button';
-import { Logo } from '../ui/Logo';
-import { FiMenu, FiX, FiPhone, FiMail } from 'react-icons/fi';
-import { motion, AnimatePresence } from 'framer-motion';
+"use client";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { Container } from "../ui/Container";
+import { Button } from "../ui/Button";
+import { Logo } from "../ui/Logo";
+import { FiMenu, FiX, FiPhone, FiMail } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,16 +15,16 @@ export const Header: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { href: '/', label: 'Home' },
-    { href: '/services', label: 'Services' },
-    { href: '/industries', label: 'Industries' },
-    { href: '/about', label: 'About' },
-    { href: '/contact', label: 'Contact' }
+    { href: "/", label: "Home" },
+    { href: "/services", label: "Services" },
+    { href: "/industries", label: "Industries" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -45,19 +45,15 @@ export const Header: React.FC = () => {
                 <span>+91 8700192565 | +91 9599656760</span>
               </div>
             </div>
-            <div className="text-gray-300">
-              Hire Smarter, Grow Faster
-            </div>
+            <div className="text-gray-300">Hire Smarter, Grow Faster</div>
           </div>
         </Container>
       </div>
 
       {/* Main Header */}
-      <header 
+      <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
-          isScrolled 
-            ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-            : 'bg-white'
+          isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-white"
         }`}
       >
         <Container>
@@ -81,9 +77,7 @@ export const Header: React.FC = () => {
               <Button variant="outline" href="/contact">
                 Get Quote
               </Button>
-              <Button href="/services">
-                Our Services
-              </Button>
+              <Button href="/services">Our Services</Button>
             </div>
 
             <button
@@ -95,7 +89,11 @@ export const Header: React.FC = () => {
                 animate={{ rotate: isMenuOpen ? 180 : 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {isMenuOpen ? <FiX size={24} className="text-blue-600"/> : <FiMenu size={24} className="text-blue-600"/>}
+                {isMenuOpen ? (
+                  <FiX size={24} className="text-blue-600" />
+                ) : (
+                  <FiMenu size={24} className="text-blue-600" />
+                )}
               </motion.div>
             </button>
           </div>
@@ -105,7 +103,7 @@ export const Header: React.FC = () => {
           {isMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
               className="lg:hidden border-t border-gray-200 bg-white"
@@ -128,7 +126,7 @@ export const Header: React.FC = () => {
                       </Link>
                     </motion.div>
                   ))}
-                  
+
                   {/* Contact Info - UPDATED REAL DATA */}
                   <div className="pt-4 border-t border-gray-200 space-y-3">
                     <div className="flex items-center space-x-2 text-gray-600">
@@ -142,15 +140,15 @@ export const Header: React.FC = () => {
                   </div>
 
                   <div className="pt-4 space-y-3">
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       href="/contact"
                       className="w-full justify-center"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Get Quote
                     </Button>
-                    <Button 
+                    <Button
                       href="/services"
                       className="w-full justify-center"
                       onClick={() => setIsMenuOpen(false)}

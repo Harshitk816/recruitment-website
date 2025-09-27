@@ -1,17 +1,17 @@
-'use client';
-import React from 'react';
-import { Container } from '../ui/Container';
-import { Button } from '../ui/Button';
-import { motion } from 'framer-motion';
-import { 
-  FiArrowRight, 
-  FiUsers, 
-  FiTrendingUp, 
-  FiTarget, 
+"use client";
+import React from "react";
+import { Container } from "../ui/Container";
+import { Button } from "../ui/Button";
+import { motion } from "framer-motion";
+import {
+  FiArrowRight,
+  FiUsers,
+  FiTrendingUp,
+  FiTarget,
   FiStar,
-  FiCheckCircle 
-} from 'react-icons/fi';
-import { Link } from 'lucide-react';
+  FiCheckCircle,
+} from "react-icons/fi";
+import { Link } from "lucide-react";
 
 // Hero Image Placeholder Component
 const HeroImagePlaceholder: React.FC = () => {
@@ -24,7 +24,7 @@ const HeroImagePlaceholder: React.FC = () => {
           <div className="absolute bottom-20 left-20 w-12 h-12 bg-purple-500 rounded-full"></div>
           <div className="absolute bottom-32 right-32 w-8 h-8 bg-yellow-500 rounded-full"></div>
         </div>
-        
+
         <div className="flex items-center justify-center h-full relative z-10">
           <div className="text-center space-y-6">
             <div className="flex justify-center space-x-6 text-4xl">
@@ -37,24 +37,34 @@ const HeroImagePlaceholder: React.FC = () => {
               </motion.div>
               <motion.div
                 animate={{ y: [-5, 5, -5] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="text-green-600"
               >
                 <FiTrendingUp />
               </motion.div>
               <motion.div
                 animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="text-purple-600"
               >
                 <FiTarget />
               </motion.div>
             </div>
-            
+
             {/* Placeholder text */}
             <div className="space-y-2">
               <div className="text-gray-400 font-medium">Professional Team</div>
-              <div className="text-2xl font-bold text-gray-600">Connecting Talent</div>
+              <div className="text-2xl font-bold text-gray-600">
+                Connecting Talent
+              </div>
               <div className="text-gray-400">Building Success Together</div>
             </div>
           </div>
@@ -62,10 +72,13 @@ const HeroImagePlaceholder: React.FC = () => {
 
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 opacity-5">
-          <div className="w-full h-full" style={{
-            backgroundImage: `radial-gradient(circle at 20px 20px, #000 2px, transparent 2px)`,
-            backgroundSize: '40px 40px'
-          }}></div>
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: `radial-gradient(circle at 20px 20px, #000 2px, transparent 2px)`,
+              backgroundSize: "40px 40px",
+            }}
+          ></div>
         </div>
       </div>
 
@@ -77,7 +90,7 @@ const HeroImagePlaceholder: React.FC = () => {
       >
         <FiStar className="text-yellow-500 text-xl" />
       </motion.div>
-      
+
       <motion.div
         animate={{ y: [10, -10, 10] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -95,7 +108,7 @@ const StatsSection: React.FC = () => {
     { number: "500+", label: "Companies Served", icon: FiUsers },
     { number: "2000+", label: "Successful Placements", icon: FiCheckCircle },
     { number: "95%", label: "Client Satisfaction", icon: FiStar },
-    { number: "24h", label: "Average Response Time", icon: FiTarget }
+    { number: "24h", label: "Average Response Time", icon: FiTarget },
   ];
 
   return (
@@ -114,9 +127,7 @@ const StatsSection: React.FC = () => {
           <div className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
             {stat.number}
           </div>
-          <div className="text-sm text-gray-600">
-            {stat.label}
-          </div>
+          <div className="text-sm text-gray-600">{stat.label}</div>
         </motion.div>
       ))}
     </div>
@@ -157,17 +168,19 @@ export const Hero: React.FC = () => {
 
               {/* Subheadline */}
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Connect with top talent across <strong>IT, Finance, Sales & Marketing</strong>. 
-                We deliver quality candidates that drive your business forward with our proven recruitment solutions.
+                Connect with top talent across{" "}
+                <strong>IT, Finance, Sales & Marketing</strong>. We deliver
+                quality candidates that drive your business forward with our
+                proven recruitment solutions.
               </p>
 
               {/* Key Benefits */}
               <div className="space-y-3 mb-8">
                 {[
                   "Executive & senior-level recruitment",
-                  "Permanent hiring for long-term success", 
+                  "Permanent hiring for long-term success",
                   "Contract & project-based staffing",
-                  "Industry experts across multiple sectors"
+                  "Industry experts across multiple sectors",
                 ].map((benefit, index) => (
                   <motion.div
                     key={index}
@@ -183,23 +196,14 @@ export const Hero: React.FC = () => {
               </div>
 
               {/* CTA Buttons */}
-              
+
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Link>
-              </Link>
-                <Button 
-                  size="lg" 
-                  className="group"
-                  href="/contact"
-                >
+                <Link></Link>
+                <Button size="lg" className="group" href="/contact">
                   Get Started Today
                   <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
                 </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  href="/services"
-                >
+                <Button variant="outline" size="lg" href="/services">
                   Explore Services
                 </Button>
               </div>

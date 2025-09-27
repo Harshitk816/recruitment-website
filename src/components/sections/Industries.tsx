@@ -1,11 +1,11 @@
-'use client';
-import React from 'react';
-import { Container } from '../ui/Container';
-import { Button } from '../ui/Button';
-import { motion } from 'framer-motion';
-import { 
-  FiMonitor, 
-  FiDollarSign, 
+"use client";
+import React from "react";
+import { Container } from "../ui/Container";
+import { Button } from "../ui/Button";
+import { motion } from "framer-motion";
+import {
+  FiMonitor,
+  FiDollarSign,
   FiTrendingUp,
   FiUsers,
   FiCode,
@@ -14,10 +14,9 @@ import {
   FiAward,
   FiBriefcase,
   FiBarChart,
-  
-} from 'react-icons/fi';
+} from "react-icons/fi";
 
-import { PiMegaphone } from 'react-icons/pi';
+import { PiMegaphone } from "react-icons/pi";
 
 // Simplified industries data
 const industriesData = [
@@ -25,7 +24,8 @@ const industriesData = [
     id: 1,
     name: "IT & Technology",
     subtitle: "Driving innovation with the right tech minds",
-    description: "From startups to Fortune 500 companies, we connect organizations with exceptional technical talent that drives digital transformation and innovation.",
+    description:
+      "From startups to Fortune 500 companies, we connect organizations with exceptional technical talent that drives digital transformation and innovation.",
     icon: FiMonitor,
     primaryColor: "text-blue-600",
     bgGradient: "from-blue-500 to-cyan-400",
@@ -36,14 +36,15 @@ const industriesData = [
       { title: "Software Engineers", icon: FiCode },
       { title: "DevOps Specialists", icon: FiTarget },
       { title: "Data Scientists", icon: FiPieChart },
-      { title: "Product Managers", icon: FiBriefcase }
-    ]
+      { title: "Product Managers", icon: FiBriefcase },
+    ],
   },
   {
     id: 2,
     name: "Finance & Accounting",
     subtitle: "Smart talent for smarter decisions",
-    description: "We specialize in placing finance professionals who combine analytical expertise with strategic thinking to drive business growth and financial success.",
+    description:
+      "We specialize in placing finance professionals who combine analytical expertise with strategic thinking to drive business growth and financial success.",
     icon: FiDollarSign,
     primaryColor: "text-green-600",
     bgGradient: "from-green-500 to-emerald-400",
@@ -54,14 +55,15 @@ const industriesData = [
       { title: "Financial Analysts", icon: FiBarChart },
       { title: "CFOs & Finance Leaders", icon: FiAward },
       { title: "Accountants", icon: FiPieChart },
-      { title: "Investment Advisors", icon: FiTrendingUp }
-    ]
+      { title: "Investment Advisors", icon: FiTrendingUp },
+    ],
   },
   {
     id: 3,
     name: "Sales & Marketing",
     subtitle: "Growth-focused professionals who deliver results",
-    description: "Connect with sales and marketing leaders who understand modern customer journeys and can drive sustainable revenue growth for your organization.",
+    description:
+      "Connect with sales and marketing leaders who understand modern customer journeys and can drive sustainable revenue growth for your organization.",
     icon: FiTrendingUp,
     primaryColor: "text-purple-600",
     bgGradient: "from-purple-500 to-pink-400",
@@ -72,14 +74,15 @@ const industriesData = [
       { title: "Sales Directors", icon: FiTarget },
       { title: "Digital Marketers", icon: PiMegaphone },
       { title: "Business Development", icon: FiBriefcase },
-      { title: "Brand Managers", icon: FiAward }
-    ]
+      { title: "Brand Managers", icon: FiAward },
+    ],
   },
-   {
+  {
     id: 4,
     name: "Manufacturing & Operations",
     subtitle: "Skilled workforce powering industries",
-    description: "We provide skilled professionals to ensure streamlined operations and productivity.",
+    description:
+      "We provide skilled professionals to ensure streamlined operations and productivity.",
     icon: FiUsers,
     primaryColor: "text-yellow-600",
     bgGradient: "from-yellow-400 to-yellow-200",
@@ -89,14 +92,15 @@ const industriesData = [
     roles: [
       { title: "Production Managers", icon: FiBriefcase },
       { title: "Quality Control", icon: FiAward },
-      { title: "Operations Supervisors", icon: FiBarChart }
-    ]
+      { title: "Operations Supervisors", icon: FiBarChart },
+    ],
   },
   {
     id: 5,
     name: "Healthcare & Pharma",
     subtitle: "Compassionate & qualified experts in care",
-    description: "From nurses to pharmacists, access compassionate experts ensuring best standards.",
+    description:
+      "From nurses to pharmacists, access compassionate experts ensuring best standards.",
     icon: FiUsers,
     primaryColor: "text-pink-600",
     bgGradient: "from-pink-400 to-pink-200",
@@ -106,14 +110,15 @@ const industriesData = [
     roles: [
       { title: "Nurses", icon: FiTarget },
       { title: "Pharmacists", icon: FiAward },
-      { title: "Healthcare Administrators", icon: FiBriefcase }
-    ]
+      { title: "Healthcare Administrators", icon: FiBriefcase },
+    ],
   },
   {
     id: 6,
     name: "Retail & E-Commerce",
     subtitle: "Building customer-first businesses",
-    description: "Recruit talented professionals to enhance your retail and online presence.",
+    description:
+      "Recruit talented professionals to enhance your retail and online presence.",
     icon: FiUsers,
     primaryColor: "text-red-600",
     bgGradient: "from-red-400 to-red-200",
@@ -123,14 +128,15 @@ const industriesData = [
     roles: [
       { title: "Store Managers", icon: FiBriefcase },
       { title: "E-Com Specialists", icon: FiCode },
-      { title: "Merchandisers", icon: FiAward }
-    ]
+      { title: "Merchandisers", icon: FiAward },
+    ],
   },
   {
     id: 7,
     name: "Logistics & Supply Chain",
     subtitle: "Efficiency through the right talent",
-    description: "Logistics and supply chain specialists for end-to-end operational excellence.",
+    description:
+      "Logistics and supply chain specialists for end-to-end operational excellence.",
     icon: FiUsers,
     primaryColor: "text-orange-600",
     bgGradient: "from-orange-400 to-orange-200",
@@ -139,14 +145,15 @@ const industriesData = [
     borderColor: "border-orange-200",
     roles: [
       { title: "Logistics Coordinators", icon: FiTarget },
-      { title: "Supply Chain Analysts", icon: FiBriefcase }
-    ]
+      { title: "Supply Chain Analysts", icon: FiBriefcase },
+    ],
   },
   {
     id: 8,
     name: "BPO & Customer Support",
     subtitle: "Voices that build stronger connections",
-    description: "Find the best voices to represent and support your customers world-wide.",
+    description:
+      "Find the best voices to represent and support your customers world-wide.",
     icon: FiUsers,
     primaryColor: "text-teal-600",
     bgGradient: "from-teal-400 to-teal-200",
@@ -155,14 +162,14 @@ const industriesData = [
     borderColor: "border-teal-200",
     roles: [
       { title: "Customer Support Executives", icon: FiBriefcase },
-      { title: "BPO Team Leads", icon: FiAward }
-    ]
-  }
+      { title: "BPO Team Leads", icon: FiAward },
+    ],
+  },
 ];
 
 // Fixed Industry Card Component - No Overflow and No Button
 interface IndustryCardProps {
-  industry: typeof industriesData[0];
+  industry: (typeof industriesData)[0];
   index: number;
 }
 
@@ -179,23 +186,24 @@ const IndustryCard: React.FC<IndustryCardProps> = ({ industry, index }) => {
       onHoverEnd={() => setIsHovered(false)}
       className="group relative h-full"
     >
-      <div className={`
+      <div
+        className={`
         relative p-8 rounded-3xl border-2 ${industry.borderColor} bg-white shadow-xl
         transition-all duration-500 hover:shadow-2xl hover:-translate-y-2
         overflow-hidden h-full flex flex-col
-      `}>
-        
+      `}
+      >
         {/* Gradient Background Overlay */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ 
+          animate={{
             opacity: isHovered ? 0.1 : 0,
-            scale: isHovered ? 1.2 : 0.8
+            scale: isHovered ? 1.2 : 0.8,
           }}
           transition={{ duration: 0.5 }}
           className={`absolute inset-0 bg-gradient-to-br ${industry.bgGradient} rounded-3xl`}
         />
-        
+
         {/* Header Section */}
         <div className="relative z-10 mb-6">
           {/* Icon */}
@@ -223,7 +231,9 @@ const IndustryCard: React.FC<IndustryCardProps> = ({ industry, index }) => {
 
         {/* Key Roles Grid - FIXED LAYOUT */}
         <div className="relative z-10 flex-1">
-          <h4 className="text-lg font-semibold text-gray-900 mb-4">Key Roles We Fill</h4>
+          <h4 className="text-lg font-semibold text-gray-900 mb-4">
+            Key Roles We Fill
+          </h4>
           <div className="space-y-3">
             {industry.roles.map((role, idx) => (
               <motion.div
@@ -236,11 +246,15 @@ const IndustryCard: React.FC<IndustryCardProps> = ({ industry, index }) => {
                   border ${industry.borderColor} transition-all hover:shadow-sm
                 `}
               >
-                <div className={`w-8 h-8 rounded-lg ${industry.iconBg} flex items-center justify-center flex-shrink-0`}>
+                <div
+                  className={`w-8 h-8 rounded-lg ${industry.iconBg} flex items-center justify-center flex-shrink-0`}
+                >
                   <role.icon className={`text-sm ${industry.primaryColor}`} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <div className="text-sm font-medium text-gray-900">{role.title}</div>
+                  <div className="text-sm font-medium text-gray-900">
+                    {role.title}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -262,34 +276,34 @@ const IndustryCard: React.FC<IndustryCardProps> = ({ industry, index }) => {
 // Overall Industry Stats
 const IndustryOverallStats: React.FC = () => {
   const overallStats = [
-    { 
-      icon: FiUsers, 
-      number: "2650+", 
+    {
+      icon: FiUsers,
+      number: "2650+",
       label: "Total Placements",
       color: "text-blue-600",
-      bg: "bg-blue-100"
+      bg: "bg-blue-100",
     },
-    { 
-      icon: FiBriefcase, 
-      number: "440+", 
+    {
+      icon: FiBriefcase,
+      number: "440+",
       label: "Partner Companies",
       color: "text-green-600",
-      bg: "bg-green-100"
+      bg: "bg-green-100",
     },
-    { 
-      icon: FiAward, 
-      number: "97%", 
+    {
+      icon: FiAward,
+      number: "97%",
       label: "Average Success Rate",
       color: "text-purple-600",
-      bg: "bg-purple-100"
+      bg: "bg-purple-100",
     },
-    { 
-      icon: FiTrendingUp, 
-      number: "30%", 
+    {
+      icon: FiTrendingUp,
+      number: "30%",
       label: "Faster Hiring Process",
       color: "text-orange-600",
-      bg: "bg-orange-100"
-    }
+      bg: "bg-orange-100",
+    },
   ];
 
   return (
@@ -304,7 +318,9 @@ const IndustryOverallStats: React.FC = () => {
           className="text-center"
         >
           <div className="flex justify-center mb-4">
-            <div className={`w-16 h-16 ${stat.bg} rounded-2xl flex items-center justify-center shadow-lg`}>
+            <div
+              className={`w-16 h-16 ${stat.bg} rounded-2xl flex items-center justify-center shadow-lg`}
+            >
               <stat.icon className={`text-2xl ${stat.color}`} />
             </div>
           </div>
@@ -322,7 +338,10 @@ const IndustryOverallStats: React.FC = () => {
 
 export const Industries: React.FC = () => {
   return (
-    <section id="industries" className="py-10 bg-gradient-to-b from-gray-50 to-white">
+    <section
+      id="industries"
+      className="py-10 bg-gradient-to-b from-gray-50 to-white"
+    >
       <Container>
         {/* Header */}
         <motion.div
@@ -336,25 +355,23 @@ export const Industries: React.FC = () => {
             <FiBriefcase className="mr-2" />
             Industries We Serve
           </div>
-          
+
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Great Talent Drives <span className="text-purple-600">Every Industry</span> Forward
+            Great Talent Drives{" "}
+            <span className="text-purple-600">Every Industry</span> Forward
           </h2>
-          
+
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            We believe exceptional professionals are the foundation of every successful business. 
-            That&apos;s why we recruit across diverse sectors with precision, expertise, and deep industry knowledge.
+            We believe exceptional professionals are the foundation of every
+            successful business. That&apos;s why we recruit across diverse
+            sectors with precision, expertise, and deep industry knowledge.
           </p>
         </motion.div>
 
         {/* Industries Grid - No Buttons */}
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
           {industriesData.map((industry, index) => (
-            <IndustryCard 
-              key={industry.id} 
-              industry={industry} 
-              index={index} 
-            />
+            <IndustryCard key={industry.id} industry={industry} index={index} />
           ))}
         </div>
 
@@ -371,10 +388,12 @@ export const Industries: React.FC = () => {
               Don&apos;t See Your Industry? We&apos;ve Got You Covered
             </h3>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Our recruitment expertise extends beyond these core sectors. Let&apos;s discuss your specific industry needs and talent requirements.
+              Our recruitment expertise extends beyond these core sectors.
+              Let&apos;s discuss your specific industry needs and talent
+              requirements.
             </p>
             <div className="flex justify-center">
-              <Button 
+              <Button
                 href="/contact"
                 size="lg"
                 className="bg-white !text-gray-900 hover:bg-gray-100 hover:text-gray-800 shadow-md focus:ring-white focus:ring-offset-2"

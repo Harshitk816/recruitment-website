@@ -1,47 +1,54 @@
-'use client';
-import React, { useState } from 'react';
-import { Container } from '@/components/ui/Container';
-import { motion } from 'framer-motion';
-import { WhatsAppWidget } from '@/components/sections/Whatsapp';
-import { 
-  FiMail, 
-  FiPhone, 
-  FiMapPin, 
+"use client";
+import React, { useState } from "react";
+import { Container } from "@/components/ui/Container";
+import { motion } from "framer-motion";
+import { WhatsAppWidget } from "@/components/sections/Whatsapp";
+import {
+  FiMail,
+  FiPhone,
+  FiMapPin,
   FiClock,
   FiSend,
   FiUser,
   FiMessageSquare,
   FiBriefcase,
   FiCheckCircle,
-  FiLoader
-} from 'react-icons/fi';
+  FiLoader,
+} from "react-icons/fi";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    service: '',
-    message: ''
+    name: "",
+    email: "",
+    company: "",
+    service: "",
+    message: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   // Replace this with your Google Apps Script deployment URL
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby2yPRVLjEbR_oTHet8XBmsofjm1IZTFWG4cOl0DkWjLnIn0PQ7IJMTfKeDzH2JvpF-/exec';
+  const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycby2yPRVLjEbR_oTHet8XBmsofjm1IZTFWG4cOl0DkWjLnIn0PQ7IJMTfKeDzH2JvpF-/exec";
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus('idle');
+    setSubmitStatus("idle");
 
     try {
       // Create FormData object
@@ -53,25 +60,30 @@ export default function ContactPage() {
       console.log(formDataObj.entries()); // Debug log
       // Submit to Google Sheets
       const response = await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors', // Important for Google Apps Script
-        body: formDataObj
+        method: "POST",
+        mode: "no-cors", // Important for Google Apps Script
+        body: formDataObj,
       });
 
       // Since we're using no-cors mode, we assume success if no error is thrown
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', company: '', service: '', message: '' });
-      
+      setSubmitStatus("success");
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        service: "",
+        message: "",
+      });
     } catch (error) {
-      console.error('Form submission error:', error);
-      setSubmitStatus('error');
+      console.error("Form submission error:", error);
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   // Success state
-  if (submitStatus === 'success') {
+  if (submitStatus === "success") {
     return (
       <main className="py-20 bg-gradient-to-b from-blue-50 to-white">
         <Container>
@@ -83,15 +95,19 @@ export default function ContactPage() {
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <FiCheckCircle className="text-3xl text-green-600" />
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Thank You!</h1>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              Thank You!
+            </h1>
             <p className="text-xl text-gray-600 mb-6">
-              Your message has been sent successfully. We&apos;ll get back to you within 24 hours.
+              Your message has been sent successfully. We&apos;ll get back to
+              you within 24 hours.
             </p>
             <p className="text-sm text-gray-500 mb-8">
-              We&apos;ve also sent a confirmation email to {formData.email || 'your email address'}.
+              We&apos;ve also sent a confirmation email to{" "}
+              {formData.email || "your email address"}.
             </p>
             <button
-              onClick={() => setSubmitStatus('idle')}
+              onClick={() => setSubmitStatus("idle")}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center space-x-2"
             >
               <FiMail className="text-sm" />
@@ -99,8 +115,8 @@ export default function ContactPage() {
             </button>
           </motion.div>
         </Container>
-        <WhatsAppWidget 
-          phoneNumber="918700192565" 
+        <WhatsAppWidget
+          phoneNumber="918700192565"
           defaultMessage="Hi! I'm interested in discussing my hiring needs with Workeraa."
         />
       </main>
@@ -121,14 +137,16 @@ export default function ContactPage() {
             <FiMail className="mr-2" />
             Get In Touch
           </div>
-          
+
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Let&apos;s Start a <span className="text-blue-600">Conversation</span>
+            Let&apos;s Start a{" "}
+            <span className="text-blue-600">Conversation</span>
           </h1>
-          
+
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Ready to transform your hiring process? We&apos;d love to discuss your specific 
-            requirements and show you how Workeraa can help you find the perfect talent.
+            Ready to transform your hiring process? We&apos;d love to discuss
+            your specific requirements and show you how Workeraa can help you
+            find the perfect talent.
           </p>
         </motion.div>
 
@@ -140,8 +158,10 @@ export default function ContactPage() {
             transition={{ duration: 0.8 }}
             className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100"
           >
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
-            
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Send Us a Message
+            </h2>
+
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name */}
               <div>
@@ -219,7 +239,9 @@ export default function ContactPage() {
                   <option value="permanent-hiring">Permanent Hiring</option>
                   <option value="contract-staffing">Contract Staffing</option>
                   <option value="it-recruitment">IT Recruitment</option>
-                  <option value="finance-recruitment">Finance Recruitment</option>
+                  <option value="finance-recruitment">
+                    Finance Recruitment
+                  </option>
                   <option value="sales-recruitment">Sales & Marketing</option>
                 </select>
               </div>
@@ -264,10 +286,11 @@ export default function ContactPage() {
               </button>
 
               {/* Error Message */}
-              {submitStatus === 'error' && (
+              {submitStatus === "error" && (
                 <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                   <p className="text-red-600 text-sm">
-                    There was an error sending your message. Please try again or contact us directly at contact@workeraa.com
+                    There was an error sending your message. Please try again or
+                    contact us directly at contact@workeraa.com
                   </p>
                 </div>
               )}
@@ -283,8 +306,10 @@ export default function ContactPage() {
           >
             {/* Contact Details */}
             <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
-              
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Contact Information
+              </h3>
+
               <div className="space-y-6">
                 {/* Email */}
                 <div className="flex items-center space-x-4">
@@ -304,7 +329,9 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Phone</h4>
-                    <p className="text-gray-600">+91 8700192565, +91 9599656760</p>
+                    <p className="text-gray-600">
+                      +91 8700192565, +91 9599656760
+                    </p>
                   </div>
                 </div>
 
@@ -325,8 +352,12 @@ export default function ContactPage() {
                     <FiClock className="text-xl text-orange-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Business Hours</h4>
-                    <p className="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM IST</p>
+                    <h4 className="font-semibold text-gray-900">
+                      Business Hours
+                    </h4>
+                    <p className="text-gray-600">
+                      Mon - Fri: 9:00 AM - 6:00 PM IST
+                    </p>
                   </div>
                 </div>
               </div>
@@ -338,7 +369,9 @@ export default function ContactPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
                   <div className="text-2xl font-bold">2000+</div>
-                  <div className="text-sm opacity-90">Successful Placements</div>
+                  <div className="text-sm opacity-90">
+                    Successful Placements
+                  </div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold">400+</div>
@@ -359,8 +392,8 @@ export default function ContactPage() {
       </Container>
 
       {/* WhatsApp Widget */}
-      <WhatsAppWidget 
-        phoneNumber="918700192565" 
+      <WhatsAppWidget
+        phoneNumber="918700192565"
         defaultMessage="Hi! I'm interested in discussing my hiring needs with Workeraa."
       />
     </main>

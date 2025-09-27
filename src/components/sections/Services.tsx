@@ -1,18 +1,18 @@
-'use client';
-import React from 'react';
-import { Container } from '../ui/Container';
-import { Button } from '../ui/Button';
-import { motion } from 'framer-motion';
-import { 
-  FiZap, 
-  FiLayers, 
+"use client";
+import React from "react";
+import { Container } from "../ui/Container";
+import { Button } from "../ui/Button";
+import { motion } from "framer-motion";
+import {
+  FiZap,
+  FiLayers,
   FiRotateCw,
   FiCheck,
   FiUsers,
-  FiTarget
-} from 'react-icons/fi';
+  FiTarget,
+} from "react-icons/fi";
 
-import { FaCrown } from 'react-icons/fa';
+import { FaCrown } from "react-icons/fa";
 
 // Service card data with fixed color properties
 const servicesData = [
@@ -21,78 +21,82 @@ const servicesData = [
     icon: FiZap,
     title: "Top Talent, On Demand",
     subtitle: "Quick and quality hiring for every role",
-    description: "Fast-track your hiring process with our curated pool of pre-screened candidates. Get quality matches in days, not months.",
+    description:
+      "Fast-track your hiring process with our curated pool of pre-screened candidates. Get quality matches in days, not months.",
     features: [
       "Fast turnaround time",
-      "Pre-screened candidates", 
+      "Pre-screened candidates",
       "Quality assurance guarantee",
-      "Flexible engagement models"
+      "Flexible engagement models",
     ],
     primaryColor: "text-blue-600",
     bgColor: "bg-blue-50",
     iconBg: "bg-blue-100",
     borderColor: "border-blue-200",
-    checkColor: "text-blue-500"
+    checkColor: "text-blue-500",
   },
   {
     id: 2,
     icon: FaCrown,
     title: "Leaders That Lead",
     subtitle: "Executive & senior-level recruitment",
-    description: "Strategic leadership placement for C-suite executives and senior management roles that drive organizational success.",
+    description:
+      "Strategic leadership placement for C-suite executives and senior management roles that drive organizational success.",
     features: [
       "C-suite placements",
       "Board-level positions",
       "Strategic leadership roles",
-      "Executive assessment"
+      "Executive assessment",
     ],
     primaryColor: "text-purple-600",
-    bgColor: "bg-purple-50", 
+    bgColor: "bg-purple-50",
     iconBg: "bg-purple-100",
     borderColor: "border-purple-200",
-    checkColor: "text-purple-500"
+    checkColor: "text-purple-500",
   },
   {
     id: 3,
     icon: FiLayers,
     title: "Built to Last",
     subtitle: "Permanent hiring for long-term success",
-    description: "Comprehensive permanent placement services focused on cultural fit and long-term growth potential for sustainable success.",
+    description:
+      "Comprehensive permanent placement services focused on cultural fit and long-term growth potential for sustainable success.",
     features: [
       "Cultural alignment focus",
       "Skills & personality assessment",
       "Growth potential evaluation",
-      "Long-term success tracking"
+      "Long-term success tracking",
     ],
     primaryColor: "text-green-600",
     bgColor: "bg-green-50",
     iconBg: "bg-green-100",
     borderColor: "border-green-200",
-    checkColor: "text-green-500"
+    checkColor: "text-green-500",
   },
   {
     id: 4,
     icon: FiRotateCw,
     title: "Flexibility First",
     subtitle: "Contract & project-based staffing solutions",
-    description: "Adaptable staffing solutions for temporary, contract, and project-based requirements with flexible engagement terms.",
+    description:
+      "Adaptable staffing solutions for temporary, contract, and project-based requirements with flexible engagement terms.",
     features: [
       "Project-specific staffing",
       "Temporary placements",
       "Contract-to-hire options",
-      "Scalable workforce solutions"
+      "Scalable workforce solutions",
     ],
     primaryColor: "text-orange-600",
     bgColor: "bg-orange-50",
     iconBg: "bg-orange-100",
     borderColor: "border-orange-200",
-    checkColor: "text-orange-500"
-  }
+    checkColor: "text-orange-500",
+  },
 ];
 
 // Individual Service Card Component
 interface ServiceCardProps {
-  service: typeof servicesData[0];
+  service: (typeof servicesData)[0];
   index: number;
 }
 
@@ -109,12 +113,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
       onHoverEnd={() => setIsHovered(false)}
       className="group relative"
     >
-      <div className={`
+      <div
+        className={`
         relative p-8 rounded-2xl border-2 ${service.borderColor} bg-white shadow-lg
         transition-all duration-300 hover:shadow-2xl hover:-translate-y-1
         hover:${service.bgColor}
-      `}>
-        
+      `}
+      >
         {/* Icon */}
         <motion.div
           whileHover={{ scale: 1.1, rotate: 5 }}
@@ -132,11 +137,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
           <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-gray-800">
             {service.title}
           </h3>
-          
+
           <p className={`text-lg mb-4 font-medium ${service.primaryColor}`}>
             {service.subtitle}
           </p>
-          
+
           <p className="text-gray-700 mb-6 leading-relaxed">
             {service.description}
           </p>
@@ -151,7 +156,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
                 transition={{ delay: index * 0.1 + idx * 0.05 }}
                 className="flex items-center space-x-3"
               >
-                <div className={`flex-shrink-0 w-5 h-5 rounded-full ${service.iconBg} flex items-center justify-center`}>
+                <div
+                  className={`flex-shrink-0 w-5 h-5 rounded-full ${service.iconBg} flex items-center justify-center`}
+                >
                   <FiCheck className={`text-xs ${service.checkColor}`} />
                 </div>
                 <span className="text-gray-700 text-sm">{feature}</span>
@@ -164,7 +171,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
         <div className="absolute top-4 right-4 w-16 h-16 opacity-10">
           <div className={`w-full h-full rounded-full ${service.iconBg}`} />
         </div>
-        
+
         <div className="absolute bottom-4 right-4 w-8 h-8 opacity-20">
           <div className={`w-full h-full rounded-full ${service.iconBg}`} />
         </div>
@@ -176,10 +183,34 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
 // Stats Component for Services
 const ServiceStats: React.FC = () => {
   const stats = [
-    { icon: FiUsers, number: "500+", label: "Companies Served", color: "text-blue-600", bg: "bg-blue-100" },
-    { icon: FiTarget, number: "2000+", label: "Successful Placements", color: "text-green-600", bg: "bg-green-100" },
-    { icon: FiCheck, number: "95%", label: "Client Satisfaction", color: "text-purple-600", bg: "bg-purple-100" },
-    { icon: FiZap, number: "48hrs", label: "Average Response", color: "text-orange-600", bg: "bg-orange-100" }
+    {
+      icon: FiUsers,
+      number: "500+",
+      label: "Companies Served",
+      color: "text-blue-600",
+      bg: "bg-blue-100",
+    },
+    {
+      icon: FiTarget,
+      number: "2000+",
+      label: "Successful Placements",
+      color: "text-green-600",
+      bg: "bg-green-100",
+    },
+    {
+      icon: FiCheck,
+      number: "95%",
+      label: "Client Satisfaction",
+      color: "text-purple-600",
+      bg: "bg-purple-100",
+    },
+    {
+      icon: FiZap,
+      number: "48hrs",
+      label: "Average Response",
+      color: "text-orange-600",
+      bg: "bg-orange-100",
+    },
   ];
 
   return (
@@ -194,16 +225,16 @@ const ServiceStats: React.FC = () => {
           className="text-center"
         >
           <div className="flex justify-center mb-3">
-            <div className={`w-12 h-12 ${stat.bg} rounded-xl flex items-center justify-center border-2 border-gray-100`}>
+            <div
+              className={`w-12 h-12 ${stat.bg} rounded-xl flex items-center justify-center border-2 border-gray-100`}
+            >
               <stat.icon className={`text-xl ${stat.color}`} />
             </div>
           </div>
           <div className="text-3xl font-bold text-gray-900 mb-1">
             {stat.number}
           </div>
-          <div className="text-sm text-gray-600">
-            {stat.label}
-          </div>
+          <div className="text-sm text-gray-600">{stat.label}</div>
         </motion.div>
       ))}
     </div>
@@ -212,7 +243,10 @@ const ServiceStats: React.FC = () => {
 
 export const Services: React.FC = () => {
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section
+      id="services"
+      className="py-20 bg-gradient-to-b from-white to-gray-50"
+    >
       <Container>
         {/* Header */}
         <motion.div
@@ -226,25 +260,23 @@ export const Services: React.FC = () => {
             <FiZap className="mr-2 text-blue-600" />
             Our Services
           </div>
-          
+
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            <span className="text-blue-600">Innovation Hired,</span> Growth Inspired
+            <span className="text-blue-600">Innovation Hired,</span> Growth
+            Inspired
           </h2>
-          
+
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Transform your hiring process with our comprehensive recruitment solutions. 
-            From executive search to flexible staffing, we deliver top talent that drives your business forward.
+            Transform your hiring process with our comprehensive recruitment
+            solutions. From executive search to flexible staffing, we deliver
+            top talent that drives your business forward.
           </p>
         </motion.div>
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           {servicesData.map((service, index) => (
-            <ServiceCard 
-              key={service.id} 
-              service={service} 
-              index={index} 
-            />
+            <ServiceCard key={service.id} service={service} index={index} />
           ))}
         </div>
 
@@ -261,13 +293,14 @@ export const Services: React.FC = () => {
               Ready to Transform Your Hiring?
             </h3>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Let&apos;s discuss your specific requirements and create a customized recruitment strategy that delivers results.
+              Let&apos;s discuss your specific requirements and create a
+              customized recruitment strategy that delivers results.
             </p>
             {/* UPDATED: Single button linking to /contact */}
             <div className="flex justify-center">
-              <Button 
+              <Button
                 href="/contact"
-                variant="secondary" 
+                variant="secondary"
                 size="lg"
                 className="!bg-white !text-blue-600 hover:!bg-blue-700 hover:!text-white !border-0 transition-all duration-200"
               >

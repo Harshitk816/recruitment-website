@@ -1,6 +1,6 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import { LoadingScreen } from '../ui/LoadingScreen';
+"use client";
+import React, { useState, useEffect } from "react";
+import { LoadingScreen } from "../ui/LoadingScreen";
 
 interface LoadingWrapperProps {
   children: React.ReactNode;
@@ -35,12 +35,12 @@ export const LoadingWrapper: React.FC<LoadingWrapperProps> = ({ children }) => {
       }
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    window.addEventListener('load', handleLoad);
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("load", handleLoad);
 
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-      window.removeEventListener('load', handleLoad);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("load", handleLoad);
     };
   }, [isFirstLoad]);
 
@@ -50,8 +50,8 @@ export const LoadingWrapper: React.FC<LoadingWrapperProps> = ({ children }) => {
 
   return (
     <>
-      <LoadingScreen 
-        isLoading={isLoading} 
+      <LoadingScreen
+        isLoading={isLoading}
         onLoadingComplete={handleLoadingComplete}
       />
       {!isLoading && children}

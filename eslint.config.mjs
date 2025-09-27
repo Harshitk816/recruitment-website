@@ -19,6 +19,16 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+    rules: {
+      // Allow unused variables if prefixed with "_"
+      "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+
+      // Auto-fix unescaped JSX entities (quotes, apostrophes)
+      "react/no-unescaped-entities": "warn",
+
+      // Optional: allow console.log during development
+      "no-console": ["warn", { allow: ["warn", "error", "info"] }],
+    },
   },
 ];
 

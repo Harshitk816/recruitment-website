@@ -1,21 +1,24 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
+"use client";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 interface LoadingScreenProps {
   isLoading: boolean;
   onLoadingComplete: () => void;
 }
 
-export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading, onLoadingComplete }) => {
+export const LoadingScreen: React.FC<LoadingScreenProps> = ({
+  isLoading,
+  onLoadingComplete,
+}) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     if (isLoading) {
       // Simulate loading progress
       const interval = setInterval(() => {
-        setProgress(prev => {
+        setProgress((prev) => {
           if (prev >= 100) {
             clearInterval(interval);
             setTimeout(onLoadingComplete, 500); // Wait a bit before hiding
@@ -43,12 +46,12 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading, onLoadi
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ 
-                duration: 0.6, 
+              transition={{
+                duration: 0.6,
                 ease: "easeOut",
                 type: "spring",
                 stiffness: 200,
-                damping: 15
+                damping: 15,
               }}
               className="relative"
             >
@@ -61,21 +64,21 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading, onLoadi
                 transition={{
                   duration: 3,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
                 className="absolute inset-0 bg-gradient-to-r from-blue-400 to-green-400 rounded-full blur-xl"
               />
-              
+
               {/* Logo Container - UPDATED: No Rotation, Gentle Bounce */}
               <motion.div
-                animate={{ 
+                animate={{
                   scale: [1, 1.02, 1],
-                  y: [0, -2, 0]
+                  y: [0, -2, 0],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
                 className="relative w-20 h-20 bg-white rounded-full shadow-2xl flex items-center justify-center border-4 border-gray-100"
               >
@@ -93,27 +96,27 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading, onLoadi
             <motion.div
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ 
-                delay: 0.4, 
+              transition={{
+                delay: 0.4,
                 duration: 0.8,
-                ease: "easeOut"
+                ease: "easeOut",
               }}
               className="text-center"
             >
-              <motion.h1 
-                animate={{ 
-                  scale: [1, 1.01, 1]
+              <motion.h1
+                animate={{
+                  scale: [1, 1.01, 1],
                 }}
                 transition={{
                   duration: 4,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
                 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent"
               >
                 Workeraa
               </motion.h1>
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
@@ -147,7 +150,11 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading, onLoadi
             >
               <motion.p
                 animate={{ opacity: [0.6, 1, 0.6] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="text-gray-600 text-sm"
               >
                 Loading your experience...

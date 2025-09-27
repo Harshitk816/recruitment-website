@@ -1,42 +1,42 @@
-'use client';
-import React from 'react';
-import Link from 'next/link';
-import { Container } from '../ui/Container';
-import { Logo } from '../ui/Logo'; // Import the Logo component
-import { motion } from 'framer-motion';
-import { 
-  FiMail, 
-  FiPhone, 
+"use client";
+import React from "react";
+import Link from "next/link";
+import { Container } from "../ui/Container";
+import { Logo } from "../ui/Logo"; // Import the Logo component
+import { motion } from "framer-motion";
+import {
+  FiMail,
+  FiPhone,
   FiMapPin,
   FiLinkedin,
   FiTwitter,
   FiFacebook,
   FiInstagram,
-  FiArrowRight
-} from 'react-icons/fi';
+  FiArrowRight,
+} from "react-icons/fi";
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     services: [
-      { label: 'Executive Search', href: '/services' },
-      { label: 'Permanent Hiring', href: '/services' },
-      { label: 'Contract Staffing', href: '/services' },
-      { label: 'Flexible Solutions', href: '/services' }
+      { label: "Executive Search", href: "/services" },
+      { label: "Permanent Hiring", href: "/services" },
+      { label: "Contract Staffing", href: "/services" },
+      { label: "Flexible Solutions", href: "/services" },
     ],
     industries: [
-      { label: 'IT & Technology', href: '/industries' },
-      { label: 'Finance & Accounting', href: '/industries' },
-      { label: 'Sales & Marketing', href: '/industries' },
-      { label: 'View All Industries', href: '/industries' }
+      { label: "IT & Technology", href: "/industries" },
+      { label: "Finance & Accounting", href: "/industries" },
+      { label: "Sales & Marketing", href: "/industries" },
+      { label: "View All Industries", href: "/industries" },
     ],
     company: [
-      { label: 'About Us', href: '/about' },
-      { label: 'Our Services', href: '/services' },
-      { label: 'Industries We Serve', href: '/industries' },
-      { label: 'Contact', href: '/contact' }
-    ]
+      { label: "About Us", href: "/about" },
+      { label: "Our Services", href: "/services" },
+      { label: "Industries We Serve", href: "/industries" },
+      { label: "Contact", href: "/contact" },
+    ],
   };
 
   return (
@@ -51,27 +51,28 @@ export const Footer: React.FC = () => {
               <Logo size="lg" className="mb-6" />
 
               <p className="text-gray-300 leading-relaxed mb-6">
-                Connecting exceptional talent with innovative companies across India and beyond. 
-                We specialize in IT, Finance, Sales & Marketing recruitment with a proven track record of success.
+                Connecting exceptional talent with innovative companies across
+                India and beyond. We specialize in IT, Finance, Sales &
+                Marketing recruitment with a proven track record of success.
               </p>
 
               {/* UPDATED Contact Info with Real Data */}
               <div className="space-y-3 mb-6">
-                <a 
+                <a
                   href="mailto:connect@workeraa.co.in"
                   className="flex items-center space-x-3 hover:text-blue-200 transition-colors"
                 >
                   <FiMail className="text-blue-400" />
                   <span className="text-gray-300">connect@workeraa.co.in</span>
                 </a>
-                <a 
+                <a
                   href="tel:+918700192565"
                   className="flex items-center space-x-3 hover:text-green-200 transition-colors"
                 >
                   <FiPhone className="text-green-400" />
                   <span className="text-gray-300">+91 8700192565</span>
                 </a>
-                <a 
+                <a
                   href="tel:+919599656760"
                   className="flex items-center space-x-3 hover:text-green-200 transition-colors"
                 >
@@ -96,7 +97,7 @@ export const Footer: React.FC = () => {
                   <FiLinkedin className="text-lg" />
                 </motion.a>
                 {/* Other social links commented out for now since we only have LinkedIn */}
-                
+
                 <motion.a
                   // href=""
                   whileHover={{ scale: 1.2, y: -2 }}
@@ -110,7 +111,6 @@ export const Footer: React.FC = () => {
                   className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-gray-300 transition-all hover:text-blue-500"
                 >
                   <FiInstagram className="text-lg" />
-                  
                 </motion.a>
                 {/* 
                 <motion.a
@@ -130,7 +130,7 @@ export const Footer: React.FC = () => {
               <ul className="space-y-3">
                 {footerLinks.services.map((link, index) => (
                   <li key={index}>
-                    <Link 
+                    <Link
                       href={link.href}
                       className="text-gray-300 hover:text-white transition-colors flex items-center group"
                     >
@@ -148,7 +148,7 @@ export const Footer: React.FC = () => {
               <ul className="space-y-3 mb-8">
                 {footerLinks.company.map((link, index) => (
                   <li key={index}>
-                    <Link 
+                    <Link
                       href={link.href}
                       className="text-gray-300 hover:text-white transition-colors flex items-center group"
                     >
@@ -160,7 +160,6 @@ export const Footer: React.FC = () => {
               </ul>
 
               {/* Newsletter Signup */}
-              
             </div>
           </div>
         </div>
@@ -171,8 +170,6 @@ export const Footer: React.FC = () => {
             <div className="text-gray-400 text-sm">
               © {currentYear} Workeraa. All rights reserved.
             </div>
-            
-        
           </div>
         </div>
       </Container>
