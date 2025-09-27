@@ -322,7 +322,7 @@ const IndustryOverallStats: React.FC = () => {
 
 export const Industries: React.FC = () => {
   return (
-    <section id="industries" className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section id="industries" className="py-10 bg-gradient-to-b from-gray-50 to-white">
       <Container>
         {/* Header */}
         <motion.div

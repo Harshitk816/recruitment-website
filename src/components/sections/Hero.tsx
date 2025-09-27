@@ -125,7 +125,7 @@ const StatsSection: React.FC = () => {
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative pb-20 pt-10 md:pb-32 md:pt-16 bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
+    <section className="relative py-10 md:py-16 bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full opacity-20 blur-3xl"></div>
@@ -234,7 +234,7 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Statistics Section */}
-        <StatsSection />
+        {/* <StatsSection /> */}
       </Container>
     </section>
   );

@@ -49,8 +49,9 @@ export default function ContactPage() {
       const formDataObj = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
         formDataObj.append(key, value);
+        console.log(`${key}: ${value}`); // Debug log
       });
-
+      console.log(formDataObj.entries()); // Debug log
       // Submit to Google Sheets
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
@@ -85,7 +86,7 @@ export default function ContactPage() {
             </div>
             <h1 className="text-4xl font-bold text-gray-900 mb-4">Thank You!</h1>
             <p className="text-xl text-gray-600 mb-6">
-              Your message has been sent successfully. We'll get back to you within 24 hours.
+              Your message has been sent successfully. We&apos;ll get back to you within 24 hours.
             </p>
             <p className="text-sm text-gray-500 mb-8">
               We've also sent a confirmation email to {formData.email || 'your email address'}.
@@ -127,7 +128,7 @@ export default function ContactPage() {
           </h1>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Ready to transform your hiring process? We'd love to discuss your specific 
+            Ready to transform your hiring process? We&apos;d love to discuss your specific 
             requirements and show you how Workeraa can help you find the perfect talent.
           </p>
         </motion.div>
@@ -315,7 +316,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Location</h4>
-                    <p className="text-gray-600">India</p>
+                    <p className="text-gray-600">Gurugram, India</p>
                   </div>
                 </div>
 

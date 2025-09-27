@@ -44,7 +44,7 @@ const FounderCardPrimary: React.FC<{
           {/* Left Content - 3 columns */}
           <div className="md:col-span-3 space-y-6">
             <div className="mb-4">
-              <span className="text-blue-200 text-sm font-medium tracking-wider uppercase">Founder</span>
+              <span className="text-blue-200 text-sm font-medium tracking-wider uppercase">Co-Founder</span>
             </div>
             
             <div>
@@ -191,7 +191,7 @@ const FounderCardSecondary: React.FC<{
               </a>
               {/* ADDED: Alisha's LinkedIn functionality */}
               <a 
-                href="https://www.linkedin.com/company/workeraa/?viewAsMember=true"
+                href="https://www.linkedin.com/in/alisha-sharma-18b570367/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border border-white border-opacity-30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-emerald-500 hover:bg-opacity-10 transition-all"
@@ -242,20 +242,7 @@ const InteractiveStats: React.FC = () => {
 
 export const About: React.FC = () => {
   const foundersData = [
-    {
-      name: "Akash Sehrawat",
-      title: "Founder & CEO", 
-      phone: "9599656760",
-      email: "akash@workeraa.co.in",
-      description: "As the visionary founder of Workeraa, Akash brings over 12 years of strategic leadership in talent acquisition and business transformation. His entrepreneurial journey began with identifying the critical gap between skilled professionals and growing organizations.",
-      achievements: [
-        "Founded and scaled Workeraa from startup to industry leader",
-        "12+ years of executive leadership in recruitment and business development",
-        "Successfully built strategic partnerships with 500+ Fortune companies",
-        "Pioneered innovative recruitment methodologies and AI-driven talent matching",
-        "Recognized industry thought leader with 15+ speaking engagements"
-      ]
-    },
+    // SWAPPED: Alisha now comes first (index 0)
     {
       name: "Alisha Sharma",
       title: "Co-Founder & CEO",
@@ -263,10 +250,28 @@ export const About: React.FC = () => {
       email: "alisha@workeraa.co.in",
       description: "Passionate about connecting exceptional talent with innovative companies, Alisha co-founded Workeraa to revolutionize how businesses find and hire top performers across India and beyond. With over 7 years of experience in talent acquisition, she has helped hundreds of companies scale their teams.",
       achievements: [
+        "Founded and scaled Workeraa from startup to industry leader",
         "7+ years in talent acquisition and recruitment excellence",
+        "Specialized expertise across IT, Finance, and Sales & Marketing sectors",
         "Successfully placed 2000+ professionals across various industries",
         "Built strategic partnerships with 400+ companies nationwide",
-        "Specialized expertise across IT, Finance, and Sales & Marketing sectors"
+        
+      ]
+    },
+    // SWAPPED: Akash now comes second (index 1)
+    {
+      name: "Akash Sehrawat",
+      title: "Co-Founder & CEO", 
+      phone: "9599656760",
+      email: "akash@workeraa.co.in",
+      description: "As the visionary co-founder of Workeraa, Akash brings over 5 years of strategic leadership in talent acquisition and business transformation. His entrepreneurial journey began with identifying the critical gap between skilled professionals and growing organizations.",
+      achievements: [
+        "Pioneered innovative recruitment methodologies and AI-driven talent matching",
+        "Recognized industry thought leader with 15+ speaking engagements",
+        "Successfully built strategic partnerships with 500+ Fortune companies",
+        "12+ years of executive leadership in recruitment and business development",
+        
+        
       ]
     }
   ];
@@ -297,10 +302,10 @@ export const About: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Founders Section - Same Layout, Different Colors */}
+        {/* SWAPPED: Founders Section - Alisha first, Akash second */}
         <div className="space-y-16 mb-20">
-          <FounderCardPrimary {...foundersData[0]} />
-          <FounderCardSecondary {...foundersData[1]} />
+          <FounderCardSecondary {...foundersData[0]} />  {/* Alisha (Green card) */}
+          <FounderCardPrimary {...foundersData[1]} />    {/* Akash (Blue card) */}
         </div>
 
         {/* Interactive Stats */}

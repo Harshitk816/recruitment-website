@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-gray-700 to-gray-600 text-white">
+    <footer className="bg-gradient-to-br from-gray-700 to-gray-900 text-white">
       <Container>
         {/* Main Footer Content */}
         <div className="py-16">
