@@ -262,7 +262,7 @@ export const Services: React.FC = () => {
               Ready to Transform Your Hiring?
             </h3>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Let's discuss your specific requirements and create a customized recruitment strategy that delivers results.
+              Let&apos;s discuss your specific requirements and create a customized recruitment strategy that delivers results.
             </p>
             {/* UPDATED: Single button linking to /contact */}
             <div className="flex justify-center">

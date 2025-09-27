@@ -345,7 +345,7 @@ export const About: React.FC = () => {
                 <h3 className="text-2xl font-bold">Our Vision</h3>
               </div>
               <p className="text-green-100 leading-relaxed">
-                To become India's most trusted recruitment partner, known for our integrity, 
+                To become India&apos;s most trusted recruitment partner, known for our integrity, 
                 expertise, and commitment to excellence in connecting talent with opportunity.
               </p>
             </div>

@@ -39,7 +39,7 @@ const IndustriesPageContent = () => {
           </h1>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             Specialized recruitment expertise across key industries, delivering 
-            tailored solutions that understand your sector's unique challenges and opportunities.
+            tailored solutions that understand your sector&apos;s unique challenges and opportunities.
           </p>
         </motion.div>
 

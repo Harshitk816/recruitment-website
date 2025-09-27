@@ -89,7 +89,7 @@ export default function ContactPage() {
               Your message has been sent successfully. We&apos;ll get back to you within 24 hours.
             </p>
             <p className="text-sm text-gray-500 mb-8">
-              We've also sent a confirmation email to {formData.email || 'your email address'}.
+              We&apos;ve also sent a confirmation email to {formData.email || 'your email address'}.
             </p>
             <button
               onClick={() => setSubmitStatus('idle')}
@@ -124,7 +124,7 @@ export default function ContactPage() {
           </div>
           
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Let's Start a <span className="text-blue-600">Conversation</span>
+            Let&apos;s Start a <span className="text-blue-600">Conversation</span>
           </h1>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
