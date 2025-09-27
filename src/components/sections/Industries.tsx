@@ -368,7 +368,7 @@ export const Industries: React.FC = () => {
         >
           <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 md:p-12 text-white shadow-2xl">
             <h3 className="text-3xl md:text-4xl font-bold mb-4">
-              Don&apos;t See Your Industry? We've Got You Covered
+              Don&apos;t See Your Industry? We&apos;ve Got You Covered
             </h3>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Our recruitment expertise extends beyond these core sectors. Let&apos;s discuss your specific industry needs and talent requirements.
