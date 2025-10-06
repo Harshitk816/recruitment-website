@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
     { href: "/services", label: "Services" },
     { href: "/industries", label: "Industries" },
     { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
+    { href: "/contact", label: "Contacst" },
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
