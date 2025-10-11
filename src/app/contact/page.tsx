@@ -14,6 +14,10 @@ import {
   FiBriefcase,
   FiCheckCircle,
   FiLoader,
+  FiZap,
+  FiShield,
+  FiUsers,
+  FiAward,
 } from "react-icons/fi";
 
 export default function ContactPage() {
@@ -238,11 +242,17 @@ export default function ContactPage() {
                   <option value="executive-search">Executive Search</option>
                   <option value="permanent-hiring">Permanent Hiring</option>
                   <option value="contract-staffing">Contract Staffing</option>
-                  <option value="it-recruitment">IT Recruitment</option>
-                  <option value="finance-recruitment">
-                    Finance Recruitment
-                  </option>
-                  <option value="sales-recruitment">Sales & Marketing</option>
+                  <option value="temporary-staffing">Temporary Staffing</option>
+
+                  <option value="it-recruitment">IT & Technology Recruitment</option>
+                  <option value="finance-recruitment">Finance & Accounting Recruitment</option>
+                  <option value="sales-recruitment">Sales & Marketing Recruitment</option>
+                  <option value="healthcare-recruitment">Healthcare & Pharma Recruitment</option>
+                  <option value="manufacturing-recruitment">Manufacturing & Operations</option>
+                  <option value="retail-recruitment">Retail & E-Commerce</option>
+                  <option value="logistics-recruitment">Logistics & Supply Chain</option>
+                  <option value="bpo-recruitment">BPO & Customer Support</option>
+                  <option value="saas-recruitment">SaaS & Cybersecurity</option>
                 </select>
               </div>
 
@@ -285,19 +295,24 @@ export default function ContactPage() {
                 )}
               </button>
 
-              {/* Error Message */}
+              {/* FIXED: Error Message */}
               {submitStatus === "error" && (
                 <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                   <p className="text-red-600 text-sm">
-                    There was an error sending your message. Please try again or
-                    contact us directly at contact@workeraa.com
+                    There was an error sending your message. Please try again or{" "}
+                    <a 
+                      href="mailto:connect@workeraa.co.in" 
+                      className="underline hover:text-red-800"
+                    >
+                      contact us directly at connect@workeraa.co.in
+                    </a>
                   </p>
                 </div>
               )}
             </form>
           </motion.div>
 
-          {/* Contact Info - Keep your existing code */}
+          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -311,7 +326,7 @@ export default function ContactPage() {
               </h3>
 
               <div className="space-y-6">
-                {/* Email */}
+                {/* FIXED: Email */}
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
                     <FiMail className="text-xl text-blue-600" />
@@ -363,28 +378,61 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Quick Stats */}
+            {/* FIXED: Why Choose Workeraa - Icon Colors Fixed */}
             <div className="bg-gradient-to-br from-blue-600 to-green-500 p-8 rounded-2xl text-white">
               <h3 className="text-2xl font-bold mb-6">Why Choose Workeraa?</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center">
-                  <div className="text-2xl font-bold">2000+</div>
-                  <div className="text-sm opacity-90">
-                    Successful Placements
+              <div className="grid grid-cols-2 gap-6">
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="flex flex-col items-center text-center"
+                >
+                  <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-3">
+                    <FiZap className="text-xl text-yellow-500" />
                   </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold">400+</div>
-                  <div className="text-sm opacity-90">Partner Companies</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold">97%</div>
-                  <div className="text-sm opacity-90">Success Rate</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold">24h</div>
-                  <div className="text-sm opacity-90">Response Time</div>
-                </div>
+                  <div className="text-lg font-semibold">Speed & Quality</div>
+                  <div className="text-sm opacity-90 mt-1">Fast, precise hiring</div>
+                </motion.div>
+
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="flex flex-col items-center text-center"
+                >
+                  <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-3">
+                    <FiShield className="text-xl text-blue-500" />
+                  </div>
+                  <div className="text-lg font-semibold">Expert Guidance</div>
+                  <div className="text-sm opacity-90 mt-1">Industry specialists</div>
+                </motion.div>
+
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="flex flex-col items-center text-center"
+                >
+                  <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-3">
+                    <FiUsers className="text-xl text-green-500" />
+                  </div>
+                  <div className="text-lg font-semibold">Trusted Partner</div>
+                  <div className="text-sm opacity-90 mt-1">Long-term relationships</div>
+                </motion.div>
+
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="flex flex-col items-center text-center"
+                >
+                  <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-3">
+                    <FiAward className="text-xl text-orange-500" />
+                  </div>
+                  <div className="text-lg font-semibold">Proven Results</div>
+                  <div className="text-sm opacity-90 mt-1">500+ placements</div>
+                </motion.div>
               </div>
             </div>
           </motion.div>

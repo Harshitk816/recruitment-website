@@ -85,9 +85,9 @@ const FounderCardPrimary: React.FC<{
                 <span>Connect</span>
               </a>
               {/* COMMENTED: LinkedIn button for Akash */}
-              {/* <button className="border border-white border-opacity-30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:bg-opacity-10 transition-all">
+              <button className="border border-white border-opacity-30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-blue-900 hover:bg-opacity-10 transition-all">
                 LinkedIn
-              </button> */}
+              </button>
             </div>
           </div>
 
@@ -219,71 +219,9 @@ const FounderCardSecondary: React.FC<{
   );
 };
 
-// Interactive Stats Component (same as before)
-const InteractiveStats: React.FC = () => {
-  const stats = [
-    {
-      icon: FiUsers,
-      number: "2000+",
-      label: "Professionals Placed",
-      color: "text-blue-600",
-      bg: "bg-blue-100",
-    },
-    {
-      icon: FiTarget,
-      number: "400+",
-      label: "Partner Companies",
-      color: "text-green-600",
-      bg: "bg-green-100",
-    },
-    {
-      icon: FiAward,
-      number: "97%",
-      label: "Success Rate",
-      color: "text-purple-600",
-      bg: "bg-purple-100",
-    },
-    {
-      icon: FiTrendingUp,
-      number: "12+",
-      label: "Years Experience",
-      color: "text-orange-600",
-      bg: "bg-orange-100",
-    },
-  ];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.4 }}
-      viewport={{ once: true }}
-      className="grid grid-cols-2 lg:grid-cols-4 gap-6"
-    >
-      {stats.map((stat, index) => (
-        <motion.div
-          key={index}
-          whileHover={{ scale: 1.05, y: -5 }}
-          className="bg-white p-6 rounded-2xl text-center shadow-lg border border-gray-100 cursor-default"
-        >
-          <div
-            className={`w-14 h-14 ${stat.bg} rounded-2xl flex items-center justify-center mx-auto mb-4`}
-          >
-            <stat.icon className={`text-2xl ${stat.color}`} />
-          </div>
-          <div className="text-3xl font-bold text-gray-900 mb-2">
-            {stat.number}
-          </div>
-          <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
-        </motion.div>
-      ))}
-    </motion.div>
-  );
-};
-
 export const About: React.FC = () => {
   const foundersData = [
-    // SWAPPED: Alisha now comes first (index 0)
+    // UPDATED: Alisha - More Realistic Achievements
     {
       name: "Alisha Sharma",
       title: "Co-Founder & CEO",
@@ -292,26 +230,27 @@ export const About: React.FC = () => {
       description:
         "Passionate about connecting exceptional talent with innovative companies, Alisha co-founded Workeraa to revolutionize how businesses find and hire top performers across India and beyond. With over 7 years of experience in talent acquisition, she has helped hundreds of companies scale their teams.",
       achievements: [
-        "Founded and scaled Workeraa from startup to industry leader",
-        "7+ years in talent acquisition and recruitment excellence",
+        "Co-founded Workeraa with a vision to transform recruitment",
+        "Built strategic partnerships with 200+ companies.",
         "Specialized expertise across IT, Finance, and Sales & Marketing sectors",
-        "Successfully placed 2000+ professionals across various industries",
-        "Built strategic partnerships with 400+ companies nationwide",
+        "Successfully placed 500+ professionals across various industries",
+        "7+ years in talent acquisition and recruitment excellence",
+        
       ],
     },
-    // SWAPPED: Akash now comes second (index 1)
+    // UPDATED: Akash - More Realistic Achievements
     {
       name: "Akash Sehrawat",
       title: "Co-Founder & CEO",
       phone: "9599656760",
       email: "akash@workeraa.co.in",
       description:
-        "As the visionary co-founder of Workeraa, Akash brings over 5 years of strategic leadership in talent acquisition and business transformation. His entrepreneurial journey began with identifying the critical gap between skilled professionals and growing organizations.",
+        "As the visionary co-founder of Workeraa, Akash brings over 7 years of strategic leadership in talent acquisition and business transformation. His entrepreneurial journey began with identifying the critical gap between skilled professionals and growing organizations.",
       achievements: [
-        "Pioneered innovative recruitment methodologies and AI-driven talent matching",
-        "Recognized industry thought leader with 15+ speaking engagements",
-        "Successfully built strategic partnerships with 500+ Fortune companies",
-        "12+ years of executive leadership in recruitment and business development",
+        "Co-founded Workeraa with expertise in recruitment strategies",
+        "7+ years of experience in executive leadership and business development",
+        "Developed innovative recruitment methodologies for better talent matching",
+        "Built strong relationships with clients across multiple industries",
       ],
     },
   ];
@@ -354,51 +293,8 @@ export const About: React.FC = () => {
           <FounderCardPrimary {...foundersData[1]} /> {/* Akash (Blue card) */}
         </div>
 
-        {/* Interactive Stats */}
-        <InteractiveStats />
-
         {/* Mission & Vision */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="grid lg:grid-cols-2 gap-8 my-20"
-        >
-          <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-8 rounded-3xl text-white relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-300 bg-opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
-            <div className="relative z-10">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-blue-400 bg-opacity-20 rounded-xl flex items-center justify-center mr-4">
-                  <FiTarget className="text-xl text-white" />
-                </div>
-                <h3 className="text-2xl font-bold">Our Mission</h3>
-              </div>
-              <p className="text-blue-100 leading-relaxed">
-                To bridge the gap between exceptional talent and
-                forward-thinking companies, creating meaningful connections that
-                drive both individual careers and business success.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-green-600 to-emerald-700 p-8 rounded-3xl text-white relative overflow-hidden">
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-emerald-300 bg-opacity-10 rounded-full translate-y-16 -translate-x-16"></div>
-            <div className="relative z-10">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-green-400 bg-opacity-20 rounded-xl flex items-center justify-center mr-4">
-                  <FiStar className="text-xl text-white" />
-                </div>
-                <h3 className="text-2xl font-bold">Our Vision</h3>
-              </div>
-              <p className="text-green-100 leading-relaxed">
-                To become India&apos;s most trusted recruitment partner, known
-                for our integrity, expertise, and commitment to excellence in
-                connecting talent with opportunity.
-              </p>
-            </div>
-          </div>
-        </motion.div>
+        
 
         {/* Company Values */}
         <motion.div

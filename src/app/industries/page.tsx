@@ -28,7 +28,7 @@ const IndustriesPageContent = () => {
           className="text-center mb-16"
         >
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            <span className="text-purple-600">Industries</span> We Serve
+            <span className="text-blue-600">Industries</span> We Serve
           </h1>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             Specialized recruitment expertise across key industries, delivering
@@ -37,7 +37,7 @@ const IndustriesPageContent = () => {
           </p>
         </motion.div>
 
-        {/* Industry Trends Section */}
+        {/* Industry Trends Section - UPDATED: Short & Precise Descriptions */}
         <div className="mb-20">
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
             Market Insights
@@ -49,7 +49,7 @@ const IndustriesPageContent = () => {
                 title: "Tech Talent Demand",
                 stat: "45% Growth",
                 description:
-                  "The IT sector continues to show unprecedented growth with increasing demand for skilled developers, data scientists, and cloud specialists.",
+                  "Rising demand for developers, data scientists, and cloud specialists across all sectors.",
                 color: "text-blue-600",
                 bg: "bg-blue-100",
               },
@@ -58,7 +58,7 @@ const IndustriesPageContent = () => {
                 title: "Finance Evolution",
                 stat: "30% Digital Shift",
                 description:
-                  "Financial services are rapidly digitizing, creating new opportunities for fintech professionals and digital-first financial experts.",
+                  "Financial services embracing digital transformation and fintech innovation.",
                 color: "text-green-600",
                 bg: "bg-green-100",
               },
@@ -67,7 +67,7 @@ const IndustriesPageContent = () => {
                 title: "Sales Innovation",
                 stat: "60% Remote Growth",
                 description:
-                  "Sales and marketing roles are evolving with remote work capabilities and digital marketing expertise becoming essential.",
+                  "Sales teams adapting to remote work and digital marketing strategies.",
                 color: "text-purple-600",
                 bg: "bg-purple-100",
               },
@@ -122,10 +122,10 @@ export default function IndustriesPage() {
       </div>
 
       {/* Success Stories Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+     <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <Container>
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">Success Stories</h2>
+            <h2 className="text-4xl font-bold mb-6">Case Studies</h2>
             <p className="text-xl opacity-90 max-w-3xl mx-auto">
               Real results from our industry-focused recruitment approach
             </p>
@@ -187,7 +187,7 @@ export default function IndustriesPage() {
             ))}
           </div>
         </Container>
-      </section>
+      </section> 
 
       {/* Industry-Specific CTA - UPDATED BUTTONS */}
       <section className="py-20 bg-white">

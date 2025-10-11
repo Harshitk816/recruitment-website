@@ -180,67 +180,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
   );
 };
 
-// Stats Component for Services
-const ServiceStats: React.FC = () => {
-  const stats = [
-    {
-      icon: FiUsers,
-      number: "500+",
-      label: "Companies Served",
-      color: "text-blue-600",
-      bg: "bg-blue-100",
-    },
-    {
-      icon: FiTarget,
-      number: "2000+",
-      label: "Successful Placements",
-      color: "text-green-600",
-      bg: "bg-green-100",
-    },
-    {
-      icon: FiCheck,
-      number: "95%",
-      label: "Client Satisfaction",
-      color: "text-purple-600",
-      bg: "bg-purple-100",
-    },
-    {
-      icon: FiZap,
-      number: "48hrs",
-      label: "Average Response",
-      color: "text-orange-600",
-      bg: "bg-orange-100",
-    },
-  ];
-
-  return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
-      {stats.map((stat, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ delay: index * 0.1 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <div className="flex justify-center mb-3">
-            <div
-              className={`w-12 h-12 ${stat.bg} rounded-xl flex items-center justify-center border-2 border-gray-100`}
-            >
-              <stat.icon className={`text-xl ${stat.color}`} />
-            </div>
-          </div>
-          <div className="text-3xl font-bold text-gray-900 mb-1">
-            {stat.number}
-          </div>
-          <div className="text-sm text-gray-600">{stat.label}</div>
-        </motion.div>
-      ))}
-    </div>
-  );
-};
-
 export const Services: React.FC = () => {
   return (
     <section
@@ -280,13 +219,13 @@ export const Services: React.FC = () => {
           ))}
         </div>
 
-        {/* Call to Action - UPDATED */}
+        {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center"
         >
           <div className="bg-gradient-to-r from-blue-600 to-green-500 rounded-2xl p-8 md:p-12 text-white shadow-2xl">
             <h3 className="text-3xl md:text-4xl font-bold mb-4">
@@ -296,7 +235,6 @@ export const Services: React.FC = () => {
               Let&apos;s discuss your specific requirements and create a
               customized recruitment strategy that delivers results.
             </p>
-            {/* UPDATED: Single button linking to /contact */}
             <div className="flex justify-center">
               <Button
                 href="/contact"
@@ -309,9 +247,6 @@ export const Services: React.FC = () => {
             </div>
           </div>
         </motion.div>
-
-        {/* Stats Section */}
-        <ServiceStats />
       </Container>
     </section>
   );

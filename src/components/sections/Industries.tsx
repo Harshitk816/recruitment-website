@@ -14,18 +14,20 @@ import {
   FiAward,
   FiBriefcase,
   FiBarChart,
+  FiClock,
+  FiShield
 } from "react-icons/fi";
 
 import { PiMegaphone } from "react-icons/pi";
 
-// Simplified industries data
+// Simplified industries data - FIXED TYPOS
 const industriesData = [
   {
     id: 1,
     name: "IT & Technology",
     subtitle: "Driving innovation with the right tech minds",
     description:
-      "From startups to Fortune 500 companies, we connect organizations with exceptional technical talent that drives digital transformation and innovation.",
+      "From startups to MNCs, we connect organizations with exceptional technical talent that drives digital transformation and innovation.",
     icon: FiMonitor,
     primaryColor: "text-blue-600",
     bgGradient: "from-blue-500 to-cyan-400",
@@ -138,11 +140,11 @@ const industriesData = [
     description:
       "Logistics and supply chain specialists for end-to-end operational excellence.",
     icon: FiUsers,
-    primaryColor: "text-orange-600",
-    bgGradient: "from-orange-400 to-orange-200",
-    bgColor: "bg-orange-50",
-    iconBg: "bg-orange-100",
-    borderColor: "border-orange-200",
+    primaryColor: "text-orange-600", // FIXED: Changed from text-orange-400 to text-orange-600
+    bgGradient: "from-orange-500 to-orange-300", // FIXED: Better gradient
+    bgColor: "bg-orange-50", // FIXED: Was bg-orange-30
+    iconBg: "bg-orange-100", // FIXED: Was bg-orange-50
+    borderColor: "border-orange-200", // FIXED: Was border-orange-100
     roles: [
       { title: "Logistics Coordinators", icon: FiTarget },
       { title: "Supply Chain Analysts", icon: FiBriefcase },
@@ -165,13 +167,49 @@ const industriesData = [
       { title: "BPO Team Leads", icon: FiAward },
     ],
   },
+  {
+    id: 9,
+    name: "SaaS & Cybersecurity",
+    subtitle: "Securing digital transformation with expert talent",
+    description:
+      "We connect organizations with cybersecurity experts and SaaS professionals who protect and scale cloud-first businesses in an increasingly digital world.",
+    icon: FiShield,
+    primaryColor: "text-indigo-600", // FIXED: Changed from text-orange-600 to avoid duplicate
+    bgGradient: "from-indigo-500 to-purple-400", // FIXED: Changed from orange
+    bgColor: "bg-indigo-50", // FIXED: Changed from bg-orange-50
+    iconBg: "bg-indigo-100", // FIXED: Changed from bg-orange-100
+    borderColor: "border-indigo-200", // FIXED: Changed from border-orange-200
+    roles: [
+      { title: "Security Engineers", icon: FiShield },
+      { title: "SaaS Architects", icon: FiTarget },
+      { title: "DevSecOps Specialists", icon: FiCode },
+      { title: "Cybersecurity Analysts", icon: FiAward },
+    ],
+  },
 ];
 
-// Fixed Industry Card Component - No Overflow and No Button
+// Fixed Industry Card Component
 interface IndustryCardProps {
   industry: (typeof industriesData)[0];
   index: number;
 }
+
+// ADDED: Helper function for light colors
+const getLightColor = (primaryColor: string): string => {
+  const lightColorMap: { [key: string]: string } = {
+    'text-blue-600': 'text-blue-200',
+    'text-green-600': 'text-green-200',
+    'text-purple-600': 'text-purple-200',
+    'text-yellow-600': 'text-yellow-200',
+    'text-pink-600': 'text-pink-200',
+    'text-red-600': 'text-red-200',
+    'text-orange-600': 'text-orange-200',
+    'text-teal-600': 'text-teal-200',
+    'text-indigo-600': 'text-indigo-200',
+  };
+  
+  return lightColorMap[primaryColor] || 'text-white';
+};
 
 const IndustryCard: React.FC<IndustryCardProps> = ({ industry, index }) => {
   const [isHovered, setIsHovered] = React.useState(false);
@@ -188,84 +226,118 @@ const IndustryCard: React.FC<IndustryCardProps> = ({ industry, index }) => {
     >
       <div
         className={`
-        relative p-8 rounded-3xl border-2 ${industry.borderColor} bg-white shadow-xl
+        relative rounded-3xl border-2 ${industry.borderColor} bg-white shadow-xl
         transition-all duration-500 hover:shadow-2xl hover:-translate-y-2
         overflow-hidden h-full flex flex-col
       `}
       >
-        {/* Gradient Background Overlay */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{
-            opacity: isHovered ? 0.1 : 0,
-            scale: isHovered ? 1.2 : 0.8,
-          }}
-          transition={{ duration: 0.5 }}
-          className={`absolute inset-0 bg-gradient-to-br ${industry.bgGradient} rounded-3xl`}
-        />
-
-        {/* Header Section */}
-        <div className="relative z-10 mb-6">
-          {/* Icon */}
+        {/* Background Image - Top Half Only with Enhanced Overlay */}
+        <div className="absolute top-0 left-0 right-0 h-1/2 overflow-hidden rounded-t-3xl">
+          {/* Background Image with Zoom Effect */}
           <motion.div
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            className={`
-              w-20 h-20 rounded-2xl ${industry.iconBg} flex items-center justify-center mb-6
-              transition-all duration-300 shadow-lg border-2 ${industry.borderColor}
-            `}
-          >
-            <industry.icon className={`text-3xl ${industry.primaryColor}`} />
-          </motion.div>
-
-          {/* Title & Subtitle */}
-          <h3 className="text-2xl font-bold text-gray-900 mb-3">
-            {industry.name}
-          </h3>
-          <p className={`text-lg font-medium mb-4 ${industry.primaryColor}`}>
-            {industry.subtitle}
-          </p>
-          <p className="text-gray-700 leading-relaxed">
-            {industry.description}
-          </p>
+            animate={{
+              scale: isHovered ? 1.08 : 1,
+            }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="w-full h-full"
+            style={{
+              backgroundImage: `url('/images/industries/${getImageName(industry.name)}')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center top',
+              backgroundRepeat: 'no-repeat',
+            }}
+          />
+          
+          {/* Blur Overlay */}
+          <div className="absolute inset-0 backdrop-blur-[2px]" />
+          
+          {/* FIXED: Enhanced Gradient for Better Text Readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-white" />
+          
+          {/* Industry Color Gradient on Hover */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: isHovered ? 0.15 : 0,
+            }}
+            transition={{ duration: 0.5 }}
+            className={`absolute inset-0 bg-gradient-to-br ${industry.bgGradient}/50`}
+          />
         </div>
 
-        {/* Key Roles Grid - FIXED LAYOUT */}
-        <div className="relative z-10 flex-1">
-          <h4 className="text-lg font-semibold text-gray-900 mb-4">
-            Key Roles We Fill
-          </h4>
-          <div className="space-y-3">
-            {industry.roles.map((role, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 + idx * 0.1 }}
-                className={`
-                  flex items-center space-x-3 p-3 rounded-lg ${industry.bgColor} 
-                  border ${industry.borderColor} transition-all hover:shadow-sm
-                `}
-              >
-                <div
-                  className={`w-8 h-8 rounded-lg ${industry.iconBg} flex items-center justify-center flex-shrink-0`}
+        {/* Content Container */}
+        <div className="relative z-20 p-8 h-full flex flex-col">
+          {/* Header Section - Enhanced for visibility over image */}
+          <div className="mb-6">
+            {/* Icon - More prominent with white background */}
+            <motion.div
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              className={`
+                w-20 h-20 rounded-2xl bg-white/95 flex items-center justify-center mb-6
+                transition-all duration-300 shadow-xl border-2 border-white/50
+                backdrop-blur-md
+              `}
+            >
+              <industry.icon className={`text-3xl ${industry.primaryColor}`} />
+            </motion.div>
+
+            {/* FIXED: Title with proper light color mapping */}
+            <h3 className={`text-2xl font-bold ${getLightColor(industry.primaryColor)} mb-3 drop-shadow-lg`}>
+              {industry.name}
+            </h3>
+            
+            {/* Subtitle - Light white text with shadow */}
+            <p className="text-lg font-medium mb-4 text-white/90 drop-shadow-md">
+              {industry.subtitle}
+            </p>
+          </div>
+
+          {/* Description - Clean white background area */}
+          <div className="mb-6">
+            <p className="text-gray-800 leading-relaxed drop-shadow-sm [text-shadow:_0_1px_2px_rgb(255_255_255_/_0.8)]">
+              {industry.description}
+            </p>
+
+          </div>
+
+          {/* Key Roles Grid - Clean white background area */}
+          <div className="flex-1">
+            <h4 className="text-lg font-semibold text-gray-900 mb-4">
+              Key Roles We Fill
+            </h4>
+            <div className="space-y-3">
+              {industry.roles.map((role, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 + idx * 0.1 }}
+                  className={`
+                    flex items-center space-x-3 p-3 rounded-lg ${industry.bgColor}
+                    border ${industry.borderColor} transition-all hover:shadow-sm
+                  `}
                 >
-                  <role.icon className={`text-sm ${industry.primaryColor}`} />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="text-sm font-medium text-gray-900">
-                    {role.title}
+                  <div
+                    className={`w-8 h-8 rounded-lg ${industry.iconBg} flex items-center justify-center flex-shrink-0`}
+                  >
+                    <role.icon className={`text-sm ${industry.primaryColor}`} />
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                  <div className="min-w-0 flex-1">
+                    <div className="text-sm font-medium text-gray-900">
+                      {role.title}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Decorative Elements */}
-        <div className="absolute top-6 right-6 w-12 h-12 opacity-20">
+        <div className="absolute top-6 right-6 w-12 h-12 opacity-20 z-10">
           <div className={`w-full h-full rounded-full ${industry.iconBg}`} />
         </div>
-        <div className="absolute bottom-6 right-6 w-8 h-8 opacity-30">
+        <div className="absolute bottom-6 right-6 w-8 h-8 opacity-30 z-10">
           <div className={`w-full h-full rounded-full ${industry.iconBg}`} />
         </div>
       </div>
@@ -273,41 +345,50 @@ const IndustryCard: React.FC<IndustryCardProps> = ({ industry, index }) => {
   );
 };
 
-// Overall Industry Stats
+// Helper function to map industry names to image filenames
+const getImageName = (industryName: string): string => {
+  const imageMap: { [key: string]: string } = {
+    "IT & Technology": "it.jpg",
+    "Finance & Accounting": "finance.jpg",
+    "Sales & Marketing": "sales.jpg",
+    "Manufacturing & Operations": "manufacturing.jpg",
+    "Healthcare & Pharma": "healthcare.jpg",
+    "Retail & E-Commerce": "retail.jpg",
+    "Logistics & Supply Chain": "logistics.jpg",
+    "BPO & Customer Support": "bpo.jpg",
+    "SaaS & Cybersecurity": "saas.jpg",
+  };
+  
+  return imageMap[industryName] || "it.jpg";
+};
+
 const IndustryOverallStats: React.FC = () => {
   const overallStats = [
     {
       icon: FiUsers,
-      number: "2650+",
-      label: "Total Placements",
+      number: "500+",
+      label: "Successful Placements",
       color: "text-blue-600",
       bg: "bg-blue-100",
     },
     {
       icon: FiBriefcase,
-      number: "440+",
+      number: "80+",
       label: "Partner Companies",
       color: "text-green-600",
       bg: "bg-green-100",
     },
     {
-      icon: FiAward,
-      number: "97%",
-      label: "Average Success Rate",
-      color: "text-purple-600",
-      bg: "bg-purple-100",
-    },
-    {
-      icon: FiTrendingUp,
+      icon: FiClock,
       number: "30%",
       label: "Faster Hiring Process",
-      color: "text-orange-600",
-      bg: "bg-orange-100",
+      color: "text-purple-600",
+      bg: "bg-purple-100",
     },
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
       {overallStats.map((stat, index) => (
         <motion.div
           key={index}
@@ -357,8 +438,7 @@ export const Industries: React.FC = () => {
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Great Talent Drives{" "}
-            <span className="text-purple-600">Every Industry</span> Forward
+            Industry Solutions <span className="text-blue-600">Tailored for You</span>
           </h2>
 
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">

@@ -128,7 +128,6 @@ export default function ServicesPage() {
                 benefits: [
                   "Onboarding assistance",
                   "Performance tracking",
-                  "Replacement guarantee",
                 ],
               },
             ].map((feature, index) => (

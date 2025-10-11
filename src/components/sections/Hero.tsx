@@ -14,24 +14,39 @@ import {
 import { Link } from "lucide-react";
 
 // Hero Image Placeholder Component
+// Updated Hero Image Component with Background Image
 const HeroImagePlaceholder: React.FC = () => {
   return (
     <div className="relative">
-      <div className="w-full h-[400px] md:h-[500px] bg-gradient-to-br from-blue-50 via-white to-green-50 rounded-2xl shadow-xl overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-10 left-10 w-20 h-20 bg-blue-500 rounded-full"></div>
-          <div className="absolute top-32 right-16 w-16 h-16 bg-green-500 rounded-lg rotate-45"></div>
-          <div className="absolute bottom-20 left-20 w-12 h-12 bg-purple-500 rounded-full"></div>
-          <div className="absolute bottom-32 right-32 w-8 h-8 bg-yellow-500 rounded-full"></div>
-        </div>
+      <div className="w-full h-[400px] md:h-[500px] rounded-2xl shadow-xl overflow-hidden relative">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url('/images/industries/hiring.jpg')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+        
+        {/* Blur Overlay */}
+        <div className="absolute inset-0 backdrop-blur-[1px]" />
+        
+        {/* Gradient Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-white/40" />
+        
+        {/* Colored Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-green-500/20" />
 
+        {/* Content */}
         <div className="flex items-center justify-center h-full relative z-10">
           <div className="text-center space-y-6">
             <div className="flex justify-center space-x-6 text-4xl">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                className="text-blue-600"
+                className="text-white drop-shadow-lg"
               >
                 <FiUsers />
               </motion.div>
@@ -42,7 +57,7 @@ const HeroImagePlaceholder: React.FC = () => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="text-green-600"
+                className="text-white drop-shadow-lg"
               >
                 <FiTrendingUp />
               </motion.div>
@@ -53,40 +68,29 @@ const HeroImagePlaceholder: React.FC = () => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="text-purple-600"
+                className="text-white drop-shadow-lg"
               >
                 <FiTarget />
               </motion.div>
             </div>
 
-            {/* Placeholder text */}
+            {/* Text Content with Better Readability */}
             <div className="space-y-2">
-              <div className="text-gray-400 font-medium">Professional Team</div>
-              <div className="text-2xl font-bold text-gray-600">
+              <div className="text-white/90 font-medium drop-shadow-md">Professional Team</div>
+              <div className="text-2xl font-bold text-white drop-shadow-lg">
                 Connecting Talent
               </div>
-              <div className="text-gray-400">Building Success Together</div>
+              <div className="text-white/80 drop-shadow-md">Building Success Together</div>
             </div>
           </div>
         </div>
-
-        {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-5">
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `radial-gradient(circle at 20px 20px, #000 2px, transparent 2px)`,
-              backgroundSize: "40px 40px",
-            }}
-          ></div>
-        </div>
       </div>
 
-      {/* Floating elements */}
+      {/* Floating elements - Enhanced for visibility */}
       <motion.div
         animate={{ y: [-10, 10, -10] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-4 -right-4 bg-white p-3 rounded-xl shadow-lg"
+        className="absolute -top-4 -right-4 bg-white/95 backdrop-blur-md p-3 rounded-xl shadow-xl border border-white/20"
       >
         <FiStar className="text-yellow-500 text-xl" />
       </motion.div>
@@ -94,13 +98,14 @@ const HeroImagePlaceholder: React.FC = () => {
       <motion.div
         animate={{ y: [10, -10, 10] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -bottom-4 -left-4 bg-white p-3 rounded-xl shadow-lg"
+        className="absolute -bottom-4 -left-4 bg-white/95 backdrop-blur-md p-3 rounded-xl shadow-xl border border-white/20"
       >
         <FiCheckCircle className="text-green-500 text-xl" />
       </motion.div>
     </div>
   );
 };
+
 
 // Statistics Component
 const StatsSection: React.FC = () => {
@@ -198,30 +203,13 @@ export const Hero: React.FC = () => {
               {/* CTA Buttons */}
 
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Link></Link>
                 <Button size="lg" className="group" href="/contact">
                   Get Started Today
                   <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
                 </Button>
-                <Button variant="outline" size="lg" href="/services">
+                {/* <Button variant="outline" size="lg" href="/services">
                   Explore Services
-                </Button>
-              </div>
-
-              {/* Trust Indicators */}
-              <div className="flex items-center space-x-6 text-sm text-gray-500">
-                <div className="flex items-center space-x-1">
-                  <FiCheckCircle className="text-green-500" />
-                  <span>No Setup Fees</span>
-                </div>
-                <div className="flex items-center space-x-1">
-                  <FiCheckCircle className="text-green-500" />
-                  <span>24/7 Support</span>
-                </div>
-                <div className="flex items-center space-x-1">
-                  <FiCheckCircle className="text-green-500" />
-                  <span>Money Back Guarantee</span>
-                </div>
+                </Button> */}
               </div>
             </motion.div>
           </div>

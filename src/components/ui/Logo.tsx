@@ -5,10 +5,15 @@ import Image from "next/image";
 
 interface LogoProps {
   size?: "xxs" | "xs" | "sm" | "md" | "lg" | "xl";
+  variant?: "default" | "light";
   className?: string;
 }
 
-export const Logo: React.FC<LogoProps> = ({ size = "md", className = "" }) => {
+export const Logo: React.FC<LogoProps> = ({ 
+  size = "md", 
+  variant = "default",
+  className = "" 
+}) => {
   const dimensions = {
     xxs: { width: 60, height: 16 },
     xs: { width: 80, height: 18 },
@@ -20,18 +25,29 @@ export const Logo: React.FC<LogoProps> = ({ size = "md", className = "" }) => {
 
   const { width, height } = dimensions[size];
 
+  // Dynamic logo source based on variant
+  const logoSrc = variant === "light" 
+    ? "/images/logo/workeraa-light.png" 
+    : "/images/logo/workeraa.png";
+
+  // Dynamic alt text
+  const altText = variant === "light"
+    ? "Workeraa - Premium Recruitment Solutions (Light)"
+    : "Workeraa - Premium Recruitment Solutions";
+
   return (
     <Link
       href="/"
       className={`flex items-center transition-opacity hover:opacity-80 ${className}`}
     >
       <Image
-        src="/images/logo/workeraa.png"
-        alt="Workeraa - Premium Recruitment Solutions"
+        src={logoSrc}
+        alt={altText}
         width={width}
         height={height}
         priority
-        className="object-contain"
+        className="object-contain bg-transparent"
+        
       />
     </Link>
   );

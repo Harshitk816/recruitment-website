@@ -48,7 +48,7 @@ export const Footer: React.FC = () => {
             {/* Company Info */}
             <div className="lg:col-span-2">
               {/* Logo */}
-              <Logo size="lg" className="mb-6" />
+              <Logo size="lg" variant="light" className="mb-6" />
 
               <p className="text-gray-300 leading-relaxed mb-6">
                 Connecting exceptional talent with innovative companies across
@@ -98,7 +98,7 @@ export const Footer: React.FC = () => {
                 </motion.a>
                 {/* Other social links commented out for now since we only have LinkedIn */}
 
-                <motion.a
+                {/* <motion.a
                   // href=""
                   whileHover={{ scale: 1.2, y: -2 }}
                   className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-gray-300 transition-all hover:text-blue-300"
@@ -111,7 +111,7 @@ export const Footer: React.FC = () => {
                   className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-gray-300 transition-all hover:text-blue-500"
                 >
                   <FiInstagram className="text-lg" />
-                </motion.a>
+                </motion.a> */}
                 {/* 
                 <motion.a
                   href=""

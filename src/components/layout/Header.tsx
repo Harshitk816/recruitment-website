@@ -23,7 +23,7 @@ export const Header: React.FC = () => {
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
     { href: "/industries", label: "Industries" },
-    { href: "/about", label: "About" },
+    { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact" },
   ];
 
@@ -75,9 +75,9 @@ export const Header: React.FC = () => {
 
             <div className="hidden lg:flex items-center space-x-4">
               <Button variant="outline" href="/contact">
-                Get Quote
+                Get In Touch
               </Button>
-              <Button href="/services">Our Services</Button>
+              {/* <Button href="/services">Our Services</Button> */}
             </div>
 
             <button
@@ -146,15 +146,15 @@ export const Header: React.FC = () => {
                       className="w-full justify-center"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      Get Quote
+                      Get In Touch
                     </Button>
-                    <Button
+                    {/* <Button
                       href="/services"
                       className="w-full justify-center"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Our Services
-                    </Button>
+                    </Button> */}
                   </div>
                 </nav>
               </Container>
