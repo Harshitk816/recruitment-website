@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Container } from "../ui/Container";
 import { FiAward } from "react-icons/fi";
 
-// Company logos data with consistent dimensions
+// Company logos data
 const companyLogos = [
   {
     name: "Accenture",
@@ -74,7 +74,7 @@ export const CompanyCarousel: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Simple Centered Carousel */}
+        {/* Fixed Carousel - No Overflow Issues */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -82,73 +82,123 @@ export const CompanyCarousel: React.FC = () => {
           viewport={{ once: true }}
           className="relative"
         >
-          {/* Logo Container - Fixed grid approach */}
-          <div className="flex justify-center items-center h-32">
-            <div className="grid grid-cols-7 gap-8 items-center justify-items-center w-full max-w-6xl">
-              {companyLogos.map((company, index) => {
-                const isCenter = index === currentIndex;
-                const distance = Math.abs(index - currentIndex);
-
-                return (
+          {/* Mobile: Show only center logo */}
+          <div className="block md:hidden">
+            <div className="flex justify-center items-center h-32 px-4">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col items-center"
+              >
+                <div className="relative mb-4">
                   <motion.div
-                    key={company.name}
-                    className="flex items-center justify-center"
+                    className="absolute -inset-6 bg-blue-500/20 rounded-xl blur-md"
                     animate={{
-                      scale: isCenter ? 1.4 : distance === 1 ? 1 : 0.7,
-                      opacity: isCenter ? 1 : distance === 1 ? 0.7 : 0.4,
-                      y: isCenter ? -10 : 0,
+                      scale: [1, 1.1, 1],
+                      opacity: [0.4, 0.7, 0.4],
                     }}
                     transition={{
-                      duration: 0.6,
-                      ease: "easeInOut",
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "reverse",
                     }}
-                  >
-                    <div className="relative">
-                      {/* Center highlight */}
-                      {isCenter && (
-                        <motion.div
-                          className="absolute -inset-4 bg-blue-500/20 rounded-xl blur-md"
-                          animate={{
-                            scale: [1, 1.1, 1],
-                            opacity: [0.4, 0.7, 0.4],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            repeatType: "reverse",
-                          }}
-                        />
-                      )}
-
-                      {/* Logo with consistent container */}
-                      <div className="w-28 h-16 flex items-center justify-center relative z-10">
-                        <Image
-                          src={company.logo}
-                          alt={`${company.name} logo`}
-                          fill
-                          className="object-contain filter brightness-100 contrast-100 saturate-100"
-                        />
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
+                  />
+                  {/* Fixed mobile container - larger to prevent clipping */}
+                  <div className="w-40 h-24 flex items-center justify-center relative z-10 p-2">
+                    <Image
+                      src={companyLogos[currentIndex].logo}
+                      alt={`${companyLogos[currentIndex].name} logo`}
+                      fill
+                      className="object-contain p-2" // Added padding inside image
+                    />
+                  </div>
+                </div>
+                <div className="text-sm font-semibold text-blue-700 bg-blue-100 px-4 py-1 rounded-full">
+                  {companyLogos[currentIndex].name}
+                </div>
+              </motion.div>
             </div>
           </div>
 
-          {/* Company name for center item */}
-          <motion.div
-            key={currentIndex}
-            className="text-center mt-8"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.4 }}
-          >
-            <span className="text-lg font-semibold text-blue-700 bg-blue-100 px-6 py-2 rounded-full">
-              {companyLogos[currentIndex].name}
-            </span>
-          </motion.div>
+          {/* Desktop: Show all logos with proper spacing */}
+          <div className="hidden md:block">
+            <div className="flex justify-center items-center h-40 relative px-8"> {/* Increased height and added padding */}
+              <div className="flex items-center justify-center space-x-12 lg:space-x-16"> {/* Increased spacing */}
+                {companyLogos.map((company, index) => {
+                  const isCenter = index === currentIndex;
+                  const distance = Math.abs(index - currentIndex);
+                  const isVisible = distance <= 3;
+
+                  if (!isVisible) return null;
+
+                  return (
+                    <motion.div
+                      key={company.name}
+                      className="flex items-center justify-center"
+                      animate={{
+                        // Reduced scale to prevent overflow
+                        scale: isCenter ? 1.2 : distance === 1 ? 0.9 : 0.7,
+                        opacity: isCenter ? 1 : distance === 1 ? 0.7 : 0.4,
+                        y: isCenter ? -5 : 0, // Reduced Y movement
+                      }}
+                      transition={{
+                        duration: 0.6,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <div className="relative">
+                        {/* Center highlight with proper spacing */}
+                        {isCenter && (
+                          <motion.div
+                            className="absolute -inset-8 bg-blue-500/20 rounded-xl blur-md"
+                            animate={{
+                              scale: [1, 1.05, 1], // Reduced scale animation
+                              opacity: [0.4, 0.7, 0.4],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              repeatType: "reverse",
+                            }}
+                          />
+                        )}
+
+                        {/* Logo containers with padding to prevent clipping */}
+                        <div className={`
+                          ${isCenter ? 'w-36 h-24' : distance === 1 ? 'w-28 h-18' : 'w-24 h-16'}
+                          flex items-center justify-center relative z-10 p-3
+                        `}>
+                          <Image
+                            src={company.logo}
+                            alt={`${company.name} logo`}
+                            fill
+                            className="object-contain p-2" // Padding inside each image
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Company name - positioned with enough space */}
+            <motion.div
+              key={currentIndex}
+              className="text-center mt-6"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.4 }}
+            >
+              <span className="text-lg font-semibold text-blue-700 bg-blue-100 px-6 py-2 rounded-full">
+                {companyLogos[currentIndex].name}
+              </span>
+            </motion.div>
+          </div>
         </motion.div>
 
         {/* Progress Indicators */}
