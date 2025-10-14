@@ -34,9 +34,8 @@ export default function ContactPage() {
     "idle" | "success" | "error"
   >("idle");
 
-  // Replace this with your Google Apps Script deployment URL
   const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycby2yPRVLjEbR_oTHet8XBmsofjm1IZTFWG4cOl0DkWjLnIn0PQ7IJMTfKeDzH2JvpF-/exec";
+    "https://script.google.com/macros/s/AKfycbxurePbaA8uo2VhK1i5T4p4DSg1AqwLoE-IEU0by811QpdElwpOrjvMl0-6bHcxpoj_/exec";
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -50,41 +49,46 @@ export default function ContactPage() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
+  e.preventDefault();
+  setIsSubmitting(true);
+  setSubmitStatus("idle");
 
-    try {
-      // Create FormData object
-      const formDataObj = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-        formDataObj.append(key, value);
-        console.log(`${key}: ${value}`); // Debug log
-      });
-      console.log(formDataObj.entries()); // Debug log
-      // Submit to Google Sheets
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors", // Important for Google Apps Script
-        body: formDataObj,
-      });
+  try {
+    const formDataObj = new FormData();
+    formDataObj.append('name', formData.name);
+    formDataObj.append('email', formData.email);
+    formDataObj.append('company', formData.company);
+    formDataObj.append('service', formData.service);
+    formDataObj.append('message', formData.message);
 
-      // Since we're using no-cors mode, we assume success if no error is thrown
-      setSubmitStatus("success");
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        service: "",
-        message: "",
-      });
-    } catch (error) {
-      console.error("Form submission error:", error);
-      setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    console.log("Submitting form with no-cors mode...");
+
+    // Use no-cors since the script is working but CORS headers aren't
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors", // Back to no-cors
+      body: formDataObj,
+    });
+
+    console.log("Request sent successfully");
+    
+    setSubmitStatus("success");
+    setFormData({
+      name: "",
+      email: "",
+      company: "",
+      service: "",
+      message: "",
+    });
+
+  } catch (error) {
+    console.error("Form submission error:", error);
+    setSubmitStatus("error");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   // Success state
   if (submitStatus === "success") {

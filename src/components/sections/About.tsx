@@ -84,10 +84,14 @@ const FounderCardPrimary: React.FC<{
                 <FiMail className="text-sm" />
                 <span>Connect</span>
               </a>
-              {/* COMMENTED: LinkedIn button for Akash */}
-              <button className="border border-white border-opacity-30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-blue-900 hover:bg-opacity-10 transition-all">
+              <a
+                href="https://www.linkedin.com/in/akash-sehrawat-228bb1389/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-white border-opacity-30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-blue-900 hover:bg-opacity-10 transition-all"
+              >
                 LinkedIn
-              </button>
+              </a>
             </div>
           </div>
 
