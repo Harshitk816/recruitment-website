@@ -35,7 +35,7 @@ export default function ContactPage() {
   >("idle");
 
   const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbxurePbaA8uo2VhK1i5T4p4DSg1AqwLoE-IEU0by811QpdElwpOrjvMl0-6bHcxpoj_/exec";
+    "https://script.google.com/macros/s/AKfycbxshNaOEZttcByDJ9fK_2Dh2FuvnYJx_DL3hdkeq1DbwW8IGJYN-ecI8Re6SCiBixBs/exec";
 
   const handleInputChange = (
     e: React.ChangeEvent<
