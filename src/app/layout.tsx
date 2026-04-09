@@ -8,11 +8,17 @@ import { LoadingWrapper } from "@/components/layout/LoadingWrapper";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Workeraa - Premium Recruitment Solutions",
-  description:
-    "Where Talent Meets Tomorrow. Professional recruitment services across India.",
-    icons: {
-    icon: "/favicon.ico", 
+  metadataBase: new URL("https://www.workeraa.co.in"), 
+  title: {
+    default: "Workeraa - Premium Recruitment Solutions",
+    template: "%s | Workeraa",
+  },
+  description: "Where Talent Meets Tomorrow. Professional recruitment services across India.",
+  alternates: {
+    canonical: "https://www.workeraa.co.in", 
+  },
+  icons: {
+    icon: "/favicon.ico",
   },
 };
 

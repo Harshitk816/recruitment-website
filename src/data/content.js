@@ -3,7 +3,7 @@ export const siteContent = {
     name: "Workeraa",
     tagline: "Hire Smarter, Grow Faster",
     email: "connect@workeraa.co.in",
-    phone: "+91 87001 92565", // Using Indian format since client mentioned Hindi
+    phone: "+91 87001 92565", 
     website: "www.workeraa.com",
     founder: {
       name: "Alisha Aneja",
