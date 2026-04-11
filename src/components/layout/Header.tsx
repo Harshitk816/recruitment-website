@@ -48,7 +48,14 @@ export const Header: React.FC = () => {
                 className="flex items-center space-x-2 hover:text-green-200 transition-colors"
               >
                 <FiPhone className="text-green-400" />
-                <span>+91 8700192565 | +91 9599656760</span>
+                <span>+91 8700192565</span>
+              </a>
+              <a
+                href="tel:+919599656760"
+                className="flex items-center space-x-2 hover:text-green-200 transition-colors"
+              >
+                <FiPhone className="text-green-400" />
+                <span>+91 9599656760</span>
               </a>
             </div>
             <div className="text-gray-300">Hire Smarter, Grow Faster</div>
