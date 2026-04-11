@@ -1,5 +1,6 @@
 'use client'
 import { About } from "@/components/sections/About";
+import { TestimonialSection } from "@/components/sections/Testimonial";
 import { WhatsAppWidget } from "@/components/sections/Whatsapp";
 import { Container } from "@/components/ui/Container";
 import { motion } from "framer-motion";
@@ -141,6 +142,7 @@ export default function AboutPage() {
       <AboutHeader />
       <MissionVision />
       <About />
+      <TestimonialSection />
       {/* WhatsApp Widget */}
       <WhatsAppWidget
         phoneNumber="918700192565"
