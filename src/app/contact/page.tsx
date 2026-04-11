@@ -361,7 +361,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Location</h4>
-                    <p className="text-gray-600">Gurugram, India</p>
+                    <p className="text-gray-600">Sector 23, Dwarka, Delhi</p>
                   </div>
                 </div>
 
@@ -441,6 +441,37 @@ export default function ContactPage() {
             </div>
           </motion.div>
         </div>
+
+        {/* Google My Business Map Embed */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mt-16"
+        >
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">
+              Find Us on Google
+            </h2>
+            <p className="text-gray-600">
+              Visit our office or connect with us on Google Maps
+            </p>
+          </div>
+
+          <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.2249026738077!2d77.0519599755498!3d28.563008487234328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4c519e25c9a94857%3A0x9aa77d563abc52c6!2sWorkeraa!5e0!3m2!1sen!2sin!4v1775904492245!5m2!1sen!2sin"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Workeraa Office Location - Gurugram"
+            />
+          </div>
+          
+        </motion.div>
       </Container>
 
       {/* WhatsApp Widget */}
