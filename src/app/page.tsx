@@ -4,6 +4,8 @@ import { Hero } from "@/components/sections/Hero";
 import { Industries } from "@/components/sections/Industries";
 import { Services } from "@/components/sections/Services";
 import { WhatsAppWidget } from "@/components/sections/Whatsapp";
+import { FAQSection } from "@/components/sections/Faq";
+import { TestimonialSection } from "@/components/sections/Testimonial";
 
 export default function Home() {
   return (
@@ -11,6 +13,8 @@ export default function Home() {
       <Hero />
       <CompanyCarousel/>
       <Industries />
+      <FAQSection />
+      <TestimonialSection />
       <WhatsAppWidget
         phoneNumber="918700192565"
         defaultMessage="Hi! I'm interested in Workeraa's recruitment services."

@@ -36,14 +36,20 @@ export const Header: React.FC = () => {
         <Container>
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-6">
-              <div className="flex items-center space-x-2">
+              <a
+                href="mailto:connect@workeraa.co.in"
+                className="flex items-center space-x-2 hover:text-blue-200 transition-colors"
+              >
                 <FiMail className="text-blue-400" />
                 <span>connect@workeraa.co.in</span>
-              </div>
-              <div className="flex items-center space-x-2">
+              </a>
+              <a
+                href="tel:+918700192565"
+                className="flex items-center space-x-2 hover:text-green-200 transition-colors"
+              >
                 <FiPhone className="text-green-400" />
                 <span>+91 8700192565 | +91 9599656760</span>
-              </div>
+              </a>
             </div>
             <div className="text-gray-300">Hire Smarter, Grow Faster</div>
           </div>
