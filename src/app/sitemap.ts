@@ -26,6 +26,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: 'https://www.workeraa.co.in/about',
       lastModified: new Date(),
       priority: 0.8,
-    }
+    },
+    {
+      url: "https://www.workeraa.co.in/services/it-recruitment-agency",
+      lastModified: new Date(),
+      priority: 0.9,
+    },
   ]
 }
