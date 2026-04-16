@@ -39,38 +39,32 @@ const screening = [
   {
     step: "01",
     title: "Technical Skills Assessment",
-    description:
-      "We test real ability, not just what is written on the resume. Every candidate goes through role-specific technical evaluation.",
+    description: "We test real ability, not just what is written on the resume. Every candidate goes through role-specific technical evaluation.",
   },
   {
     step: "02",
     title: "Experience Validation",
-    description:
-      "We verify past projects, tools used, and actual contributions. Years of experience mean nothing without context.",
+    description: "We verify past projects, tools used, and actual contributions. Years of experience mean nothing without context.",
   },
   {
     step: "03",
     title: "Culture & Communication Fit",
-    description:
-      "Technical skills get someone hired. Communication and culture fit keep them. We assess both before you meet anyone.",
+    description: "Technical skills get someone hired. Communication and culture fit keep them. We assess both before you meet anyone.",
   },
   {
     step: "04",
     title: "Background & Reference Check",
-    description:
-      "Every shortlisted candidate goes through thorough background and reference verification. No surprises after joining.",
+    description: "Every shortlisted candidate goes through thorough background and reference verification. No surprises after joining.",
   },
   {
     step: "05",
     title: "Role-Specific Benchmarking",
-    description:
-      "We match candidates against the exact requirements of your open role, not a generic job description template.",
+    description: "We match candidates against the exact requirements of your open role, not a generic job description template.",
   },
   {
     step: "06",
     title: "Final Fit Review",
-    description:
-      "Before a profile reaches you, our senior recruiters do a final check. You only see candidates we would confidently hire ourselves.",
+    description: "Before a profile reaches you, our senior recruiters do a final check. You only see candidates we would confidently hire ourselves.",
   },
 ];
 
@@ -78,48 +72,42 @@ const differentiators = [
   {
     icon: FiZap,
     title: "Tech-First Screening",
-    description:
-      "Our recruiters have specialized experience to evaluate every candidate on technical depth, not just years of experience.",
+    description: "Our recruiters have specialized experience to evaluate every candidate on technical depth, not just years of experience.",
     color: "bg-yellow-100",
     iconColor: "text-yellow-600",
   },
   {
     icon: FiClock,
     title: "Speed Without Compromise",
-    description:
-      "We deliver shortlisted profiles within 48 to 72 hours. Urgency does not mean lowering the bar.",
+    description: "We deliver shortlisted profiles within 48 to 72 hours. Urgency does not mean lowering the bar.",
     color: "bg-blue-100",
     iconColor: "text-blue-600",
   },
   {
     icon: FiBriefcase,
     title: "Permanent, Contract & Project Hiring",
-    description:
-      "One partner for all your IT staffing needs. Full-time hire or a six-month contract resource — we handle both.",
+    description: "One partner for all your IT staffing needs. Full-time hire or a six-month contract resource — we handle both.",
     color: "bg-green-100",
     iconColor: "text-green-600",
   },
   {
     icon: FiUsers,
     title: "Deep Talent Network",
-    description:
-      "Access to a pre-screened pool of active and passive IT professionals across India, ready for your next opening.",
+    description: "Access to a pre-screened pool of active and passive IT professionals across India, ready for your next opening.",
     color: "bg-purple-100",
     iconColor: "text-purple-600",
   },
   {
     icon: FiEye,
     title: "Transparent Process",
-    description:
-      "You stay informed at every stage of our IT staffing process. No black boxes, no surprises.",
+    description: "You stay informed at every stage of our IT staffing process. No black boxes, no surprises.",
     color: "bg-orange-100",
     iconColor: "text-orange-600",
   },
   {
     icon: FiRefreshCw,
     title: "Zero-Replacement Guarantee",
-    description:
-      "If a placed candidate does not perform within the guarantee period, we provide a free replacement.",
+    description: "If a placed candidate does not perform within the guarantee period, we provide a free replacement.",
     color: "bg-red-100",
     iconColor: "text-red-600",
   },
@@ -145,6 +133,30 @@ const faqs = [
   {
     q: "Is there a replacement policy if the hired candidate leaves early?",
     a: "Yes. We offer a replacement guarantee on all permanent placements within a defined period, at no additional charge.",
+  },
+];
+
+const overallStats = [
+  {
+    icon: FiUsers,
+    number: "500+",
+    label: "Successful Placements",
+    color: "text-blue-600",
+    bg: "bg-blue-100",
+  },
+  {
+    icon: FiBriefcase,
+    number: "80+",
+    label: "Partner Companies",
+    color: "text-green-600",
+    bg: "bg-green-100",
+  },
+  {
+    icon: FiClock,
+    number: "30%",
+    label: "Faster Hiring Process",
+    color: "text-purple-600",
+    bg: "bg-purple-100",
   },
 ];
 
@@ -181,7 +193,7 @@ export default function ITRecruitmentPage() {
     <main className="bg-white">
 
       {/* ── HERO ── */}
-      <section className="py-20 bg-linear-to-b from-blue-50 to-white">
+      <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -209,7 +221,7 @@ export default function ITRecruitmentPage() {
               <strong>IT Recruitment Agency</strong> built for companies that cannot
               afford a bad hire or a slow one.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <Link
                 href="/contact"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors"
@@ -224,10 +236,35 @@ export default function ITRecruitmentPage() {
                 View All Services
               </Link>
             </div>
+
+            {/* ── STATS ── */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-blue-100 pt-12">
+              {overallStats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
+                  className="text-center"
+                >
+                  <div className="flex justify-center mb-4">
+                    <div className={`w-16 h-16 ${stat.bg} rounded-2xl flex items-center justify-center shadow-sm`}>
+                      <stat.icon className={`text-2xl ${stat.color}`} />
+                    </div>
+                  </div>
+                  <div className="text-3xl font-bold text-gray-900 mb-2">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm text-gray-600 leading-tight">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
           </motion.div>
         </Container>
       </section>
-    
 
       {/* ── ROLES WE FILL ── */}
       <section className="py-20 bg-white">
@@ -275,10 +312,12 @@ export default function ITRecruitmentPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-14"
+            className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              How Does Our IT Staffing Company Screen Candidates Before You Meet Them?
+              How Does Our{" "}
+              <span className="text-blue-500">IT Staffing Company</span> Screen
+              Candidates <span className="text-blue-500">Before You Meet Them?</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Every profile we share is screened, assessed, and matched with purpose.
@@ -286,20 +325,61 @@ export default function ITRecruitmentPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Desktop Timeline */}
+          <div className="hidden md:block">
+            <div className="relative flex items-center justify-between mb-10 px-6">
+              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-blue-400 -translate-y-1/2 mx-16 z-0" />
+              {screening.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="relative z-10 flex flex-col items-center"
+                >
+                  <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-lg font-bold shadow-md">
+                    {index + 1}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <div className="grid grid-cols-6 gap-4 px-2">
+              {screening.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 + 0.2 }}
+                  className="text-center"
+                >
+                  <h3 className="text-sm font-semibold text-gray-900 mb-2 leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-gray-500 leading-relaxed">
+                    {item.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile — vertical stacked cards */}
+          <div className="md:hidden space-y-4">
             {screening.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.08 }}
+                className="flex gap-4 bg-white p-5 rounded-2xl border border-gray-100 shadow-sm"
               >
-                <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold mb-5">
-                  {item.step}
+                <div className="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">
+                  {index + 1}
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-1 text-sm">{item.title}</h3>
+                  <p className="text-xs text-gray-500 leading-relaxed">{item.description}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -377,7 +457,7 @@ export default function ITRecruitmentPage() {
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-700">
+      <section className="py-20 bg-linear-to-r from-[#3781e2] to-[#3781e2]">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -396,7 +476,7 @@ export default function ITRecruitmentPage() {
             </p>
             <Link
               href="/contact"
-              className="bg-white text-blue-600 hover:bg-blue-50 px-10 py-4 rounded-xl font-bold text-lg inline-flex items-center gap-2 transition-colors"
+              className="bg-white text-[#3781e2] hover:bg-blue-50 px-10 py-4 rounded-xl font-bold text-lg inline-flex items-center gap-2 transition-colors"
             >
               Talk to Our IT Recruitment Team
               <FiArrowRight />

@@ -23,10 +23,12 @@ export const Footer: React.FC = () => {
 
   const footerLinks = {
     services: [
-      { label: "Executive Search", href: "/services" },
-      { label: "Permanent Hiring", href: "/services" },
-      { label: "Contract Staffing", href: "/services" },
-      { label: "Flexible Solutions", href: "/services" },
+      { label: "IT & Technology Recruitment", href: "/services/it-recruitment-agency" },
+      { label: "Finance & Accounting Recruitment", href: "/services/accounting-finance-recruitment-services" },
+      { label: "Sales & Marketing Recruitment", href: "/services/sales-marketing-recruitment-services" },
+      { label: "SaaS & Cybersecurity Recruitment", href: "/services/saas-cybersecurity-recruitment-services" },
+      { label: "Manufacturing & Operations Recruitment", href: "/services/manufacturing-operation-recruitment-services" },
+      { label: "BPO & Customer Support Recruitment", href: "/services/bpo-customer-support-recruitment-services" },
     ],
     industries: [
       { label: "IT & Technology", href: "/industries" },
@@ -104,10 +106,11 @@ export const Footer: React.FC = () => {
           </p>
 
           {/* ── ROW 2: Logo+Contact LEFT | Nav Links RIGHT ── */}
-          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
+          {/* Changed: lg:grid-cols-5 → lg:grid-cols-6 to shrink left column */}
+          <div className="grid lg:grid-cols-6 gap-8 lg:gap-12">
 
-            {/* LEFT: Logo + Contact + Social */}
-            <div className="lg:col-span-2">
+            {/* LEFT: Logo + Contact + Social — changed lg:col-span-2 → lg:col-span-1 */}
+            <div className="lg:col-span-1">
               <Logo size="lg" variant="light" className="mb-6" />
 
               <div className="space-y-3 mb-6">
@@ -149,23 +152,29 @@ export const Footer: React.FC = () => {
               </motion.a>
             </div>
 
-            {/* RIGHT: Nav Links — 3 cols */}
-            <div className="lg:col-span-3 grid grid-cols-1 lg:grid-cols-3 lg:gap-8">
-              <NavSection
-                title="Services"
-                links={footerLinks.services}
-                sectionKey="services"
-              />
-              <NavSection
-                title="Industries"
-                links={footerLinks.industries}
-                sectionKey="industries"
-              />
-              <NavSection
-                title="Company"
-                links={footerLinks.company}
-                sectionKey="company"
-              />
+            {/* RIGHT: Nav Links — changed lg:col-span-3 → lg:col-span-5 */}
+            <div className="lg:col-span-5 grid grid-cols-1 lg:grid-cols-4 lg:gap-8">
+              <div className="lg:col-span-2">
+                <NavSection
+                  title="Services"
+                  links={footerLinks.services}
+                  sectionKey="services"
+                />
+              </div>
+              <div className="lg:col-span-1">
+                <NavSection
+                  title="Industries"
+                  links={footerLinks.industries}
+                  sectionKey="industries"
+                />
+              </div>
+              <div className="lg:col-span-1">
+                <NavSection
+                  title="Company"
+                  links={footerLinks.company}
+                  sectionKey="company"
+                />
+              </div>
             </div>
 
           </div>
