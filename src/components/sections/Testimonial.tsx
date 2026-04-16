@@ -130,10 +130,10 @@ export const TestimonialSection = () => {
                       {testimonials[current].name}
                     </p>
                     <p className="text-gray-500 text-sm">
-                      {testimonials[current].role},{" "}
-                      <span className="text-blue-600 font-medium">
+                      {testimonials[current].role}
+                      {/* <span className="text-blue-600 font-medium">
                         {testimonials[current].company}
-                      </span>
+                      </span> */}
                     </p>
                   </div>
                 </div>
