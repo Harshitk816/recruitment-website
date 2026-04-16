@@ -34,7 +34,6 @@ export const Header: React.FC = () => {
   }, []);
 
   const navItems = [
-    { href: "/", label: "Home" },
     { href: "/industries", label: "Industries" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact" },
