@@ -1,7 +1,7 @@
 'use client'
 import { About } from "@/components/sections/About";
 import { TestimonialSection } from "@/components/sections/Testimonial";
-import { WhatsAppWidget } from "@/components/sections/Whatsapp";
+import { SupportWidget } from "@/components/sections/Whatsapp";
 import { Container } from "@/components/ui/Container";
 import { motion } from "framer-motion";
 import { FiHeart, FiUsers, FiTarget, FiStar } from "react-icons/fi";
@@ -144,9 +144,8 @@ export default function AboutPage() {
       <About />
       <TestimonialSection />
       {/* WhatsApp Widget */}
-      <WhatsAppWidget
+      <SupportWidget
         phoneNumber="918700192565"
-        defaultMessage="Hi! I found your about page and I'm interested in Workeraa's services."
       />
     </main>
   );

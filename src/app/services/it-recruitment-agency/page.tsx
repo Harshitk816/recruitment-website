@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { motion } from "framer-motion";
-import { WhatsAppWidget } from "@/components/sections/Whatsapp";
+import { SupportWidget } from "@/components/sections/Whatsapp";
 import {
   FiCode,
   FiCloud,
@@ -446,7 +446,7 @@ export default function ITRecruitmentPage() {
             <Link
               href="/contact"
               className="bg-white text-[#3781e2] hover:bg-blue-50 px-10 py-4 rounded-xl font-bold text-lg inline-flex items-center gap-2 transition-colors"
-            >
+            >        
               Talk to Our IT Recruitment Team
               <FiArrowRight />
             </Link>
@@ -455,9 +455,8 @@ export default function ITRecruitmentPage() {
       </section>
 
       {/* ── WHATSAPP ── */}
-      <WhatsAppWidget
+      <SupportWidget
         phoneNumber="918700192565"
-        defaultMessage="Hi! I'm looking for IT recruitment services. Can you help?"
       />
     </main>
   );

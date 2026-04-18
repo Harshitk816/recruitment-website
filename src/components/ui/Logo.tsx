@@ -47,6 +47,7 @@ export const Logo: React.FC<LogoProps> = ({
         height={height}
         priority
         className="object-contain bg-transparent"
+        style={{ width: "auto", height: "auto" }}
         
       />
     </Link>

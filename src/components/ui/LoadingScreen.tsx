@@ -85,7 +85,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
                 <Image
                   src="/images/logo/workeraa.png"
                   alt="Workeraa"
-                  width={48}
+                  width={120}
                   height={48}
                   className="object-contain"
                 />

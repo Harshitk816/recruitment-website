@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { motion } from "framer-motion";
-import { WhatsAppWidget } from "@/components/sections/Whatsapp";
+import { SupportWidget } from "@/components/sections/Whatsapp";
 import {
   FiMail,
   FiPhone,
@@ -123,9 +123,8 @@ export default function ContactPage() {
             </button>
           </motion.div>
         </Container>
-        <WhatsAppWidget
+        <SupportWidget
           phoneNumber="918700192565"
-          defaultMessage="Hi! I'm interested in discussing my hiring needs with Workeraa."
         />
       </main>
     );
@@ -475,9 +474,8 @@ export default function ContactPage() {
       </Container>
 
       {/* WhatsApp Widget */}
-      <WhatsAppWidget
+      <SupportWidget
         phoneNumber="918700192565"
-        defaultMessage="Hi! I'm interested in discussing my hiring needs with Workeraa."
       />
     </main>
   );
