@@ -48,6 +48,7 @@ export const Logo: React.FC<LogoProps> = ({
         priority
         className="object-contain bg-transparent"
         style={{ width: "auto", height: "auto" }}
+        loading="eager"
         
       />
     </Link>

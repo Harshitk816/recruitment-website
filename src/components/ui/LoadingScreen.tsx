@@ -88,6 +88,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
                   width={120}
                   height={48}
                   className="object-contain"
+                  loading="eager"
                 />
               </motion.div>
             </motion.div>
