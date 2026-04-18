@@ -22,6 +22,9 @@ import {
   FiArrowRight,
 } from "react-icons/fi";
 import Link from "next/link";
+import { HeroContactForm } from "@/components/sections/HeroContactForm";
+import { LeadForm } from "@/components/sections/LeadForm";
+import { CompanyCarousel } from "@/components/sections/CompanyCarousel";
 
 // ─── DATA ───────────────────────────────────────────────────────────────────
 
@@ -191,81 +194,47 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 export default function ITRecruitmentPage() {
   return (
     <main className="bg-white">
+      <HeroContactForm
+        badge="IT & Technology Recruitment"
+        heading={
+          <>
+            Leading <span className="text-blue-400">IT Recruitment Agency</span>{" "}
+            for Top Tech Talent
+          </>
+        }
+        subheading="Struggling to Hire Skilled IT Talent Fast? Get Pre-Vetted Developers & Tech Experts in Days — Not Months."
+        ctaLabel="View All Services"
+        ctaHref="/services"
+        form={
+          <LeadForm
+            heading="Hire Top IT Talent in 48 Hours"
+            fields={[
+              { type: "text",   name: "name",    label: "Your Name",       required: true },
+              { type: "email",  name: "email",   label: "Official Email",  required: true },
+              { type: "tel",    name: "phone",   label: "Phone Number",    required: true },
+              {
+                type: "select",
+                name: "service",
+                label: "What are you hiring for?",
+                required: true,
+                options: [
+                  "Software Developer",
+                  "Cloud / DevOps Engineer",
+                  "Data Scientist / Analyst",
+                  "Cybersecurity Specialist",
+                  "IT Project Manager",
+                  "Other",
+                ],
+              },
+            ]}
+            buttonText="Get Matched with IT Talent"
+            onSubmit={(data:any) => console.log("IT Lead:", data)}
+          />
+        }
+      />
 
-      {/* ── HERO ── */}
-      <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
-        <Container>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <div className="inline-flex items-center px-5 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-6">
-              IT & Technology Recruitment
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Leading <span className="text-blue-600">IT Recruitment Agency</span> for Top Tech Talent
-            </h1>
-            <p className="text-lg text-gray-500 mb-4 font-medium">
-              Why Is Finding the Right Tech Talent Still So Hard in 2026?
-            </p>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-4">
-              You post the job. Hundreds apply. But the one developer, cloud architect,
-              or cybersecurity expert you actually need? Nowhere to be found. The problem
-              is not the talent pool — it is the gap between where top IT professionals
-              are and where most hiring processes look.
-            </p>
-            <p className="text-xl text-gray-700 font-medium mb-10">
-              Workeraa bridges that gap. We are a trusted{" "}
-              <strong>IT Recruitment Agency</strong> built for companies that cannot
-              afford a bad hire or a slow one.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <Link
-                href="/contact"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors"
-              >
-                Get Matched with Top IT Talent
-                <FiArrowRight />
-              </Link>
-              <Link
-                href="/services"
-                className="border border-gray-300 hover:border-blue-600 hover:text-blue-600 text-gray-700 px-8 py-4 rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors"
-              >
-                View All Services
-              </Link>
-            </div>
 
-            {/* ── STATS ── */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-blue-100 pt-12">
-              {overallStats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
-                  className="text-center"
-                >
-                  <div className="flex justify-center mb-4">
-                    <div className={`w-16 h-16 ${stat.bg} rounded-2xl flex items-center justify-center shadow-sm`}>
-                      <stat.icon className={`text-2xl ${stat.color}`} />
-                    </div>
-                  </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm text-gray-600 leading-tight">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-          </motion.div>
-        </Container>
-      </section>
-
+      <CompanyCarousel />
       {/* ── ROLES WE FILL ── */}
       <section className="py-20 bg-white">
         <Container>

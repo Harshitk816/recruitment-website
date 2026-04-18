@@ -6,29 +6,27 @@ import { Button } from "../ui/Button";
 import { Logo } from "../ui/Logo";
 import { FiMenu, FiX, FiPhone, FiMail, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
+import { useUserMode, UserMode } from "@/contexts/UserModeContext";
 
 const serviceLinks = [
   { href: "/services/it-recruitment-agency", label: "IT & Technology" },
-  { href: "/services/accounting-finance-recruitment-services", label: "Finance & Accounting" },
-  { href: "/services/sales-marketing-recruitment-services", label: "Sales & Marketing" },
-  { href: "/services/saas-cybersecurity-recruitment-services", label: "SaaS & Cybersecurity" },
-  { href: "/services/manufacturing-operation-recruitment-services", label: "Manufacturing & Operations" },
-  { href: "/services/bpo-customer-support-recruitment-services", label: "BPO & Customer Support" },
+  // { href: "/services/accounting-finance-recruitment-services", label: "Finance & Accounting" },
+  // { href: "/services/sales-marketing-recruitment-services", label: "Sales & Marketing" },
+  // { href: "/services/saas-cybersecurity-recruitment-services", label: "SaaS & Cybersecurity" },
+  // { href: "/services/manufacturing-operation-recruitment-services", label: "Manufacturing & Operations" },
+  // { href: "/services/bpo-customer-support-recruitment-services", label: "BPO & Customer Support" },
 ];
-
-
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false); // mobile accordion
-  const [dropdownOpen, setDropdownOpen] = useState(false); // desktop hover
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { mode, setMode } = useUserMode();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -41,9 +39,27 @@ export const Header: React.FC = () => {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  const ModePill = () => (
+    <div className="flex items-center bg-gray-100 rounded-lg p-0.5 gap-0.5">
+      {(["employer", "jobseeker"] as UserMode[]).map((m) => (
+        <button
+          key={m}
+          onClick={() => setMode(m)}
+          className={`relative px-4 py-1.5 rounded-md text-xs font-semibold transition-all duration-200 ${
+            mode === m
+              ? "bg-blue-600 text-white shadow-sm"
+              : "text-gray-500 hover:text-gray-700 hover:bg-gray-200"
+          }`}
+        >
+          {m === "employer" ? "Employer" : "Job Seeker"}
+        </button>
+      ))}
+    </div>
+  );
+
   return (
     <>
-      {/* Top Bar - UPDATED REAL DATA */}
+      {/* Top Bar */}
       <div className="bg-gray-900 text-white text-sm py-2 hidden md:block">
         <Container>
           <div className="flex justify-between items-center">
@@ -88,7 +104,7 @@ export const Header: React.FC = () => {
             <nav className="hidden lg:flex items-center space-x-8">
               <Link href="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group">
                 Home
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full" />
               </Link>
 
               {/* Services Dropdown */}
@@ -104,7 +120,7 @@ export const Header: React.FC = () => {
                 >
                   Services
                   <FiChevronDown className={`text-sm transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`} />
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full" />
                 </Link>
 
                 <AnimatePresence>
@@ -146,16 +162,17 @@ export const Header: React.FC = () => {
                   className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group"
                 >
                   {item.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full" />
                 </Link>
               ))}
             </nav>
 
-            <div className="hidden lg:flex items-center space-x-4">
+            {/* Desktop right side */}
+            <div className="hidden lg:flex items-center gap-3">
+              <ModePill />
               <Button variant="outline" href="/contact">
                 Get In Touch
               </Button>
-              {/* <Button href="/services">Our Services</Button> */}
             </div>
 
             <button
@@ -177,6 +194,7 @@ export const Header: React.FC = () => {
           </div>
         </Container>
 
+        {/* Mobile Menu */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -256,19 +274,25 @@ export const Header: React.FC = () => {
                     </motion.div>
                   ))}
 
-                  {/* Contact Info - UPDATED REAL DATA */}
+                  {/* Contact Info */}
                   <div className="pt-4 border-t border-gray-200 space-y-3">
                     <div className="flex items-center space-x-2 text-gray-600">
                       <FiMail className="text-blue-600" />
                       <span>connect@workeraa.co.in</span>
                     </div>
                     <div className="flex items-center space-x-2 text-gray-600">
-                      <FiPhone className="text-green-600" />
+                      <FiPhone className="text-blue-600" />
                       <span>+91 8700192565 | +91 9599656760</span>
                     </div>
                   </div>
 
-                  <div className="pt-4 space-y-3">
+                  {/* Mobile Mode Toggle */}
+                  <div className="pt-2">
+                    <p className="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wide">I am a...</p>
+                    <ModePill />
+                  </div>
+
+                  <div className="pt-2 space-y-3">
                     <Button
                       variant="outline"
                       href="/contact"
@@ -277,13 +301,6 @@ export const Header: React.FC = () => {
                     >
                       Get In Touch
                     </Button>
-                    {/* <Button
-                      href="/services"
-                      className="w-full justify-center"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Our Services
-                    </Button> */}
                   </div>
                 </nav>
               </Container>
