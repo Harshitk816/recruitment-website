@@ -169,7 +169,7 @@ export const Header: React.FC = () => {
 
             {/* Desktop right side */}
             <div className="hidden lg:flex items-center gap-3">
-              <ModePill />
+              {/* <ModePill /> */}
               <Button variant="outline" href="/contact">
                 Get In Touch
               </Button>
@@ -289,7 +289,7 @@ export const Header: React.FC = () => {
                   {/* Mobile Mode Toggle */}
                   <div className="pt-2">
                     <p className="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wide">I am a...</p>
-                    <ModePill />
+                    {/* <ModePill /> */}
                   </div>
 
                   <div className="pt-2 space-y-3">

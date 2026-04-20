@@ -17,7 +17,8 @@ export const UserModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [mode, setModeState] = useState<UserMode>("employer");
 
   useEffect(() => {
-    const stored = localStorage.getItem("workeraa_mode") as UserMode;
+    // sessionStorage resets on every new browser session — always starts as employer
+    const stored = sessionStorage.getItem("workeraa_mode") as UserMode;
     if (stored === "employer" || stored === "jobseeker") {
       setModeState(stored);
     }
@@ -25,7 +26,7 @@ export const UserModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const setMode = (newMode: UserMode) => {
     setModeState(newMode);
-    localStorage.setItem("workeraa_mode", newMode);
+    sessionStorage.setItem("workeraa_mode", newMode);
   };
 
   return (
