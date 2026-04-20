@@ -8,14 +8,14 @@ import { useUserMode } from "@/contexts/UserModeContext";
 
 const content = {
   employer: {
-    eyebrow: "Trusted Recruitment Partner Across India",
+    eyebrow: "#1 Recruitment Agency in Delhi NCR",
     headline: (
       <>
-        Hire Smarter.
+        Trusted  
         <br />
-        <span className="text-blue-600">Grow Faster.</span>
-        <br />
-        Hire Right.
+        <span className="text-blue-600">Recruitment Experts</span>
+        <br></br>
+        for Fast Hiring.
       </>
     ),
     subtext:

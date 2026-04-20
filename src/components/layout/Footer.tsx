@@ -137,7 +137,7 @@ export const Footer: React.FC = () => {
                 </a>
                 <div className="flex items-center space-x-3">
                   <FiMapPin className="text-purple-400 flex-shrink-0" />
-                  <span className="text-gray-300 text-sm">Gurugram, India</span>
+                  <span className="text-gray-300 text-sm">Sector 23, Dwarka, Delhi</span>
                 </div>
               </div>
 
