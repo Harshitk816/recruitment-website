@@ -1,15 +1,15 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "IT Recruitment Agency | Top IT Staffing Company - Workeraa",
+  title: "#1 Recruitment Agency in Delhi NCR | Workeraa",
   description:
-    "Workeraa is a leading IT recruitment agency offering reliable IT staffing services. Hire skilled tech talent quickly with our expert company solutions. Visit us now.",
+    "Struggling to find the right candidates? Workeraa is a leading Staffing Agency in Delhi NCR, providing reliable staffing and recruitment solutions. Get a free quote now.",
   alternates: {
-    canonical: "https://www.workeraa.co.in/services/it-recruitment-agency",
+    canonical: "https://www.workeraa.co.in",
   },
 };
 
-export default function ITRecruitmentLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;

@@ -7,6 +7,7 @@ import { Logo } from "../ui/Logo";
 import { FiMenu, FiX, FiPhone, FiMail, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useUserMode, UserMode } from "@/contexts/UserModeContext";
+import { ContactFormDialog } from "../sections/ContactFormDialog";
 
 const serviceLinks = [
   { href: "/services/it-recruitment-agency", label: "IT & Technology" },
@@ -170,9 +171,13 @@ export const Header: React.FC = () => {
             {/* Desktop right side */}
             <div className="hidden lg:flex items-center gap-3">
               {/* <ModePill /> */}
-              <Button variant="outline" href="/contact">
-                Get In Touch
-              </Button>
+              <ContactFormDialog
+                trigger={
+                  <Button variant="outline">
+                    Get In Touch
+                  </Button>
+                }
+              />
             </div>
 
             <button
@@ -293,14 +298,13 @@ export const Header: React.FC = () => {
                   </div>
 
                   <div className="pt-2 space-y-3">
-                    <Button
-                      variant="outline"
-                      href="/contact"
-                      className="w-full justify-center"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Get In Touch
-                    </Button>
+                    <ContactFormDialog
+                      trigger={
+                        <Button variant="outline">
+                          Get In Touch
+                        </Button>
+                      }
+                    />
                   </div>
                 </nav>
               </Container>

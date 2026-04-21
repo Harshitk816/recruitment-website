@@ -3,95 +3,24 @@ import React, { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { motion } from "framer-motion";
 import { SupportWidget } from "@/components/sections/Whatsapp";
+import { ContactForm } from "@/components/sections/ContactForm";
 import {
   FiMail,
   FiPhone,
   FiMapPin,
   FiClock,
-  FiSend,
-  FiUser,
-  FiMessageSquare,
-  FiBriefcase,
-  FiCheckCircle,
-  FiLoader,
   FiZap,
   FiShield,
   FiUsers,
   FiAward,
+  FiCheckCircle,
 } from "react-icons/fi";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    service: "",
-    message: "",
-  });
+  const [successEmail, setSuccessEmail] = useState<string | null>(null);
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
-
-  const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbxshNaOEZttcByDJ9fK_2Dh2FuvnYJx_DL3hdkeq1DbwW8IGJYN-ecI8Re6SCiBixBs/exec";
-
-  const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
-  setSubmitStatus("idle");
-
-  try {
-    const formDataObj = new FormData();
-    formDataObj.append('name', formData.name);
-    formDataObj.append('email', formData.email);
-    formDataObj.append('company', formData.company);
-    formDataObj.append('service', formData.service);
-    formDataObj.append('message', formData.message);
-
-    console.log("Submitting form with no-cors mode...");
-
-    // Use no-cors since the script is working but CORS headers aren't
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors", // Back to no-cors
-      body: formDataObj,
-    });
-
-    console.log("Request sent successfully");
-    
-    setSubmitStatus("success");
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      service: "",
-      message: "",
-    });
-
-  } catch (error) {
-    console.error("Form submission error:", error);
-    setSubmitStatus("error");
-  } finally {
-    setIsSubmitting(false);
-  }
-};
-
-
-  // Success state
-  if (submitStatus === "success") {
+  // ── Success screen ──────────────────────────────────────────
+  if (successEmail !== null) {
     return (
       <main className="py-20 bg-gradient-to-b from-blue-50 to-white">
         <Container>
@@ -110,12 +39,8 @@ export default function ContactPage() {
               Your message has been sent successfully. We&apos;ll get back to
               you within 24 hours.
             </p>
-            <p className="text-sm text-gray-500 mb-8">
-              We&apos;ve also sent a confirmation email to{" "}
-              {formData.email || "your email address"}.
-            </p>
             <button
-              onClick={() => setSubmitStatus("idle")}
+              onClick={() => setSuccessEmail(null)}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center space-x-2"
             >
               <FiMail className="text-sm" />
@@ -123,13 +48,12 @@ export default function ContactPage() {
             </button>
           </motion.div>
         </Container>
-        <SupportWidget
-          phoneNumber="918700192565"
-        />
+        <SupportWidget phoneNumber="918700192565" />
       </main>
     );
   }
 
+  // ── Main contact page ───────────────────────────────────────
   return (
     <main className="py-20 bg-gradient-to-b from-blue-50 to-white">
       <Container>
@@ -144,12 +68,10 @@ export default function ContactPage() {
             <FiMail className="mr-2" />
             Get In Touch
           </div>
-
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Let&apos;s Start a{" "}
             <span className="text-blue-600">Conversation</span>
           </h1>
-
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Ready to transform your hiring process? We&apos;d love to discuss
             your specific requirements and show you how Workeraa can help you
@@ -158,164 +80,10 @@ export default function ContactPage() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100"
-          >
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Send Us a Message
-            </h2>
+          {/* Contact Form Component */}
+          <ContactForm onSuccess={(email) => setSuccessEmail(email)} />
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Full Name *
-                </label>
-                <div className="relative">
-                  <FiUser className="absolute left-3 top-3 text-gray-400" />
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    disabled={isSubmitting}
-                    className="w-full pl-10 pr-4 py-3 border text-gray-900 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
-                    placeholder="Your full name"
-                  />
-                </div>
-              </div>
-
-              {/* Email */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Email Address *
-                </label>
-                <div className="relative">
-                  <FiMail className="absolute left-3 top-3 text-gray-400" />
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    disabled={isSubmitting}
-                    className="w-full pl-10 pr-4 py-3 border text-gray-900 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
-                    placeholder="your@email.com"
-                  />
-                </div>
-              </div>
-
-              {/* Company */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Company Name
-                </label>
-                <div className="relative">
-                  <FiBriefcase className="absolute left-3 top-3 text-gray-400" />
-                  <input
-                    type="text"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleInputChange}
-                    disabled={isSubmitting}
-                    className="w-full pl-10 pr-4 py-3 border text-gray-900 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
-                    placeholder="Your company name"
-                  />
-                </div>
-              </div>
-
-              {/* Service */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Service Interested In
-                </label>
-                <select
-                  name="service"
-                  value={formData.service}
-                  onChange={handleInputChange}
-                  disabled={isSubmitting}
-                  className="w-full px-4 py-3 border text-gray-900 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
-                >
-                  <option value="">Select a service</option>
-                  <option value="executive-search">Executive Search</option>
-                  <option value="permanent-hiring">Permanent Hiring</option>
-                  <option value="contract-staffing">Contract Staffing</option>
-                  <option value="temporary-staffing">Temporary Staffing</option>
-
-                  <option value="it-recruitment">IT & Technology Recruitment</option>
-                  <option value="finance-recruitment">Finance & Accounting Recruitment</option>
-                  <option value="sales-recruitment">Sales & Marketing Recruitment</option>
-                  <option value="healthcare-recruitment">Healthcare & Pharma Recruitment</option>
-                  <option value="manufacturing-recruitment">Manufacturing & Operations</option>
-                  <option value="retail-recruitment">Retail & E-Commerce</option>
-                  <option value="logistics-recruitment">Logistics & Supply Chain</option>
-                  <option value="bpo-recruitment">BPO & Customer Support</option>
-                  <option value="saas-recruitment">SaaS & Cybersecurity</option>
-                </select>
-              </div>
-
-              {/* Message */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Message *
-                </label>
-                <div className="relative">
-                  <FiMessageSquare className="absolute left-3 top-3 text-gray-400" />
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    rows={5}
-                    disabled={isSubmitting}
-                    className="w-full pl-10 pr-4 py-3 border text-gray-900 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none disabled:bg-gray-100"
-                    placeholder="Tell us about your hiring needs..."
-                  />
-                </div>
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white py-3 rounded-lg flex items-center justify-center space-x-2 transition-all font-medium"
-              >
-                {isSubmitting ? (
-                  <>
-                    <FiLoader className="text-sm animate-spin" />
-                    <span>Sending...</span>
-                  </>
-                ) : (
-                  <>
-                    <FiSend className="text-sm" />
-                    <span>Send Message</span>
-                  </>
-                )}
-              </button>
-
-              {/* FIXED: Error Message */}
-              {submitStatus === "error" && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <p className="text-red-600 text-sm">
-                    There was an error sending your message. Please try again or{" "}
-                    <a 
-                      href="mailto:connect@workeraa.co.in" 
-                      className="underline hover:text-red-800"
-                    >
-                      contact us directly at connect@workeraa.co.in
-                    </a>
-                  </p>
-                </div>
-              )}
-            </form>
-          </motion.div>
-
-          {/* Contact Info */}
+          {/* Right column */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -327,9 +95,7 @@ export default function ContactPage() {
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
                 Contact Information
               </h3>
-
               <div className="space-y-6">
-                {/* FIXED: Email */}
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
                     <FiMail className="text-xl text-blue-600" />
@@ -340,7 +106,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Phone */}
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
                     <FiPhone className="text-xl text-green-600" />
@@ -353,7 +118,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Location */}
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
                     <FiMapPin className="text-xl text-purple-600" />
@@ -364,7 +128,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Hours */}
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
                     <FiClock className="text-xl text-orange-600" />
@@ -381,67 +144,56 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* FIXED: Why Choose Workeraa - Icon Colors Fixed */}
+            {/* Why Choose Workeraa */}
             <div className="bg-gradient-to-br from-blue-600 to-green-500 p-8 rounded-2xl text-white">
               <h3 className="text-2xl font-bold mb-6">Why Choose Workeraa?</h3>
               <div className="grid grid-cols-2 gap-6">
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="flex flex-col items-center text-center"
-                >
-                  <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-3">
-                    <FiZap className="text-xl text-yellow-500" />
-                  </div>
-                  <div className="text-lg font-semibold">Speed & Quality</div>
-                  <div className="text-sm opacity-90 mt-1">Fast, precise hiring</div>
-                </motion.div>
-
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="flex flex-col items-center text-center"
-                >
-                  <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-3">
-                    <FiShield className="text-xl text-blue-500" />
-                  </div>
-                  <div className="text-lg font-semibold">Expert Guidance</div>
-                  <div className="text-sm opacity-90 mt-1">Industry specialists</div>
-                </motion.div>
-
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="flex flex-col items-center text-center"
-                >
-                  <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-3">
-                    <FiUsers className="text-xl text-green-500" />
-                  </div>
-                  <div className="text-lg font-semibold">Trusted Partner</div>
-                  <div className="text-sm opacity-90 mt-1">Long-term relationships</div>
-                </motion.div>
-
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="flex flex-col items-center text-center"
-                >
-                  <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-3">
-                    <FiAward className="text-xl text-orange-500" />
-                  </div>
-                  <div className="text-lg font-semibold">Proven Results</div>
-                  <div className="text-sm opacity-90 mt-1">500+ placements</div>
-                </motion.div>
+                {[
+                  {
+                    icon: <FiZap className="text-xl text-yellow-400" />,
+                    label: "Speed & Quality",
+                    sub: "Fast, precise hiring",
+                    delay: 0.1,
+                  },
+                  {
+                    icon: <FiShield className="text-xl text-blue-300" />,
+                    label: "Expert Guidance",
+                    sub: "Industry specialists",
+                    delay: 0.2,
+                  },
+                  {
+                    icon: <FiUsers className="text-xl text-green-300" />,
+                    label: "Trusted Partner",
+                    sub: "Long-term relationships",
+                    delay: 0.3,
+                  },
+                  {
+                    icon: <FiAward className="text-xl text-orange-300" />,
+                    label: "Proven Results",
+                    sub: "500+ placements",
+                    delay: 0.4,
+                  },
+                ].map(({ icon, label, sub, delay }) => (
+                  <motion.div
+                    key={label}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay }}
+                    className="flex flex-col items-center text-center"
+                  >
+                    <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-3">
+                      {icon}
+                    </div>
+                    <div className="text-lg font-semibold">{label}</div>
+                    <div className="text-sm opacity-90 mt-1">{sub}</div>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Google My Business Map Embed */}
+        {/* Google Map */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -456,7 +208,6 @@ export default function ContactPage() {
               Visit our office or connect with us on Google Maps
             </p>
           </div>
-
           <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.2249026738077!2d77.0519599755498!3d28.563008487234328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4c519e25c9a94857%3A0x9aa77d563abc52c6!2sWorkeraa!5e0!3m2!1sen!2sin!4v1775904492245!5m2!1sen!2sin"
@@ -466,17 +217,13 @@ export default function ContactPage() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Workeraa Office Location - Gurugram"
+              title="Workeraa Office Location"
             />
           </div>
-          
         </motion.div>
       </Container>
 
-      {/* WhatsApp Widget */}
-      <SupportWidget
-        phoneNumber="918700192565"
-      />
+      <SupportWidget phoneNumber="918700192565" />
     </main>
   );
 }
