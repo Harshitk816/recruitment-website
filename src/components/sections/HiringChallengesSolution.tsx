@@ -75,7 +75,7 @@ export const HiringChallengesSolution: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-blue-500 to-blue-400 rounded-2xl p-8 shadow-sm text-white flex flex-col"
+            className="bg-gradient-to-br from-blue-700 to-blue-400 rounded-2xl p-8 shadow-sm text-white flex flex-col"
           >
             {/* Header */}
             <div className="inline-flex items-center px-4 py-1.5 bg-white/15 text-white rounded-full text-xs font-semibold uppercase tracking-wide mb-5 w-fit">
