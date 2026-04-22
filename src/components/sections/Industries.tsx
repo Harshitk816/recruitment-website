@@ -8,6 +8,7 @@ import {
   FiMonitor, FiDollarSign, FiTrendingUp, FiUsers,
   FiShield, FiBriefcase, FiClock, FiArrowRight,
 } from "react-icons/fi";
+import { AchievementHero } from "./AchievementHero";
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 
@@ -273,7 +274,8 @@ export const Industries: React.FC = () => {
         </motion.div>
 
         {/* Stats */}
-        <IndustryOverallStats />
+        {/* <IndustryOverallStats /> */}
+        <AchievementHero />
 
       </Container>
     </section>
