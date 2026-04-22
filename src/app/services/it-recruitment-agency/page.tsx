@@ -25,6 +25,8 @@ import Link from "next/link";
 import { HeroContactForm } from "@/components/sections/HeroContactForm";
 import { LeadForm } from "@/components/sections/LeadForm";
 import { CompanyCarousel } from "@/components/sections/CompanyCarousel";
+import { SocialProof } from "@/components/sections/SocialProof";
+import { HiringChallengesSolution } from "@/components/sections/HiringChallengesSolution";
 
 // ─── DATA ───────────────────────────────────────────────────────────────────
 
@@ -235,6 +237,8 @@ export default function ITRecruitmentPage() {
 
 
       <CompanyCarousel />
+      <SocialProof/>
+      <HiringChallengesSolution/>
       {/* ── ROLES WE FILL ── */}
       <section className="py-20 bg-white">
         <Container>
