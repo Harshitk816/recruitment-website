@@ -6,6 +6,7 @@ import { Services } from "@/components/sections/Services";
 import { SupportWidget } from "@/components/sections/Whatsapp";
 import { FAQSection } from "@/components/sections/Faq";
 import { TestimonialSection } from "@/components/sections/Testimonial";
+import { AchievementHero } from "@/components/sections/AchievementHero";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero />
       <CompanyCarousel/>
       <Industries />
+      <AchievementHero className='bg-white'/>
       <FAQSection />
       <TestimonialSection />
       <SupportWidget

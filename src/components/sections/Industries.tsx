@@ -275,7 +275,7 @@ export const Industries: React.FC = () => {
 
         {/* Stats */}
         {/* <IndustryOverallStats /> */}
-        <AchievementHero />
+        
 
       </Container>
     </section>

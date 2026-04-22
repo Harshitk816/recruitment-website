@@ -60,7 +60,7 @@ export const AchievementHero: React.FC<AchievementHeroProps> = ({
   className = "",
 }) => {
   return (
-    <section className={`pt-20 ${className}`}>
+    <section className={` ${className}`}>
       <Container>
 
         {/* ── Gradient card wrapper ── */}
