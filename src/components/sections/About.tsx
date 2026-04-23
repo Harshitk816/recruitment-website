@@ -245,7 +245,7 @@ export const About: React.FC = () => {
     // UPDATED: Akash - More Realistic Achievements
     {
       name: "Akash Sehrawat",
-      title: "Co-Founder & CEO",
+      title: "Co-Founder & COO",
       phone: "9599656760",
       email: "akash@workeraa.co.in",
       description:
