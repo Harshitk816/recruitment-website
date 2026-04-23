@@ -460,6 +460,7 @@ export default function FinanceRecruitmentPage() {
               defaultService="finance-recruitment"
               trigger={
                 <Button
+                    variant="outline"
                   size="lg"
                   className="bg-white text-blue-600 hover:bg-blue-50 group"
                 >
