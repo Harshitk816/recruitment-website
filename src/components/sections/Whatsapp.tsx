@@ -70,6 +70,24 @@ const saveLead = (lead: LeadData) => {
   }
 };
 
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbz5mlNrtrDeIA2llHoyaTOpQ0HlWHfyOLyO0lAiXRmshAl7kfRkbxNDaBui9LgtwkFS/exec";
+
+const submitToSheet = async (lead: LeadData) => {
+  try {
+    const body = new FormData();
+    body.append("name", lead.name);
+    body.append("email", lead.email);
+    body.append("phone", lead.phone);
+    body.append("service", lead.intent === "hiring" ? "Hiring Enquiry" : "Job Seeker Enquiry");
+    body.append("message", lead.requirement);
+    body.append("source_url", "CHATBOT");
+    await fetch(GOOGLE_SCRIPT_URL, { method: "POST", mode: "no-cors", body });
+  } catch (e) {
+    console.error("Failed to submit lead to sheet", e);
+  }
+};
+
 // ─── Bot prompts ──────────────────────────────────────────────────────────────
 
 const PROMPTS: Record<Step, string> = {
@@ -228,6 +246,7 @@ export const SupportWidget: React.FC<{ phoneNumber?: string }> = ({
         };
         setLead(final);
         saveLead(final);
+        submitToSheet(final); // ← add this line
         setStep("done");
         botSay(resolve("done", final), 900);
         break;
