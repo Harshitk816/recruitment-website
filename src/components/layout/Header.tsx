@@ -11,11 +11,11 @@ import { ContactFormDialog } from "../sections/ContactFormDialog";
 
 const serviceLinks = [
   { href: "/services/it-recruitment-agency", label: "IT & Technology" },
-  // { href: "/services/accounting-finance-recruitment-services", label: "Finance & Accounting" },
-  // { href: "/services/sales-marketing-recruitment-services", label: "Sales & Marketing" },
-  // { href: "/services/saas-cybersecurity-recruitment-services", label: "SaaS & Cybersecurity" },
-  // { href: "/services/manufacturing-operation-recruitment-services", label: "Manufacturing & Operations" },
-  // { href: "/services/bpo-customer-support-recruitment-services", label: "BPO & Customer Support" },
+  { href: "/services/accounting-finance-recruitment-services", label: "Finance & Accounting" },
+  { href: "/services/sales-marketing-recruitment-services", label: "Sales & Marketing" },
+  { href: "/services/saas-cybersecurity-recruitment-services", label: "SaaS & Cybersecurity" },
+  { href: "/services/manufacturing-operation-recruitment-services", label: "Manufacturing & Operations" },
+  { href: "/services/bpo-customer-support-recruitment-services", label: "BPO & Customer Support" },
 ];
 
 export const Header: React.FC = () => {
