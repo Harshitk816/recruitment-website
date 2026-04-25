@@ -12,7 +12,7 @@ import {
 
 //testing - https://script.google.com/macros/s/AKfycby2yPRVLjEbR_oTHet8XBmsofjm1IZTFWG4cOl0DkWjLnIn0PQ7IJMTfKeDzH2JvpF-/exec
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxshNaOEZttcByDJ9fK_2Dh2FuvnYJx_DL3hdkeq1DbwW8IGJYN-ecI8Re6SCiBixBs/exec";
+  "https://script.google.com/macros/s/AKfycbz5mlNrtrDeIA2llHoyaTOpQ0HlWHfyOLyO0lAiXRmshAl7kfRkbxNDaBui9LgtwkFS/exec";
 
 export type ContactFormStatus = "idle" | "success" | "error";
 
@@ -75,6 +75,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     try {
       const body = new FormData();
       Object.entries(formData).forEach(([k, v]) => body.append(k, v));
+      body.append("source_url", window.location.href);
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
