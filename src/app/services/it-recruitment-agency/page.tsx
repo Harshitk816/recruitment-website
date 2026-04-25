@@ -197,6 +197,8 @@ export default function ITRecruitmentPage() {
   return (
     <main className="bg-white">
       <HeroContactForm
+      backgroundImage="/images/misc/tech.jpg"
+      mobileBackgroundImage="/images/misc/tech-small.jpg"
         badge="IT & Technology Recruitment"
         heading={
           <>
