@@ -56,13 +56,12 @@ export const Footer: React.FC = () => {
     const isOpen = openSection === sectionKey;
 
     return (
-      <div className="border-b border-gray-600/40 lg:border-none">
-        {/* Header — clickable on mobile, static on desktop */}
+      <div className="border-b border-white/10 lg:border-none">
         <button
           onClick={() => toggleSection(sectionKey)}
           className="w-full flex justify-between items-center py-4 lg:py-0 lg:mb-4 lg:cursor-default lg:pointer-events-none"
         >
-          <h3 className="text-base font-semibold">{title}</h3>
+          <h3 className="text-base font-semibold text-white">{title}</h3>
           <FiChevronDown
             className={`text-gray-400 transition-transform duration-300 lg:hidden ${
               isOpen ? "rotate-180" : ""
@@ -70,17 +69,16 @@ export const Footer: React.FC = () => {
           />
         </button>
 
-        {/* Desktop: always visible | Mobile: toggle with isOpen */}
         <div className={`lg:block ${isOpen ? "block" : "hidden"}`}>
           <ul className="space-y-0 mb-4 lg:mb-0">
             {links.map((link, index) => (
               <li
                 key={index}
-                className="py-3 border-b border-gray-600/40 last:border-b-0"
+                className="py-3 border-b border-white/10 last:border-b-0"
               >
                 <Link
                   href={link.href}
-                  className="text-gray-300 hover:text-white transition-colors flex items-center group text-sm"
+                  className="text-gray-400 hover:text-white transition-colors flex items-center group text-sm"
                 >
                   <FiArrowRight className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-all flex-shrink-0" />
                   {link.label}
@@ -94,50 +92,64 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-gray-700 to-gray-900 text-white">
-      <Container>
+    <footer className="relative bg-gray-900 text-white overflow-hidden">
+
+      {/* ── Same glow blobs as JobSeekerForm ── */}
+      <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-blue-400/10 rounded-full blur-3xl pointer-events-none" />
+
+      {/* ── Same grid texture as JobSeekerForm ── */}
+      <div
+        className="absolute inset-0 opacity-[0.04] pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+
+      <Container className="relative z-10">
         <div className="py-16 space-y-8">
 
-          {/* ── ROW 1: Description full width ── */}
-          <p className="text-gray-300 leading-relaxed text-sm w-full border-b border-gray-600/50 pb-8">
+          {/* ── ROW 1: Description ── */}
+          <p className="text-gray-400 leading-relaxed text-sm w-full border-b border-white/10 pb-8">
             Connecting exceptional talent with innovative companies across India
             and beyond. We specialize in IT, Finance, Sales & Marketing
             recruitment with a proven track record of success.
           </p>
 
           {/* ── ROW 2: Logo+Contact LEFT | Nav Links RIGHT ── */}
-          {/* Changed: lg:grid-cols-5 → lg:grid-cols-6 to shrink left column */}
           <div className="grid lg:grid-cols-6 gap-8 lg:gap-12">
 
-            {/* LEFT: Logo + Contact + Social — changed lg:col-span-2 → lg:col-span-1 */}
+            {/* LEFT */}
             <div className="lg:col-span-1">
               <Logo size="lg" variant="light" className="mb-6" />
 
               <div className="space-y-3 mb-6">
                 <a
                   href="mailto:connect@workeraa.co.in"
-                  className="flex items-center space-x-3 hover:text-blue-200 transition-colors"
+                  className="flex items-center space-x-3 hover:text-blue-300 transition-colors"
                 >
                   <FiMail className="text-blue-400 flex-shrink-0" />
-                  <span className="text-gray-300 text-sm">connect@workeraa.co.in</span>
+                  <span className="text-gray-400 text-sm">connect@workeraa.co.in</span>
                 </a>
                 <a
                   href="tel:+918700192565"
-                  className="flex items-center space-x-3 hover:text-green-200 transition-colors"
+                  className="flex items-center space-x-3 hover:text-green-300 transition-colors"
                 >
                   <FiPhone className="text-green-400 flex-shrink-0" />
-                  <span className="text-gray-300 text-sm">+91 8700192565</span>
+                  <span className="text-gray-400 text-sm">+91 8700192565</span>
                 </a>
                 <a
                   href="tel:+919599656760"
-                  className="flex items-center space-x-3 hover:text-green-200 transition-colors"
+                  className="flex items-center space-x-3 hover:text-green-300 transition-colors"
                 >
                   <FiPhone className="text-green-400 flex-shrink-0" />
-                  <span className="text-gray-300 text-sm">+91 9599656760</span>
+                  <span className="text-gray-400 text-sm">+91 9599656760</span>
                 </a>
                 <div className="flex items-center space-x-3">
                   <FiMapPin className="text-purple-400 flex-shrink-0" />
-                  <span className="text-gray-300 text-sm">Sector 23, Dwarka, Delhi</span>
+                  <span className="text-gray-400 text-sm">Sector 23, Dwarka, Delhi</span>
                 </div>
               </div>
 
@@ -146,13 +158,13 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, y: -2 }}
-                className="w-10 h-10 bg-gray-700 rounded-lg inline-flex items-center justify-center text-gray-300 transition-all hover:text-blue-400"
+                className="w-10 h-10 bg-white/10 border border-white/10 rounded-lg inline-flex items-center justify-center text-gray-400 transition-all hover:text-blue-400 hover:border-blue-500/30"
               >
                 <FiLinkedin className="text-lg" />
               </motion.a>
             </div>
 
-            {/* RIGHT: Nav Links — changed lg:col-span-3 → lg:col-span-5 */}
+            {/* RIGHT: Nav */}
             <div className="lg:col-span-5 grid grid-cols-1 lg:grid-cols-4 lg:gap-8">
               <div className="lg:col-span-2">
                 <NavSection
@@ -181,9 +193,9 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* ── Bottom Bar ── */}
-        <div className="border-t border-gray-700 py-8">
+        <div className="border-t border-white/10 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-gray-400 text-sm">
+            <div className="text-gray-500 text-sm">
               © {currentYear} Workeraa. All rights reserved.
             </div>
           </div>
