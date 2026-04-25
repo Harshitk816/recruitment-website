@@ -484,6 +484,7 @@ export default function ManufacturingRecruitmentPage() {
               trigger={
                 <Button
                   size="lg"
+                  variant="secondary"
                   className="bg-white !text-blue-600 hover:bg-blue-50 group"
                 >
                   Talk to Our Manufacturing Recruitment Team

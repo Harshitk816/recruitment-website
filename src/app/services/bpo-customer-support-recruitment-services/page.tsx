@@ -498,7 +498,7 @@ export default function BPORecruitmentPage() {
               defaultService="bpo-recruitment"
               trigger={
                 <Button
-                  variant="outline"
+                  variant="secondary"
                   size="lg"
                   className="group"
                 >
