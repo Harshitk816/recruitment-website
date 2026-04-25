@@ -10,7 +10,8 @@ interface HeroContactFormProps {
   subheading: string;
   ctaLabel?: string;
   ctaHref?: string;
-  backgroundImage?: string;       // optional — falls back to gradient
+  backgroundImage?: string;  
+  mobileBackgroundImage?: string;     // optional — falls back to gradient
   form: React.ReactNode;          // pass <LeadForm ... /> here
 }
 
@@ -21,6 +22,7 @@ export const HeroContactForm: React.FC<HeroContactFormProps> = ({
   ctaLabel = "Talk to Us",
   ctaHref = "/contact",
   backgroundImage,
+  mobileBackgroundImage,
   form,
 }) => {
   return (
@@ -29,15 +31,27 @@ export const HeroContactForm: React.FC<HeroContactFormProps> = ({
       {/* Background */}
       {backgroundImage ? (
         <>
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            {/* Desktop image */}
+            <div
+            className={`absolute inset-0 bg-cover bg-center bg-no-repeat ${
+                mobileBackgroundImage ? "hidden md:block" : "block"
+            }`}
             style={{ backgroundImage: `url(${backgroundImage})` }}
-          />
-          <div className="absolute inset-0 bg-gray-900/70" />
+            />
+
+            {/* Mobile image — only renders if provided */}
+            {mobileBackgroundImage && (
+            <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
+                style={{ backgroundImage: `url(${mobileBackgroundImage})` }}
+            />
+            )}
+
+            <div className="absolute inset-0 bg-gray-900/70" />
         </>
-      ) : (
+        ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-950 to-gray-900" />
-      )}
+        )}
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-20">

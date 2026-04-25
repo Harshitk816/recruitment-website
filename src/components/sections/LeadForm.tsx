@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbz5mlNrtrDeIA2llHoyaTOpQ0HlWHfyOLyO0lAiXRmshAl7kfRkbxNDaBui9LgtwkFS/exec";
+
 export type FieldConfig =
   | {
       type: "text" | "email" | "tel";
@@ -30,7 +33,7 @@ interface LeadFormProps {
   heading: string;
   fields: FieldConfig[];
   buttonText?: string;
-  onSubmit?: (data: Record<string, string>) => void;
+  onSubmit?: (data: Record<string, string>) => void; // optional callback still works
 }
 
 export const LeadForm: React.FC<LeadFormProps> = ({
@@ -40,16 +43,37 @@ export const LeadForm: React.FC<LeadFormProps> = ({
   onSubmit,
 }) => {
   const [formData, setFormData] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (name: string, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit?.(formData);
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setError(false);
+
+    try {
+      const body = new FormData();
+      Object.entries(formData).forEach(([k, v]) => body.append(k, v));
+      body.append("source_url", window.location.href); // ← hidden, captures page
+
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body,
+      });
+
+      onSubmit?.(formData); // still fires callback if passed
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -76,28 +100,28 @@ export const LeadForm: React.FC<LeadFormProps> = ({
         {fields.map((field) => (
           <div key={field.name}>
 
-            {/* TEXT / EMAIL / TEL */}
             {(field.type === "text" || field.type === "email" || field.type === "tel") && (
               <input
                 type={field.type}
                 name={field.name}
                 placeholder={`${field.label}${field.required ? " *" : ""}`}
                 required={field.required}
+                disabled={isSubmitting}
                 value={formData[field.name] ?? ""}
                 onChange={(e) => handleChange(field.name, e.target.value)}
-                className="w-full bg-white/10 border border-white/25 text-white placeholder-gray-400 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all"
+                className="w-full bg-white/10 border border-white/25 text-white placeholder-gray-400 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all disabled:opacity-50"
               />
             )}
 
-            {/* SELECT */}
             {field.type === "select" && (
               <div className="relative">
                 <select
                   name={field.name}
                   required={field.required}
+                  disabled={isSubmitting}
                   value={formData[field.name] ?? ""}
                   onChange={(e) => handleChange(field.name, e.target.value)}
-                  className="w-full appearance-none bg-white/10 border border-white/25 text-gray-300 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all"
+                  className="w-full appearance-none bg-white/10 border border-white/25 text-gray-300 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all disabled:opacity-50"
                 >
                   <option value="" disabled className="bg-gray-900">
                     {field.label}{field.required ? " *" : ""}
@@ -112,16 +136,16 @@ export const LeadForm: React.FC<LeadFormProps> = ({
               </div>
             )}
 
-            {/* TEXTAREA */}
             {field.type === "textarea" && (
               <textarea
                 name={field.name}
                 placeholder={`${field.label}${field.required ? " *" : ""}`}
                 required={field.required}
                 rows={field.rows ?? 3}
+                disabled={isSubmitting}
                 value={formData[field.name] ?? ""}
                 onChange={(e) => handleChange(field.name, e.target.value)}
-                className="w-full bg-white/10 border border-white/25 text-white placeholder-gray-400 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all resize-none"
+                className="w-full bg-white/10 border border-white/25 text-white placeholder-gray-400 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all resize-none disabled:opacity-50"
               />
             )}
 
@@ -130,10 +154,20 @@ export const LeadForm: React.FC<LeadFormProps> = ({
 
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-4 rounded-xl transition-colors mt-2"
+          disabled={isSubmitting}
+          className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:bg-blue-400 text-white font-semibold py-4 rounded-xl transition-colors mt-2"
         >
-          {buttonText}
+          {isSubmitting ? "Sending..." : buttonText}
         </button>
+
+        {error && (
+          <p className="text-red-400 text-sm text-center">
+            Something went wrong. Please try again or{" "}
+            <a href="mailto:connect@workeraa.co.in" className="underline">
+              contact us directly
+            </a>.
+          </p>
+        )}
       </form>
     </div>
   );
