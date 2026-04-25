@@ -38,7 +38,6 @@ const pageContent = {
         benefits: ["Onboarding assistance", "Performance tracking", "Replacement guarantee"],
       },
     ],
-    whatsapp: "Hi! I'm interested in learning more about your recruitment services.",
   },
   jobseeker: {
     eyebrow: "Career Placement",
@@ -75,7 +74,6 @@ const pageContent = {
         benefits: ["Freshers & experienced both welcome", "Career gap candidates accepted", "Pan-India opportunities"],
       },
     ],
-    whatsapp: "Hi! I'm a job seeker looking for career opportunities through Workeraa.",
   },
 };
 
@@ -88,7 +86,7 @@ export default function ServicesPage() {
   return (
     <main>
 
-      {/* ── Hero + Process ── */}
+      {/* ── Hero ── */}
       <div className="py-12 bg-white">
         <Container>
           <AnimatePresence mode="wait">
@@ -112,7 +110,7 @@ export default function ServicesPage() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Process Steps */}
+          {/* ── Process Steps ── */}
           <AnimatePresence mode="wait">
             <motion.div
               key={mode + "-process"}
@@ -120,7 +118,7 @@ export default function ServicesPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="mb-20"
+              className="mb-4"
             >
               <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
                 {mode === "employer" ? "Our Process" : "How It Works"}
@@ -148,7 +146,7 @@ export default function ServicesPage() {
         </Container>
       </div>
 
-      {/* ── Service Cards (shared) ── */}
+      {/* ── Service Cards ── */}
       <Services />
 
       {/* ── Why Choose Us ── */}
@@ -203,9 +201,7 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      <SupportWidget
-        phoneNumber="918700192565"
-      />
+      <SupportWidget phoneNumber="918700192565" />
     </main>
   );
 }

@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <Hero />
       <CompanyCarousel/>
-      <Industries />
+      <Services />
       <JobSeekerForm />
       <AchievementHero className='bg-white'/>
       <FAQSection />
