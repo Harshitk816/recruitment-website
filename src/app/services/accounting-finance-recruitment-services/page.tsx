@@ -17,6 +17,8 @@ import {
   FiChevronDown,
   FiChevronUp,
 } from "react-icons/fi";
+import { HeroContactForm } from "@/components/sections/HeroContactForm";
+import { LeadForm } from "@/components/sections/LeadForm";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -197,54 +199,46 @@ export default function FinanceRecruitmentPage() {
     <main>
 
       {/* ── HERO ── */}
-      <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="inline-flex items-center px-5 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-6">
-                Finance & Accounting Recruitment
-              </div>
-
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Expert Accounting Recruitment &{" "}
-                <span className="text-blue-600">Finance Staffing</span> Services
-              </h1>
-
-              <p className="text-lg text-gray-500 mb-4 leading-relaxed">
-                Finding the right finance talent should not feel this difficult.
-                You shortlist candidates, schedule interviews, and still end up
-                unsure. Hiring in finance is not just about qualifications
-                anymore — it is about trust, accuracy, and the ability to handle
-                real business pressure.
-              </p>
-              <p className="text-lg text-gray-500 mb-10 leading-relaxed">
-                The best finance professionals are rarely actively applying. That
-                is where Workeraa steps in — connecting you with professionals
-                who are not just available, but truly suitable for your role.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <ContactFormDialog
-                  defaultService="finance-recruitment"
-                  trigger={
-                    <Button size="lg" className="group">
-                      Find the Right Finance Talent
-                      <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  }
-                />
-                <Button variant="outline" size="lg" href="/services">
-                  Explore All Services
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </Container>
-      </section>
+      <HeroContactForm
+      backgroundImage="/images/misc/finance.jpg"
+      mobileBackgroundImage="/images/misc/finance-small.jpg"
+        badge="Finance & Accounting Recruitment"
+        heading={
+            <>
+            Expert <span className="text-blue-400">Accounting Recruitment</span>{" "}
+            & Finance Staffing Services
+            </>
+        }
+        subheading="Finding finance professionals who truly understand numbers, compliance, and your business is harder than it looks. We make it simple."
+        ctaLabel="View All Services"
+        ctaHref="/services"
+        form={
+            <LeadForm
+            heading="Hire Finance Talent Fast"
+            fields={[
+                { type: "text",  name: "name",    label: "Your Name",      required: true },
+                { type: "email", name: "email",   label: "Official Email", required: true },
+                { type: "tel",   name: "phone",   label: "Phone Number",   required: true },
+                {
+                type: "select",
+                name: "service",
+                label: "What are you hiring for?",
+                required: true,
+                options: [
+                    "CFO / Finance Head",
+                    "Chartered Accountant",
+                    "Financial Analyst",
+                    "Accounts Manager",
+                    "Taxation Specialist",
+                    "Other",
+                ],
+                },
+            ]}
+            buttonText="Get Matched with Finance Talent"
+            onSubmit={(data: any) => console.log("Finance Lead:", data)}
+            />
+        }
+        />
 
       {/* ── SECTION 1: Roles We Hire For ── */}
       <section className="py-20 bg-white">
