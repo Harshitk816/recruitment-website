@@ -135,50 +135,54 @@ export const Hero: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.35, delay: 0.1 }}
-                className="absolute left-0 top-8 w-[52%] h-[90%] bg-blue-700 rounded-2xl p-7 flex flex-col justify-between z-10"
+                className="absolute left-0 top-6 w-[56%] h-[92%] bg-blue-700 rounded-2xl p-4 sm:p-5 md:p-7 flex flex-col justify-between z-10"
               >
-                <div className="space-y-8">
+                <div className="space-y-5 sm:space-y-6 md:space-y-8">
                   <div>
-                    <p className="text-blue-200 text-sm leading-snug mb-1">
+                    <p className="text-blue-200 text-[11px] sm:text-xs md:text-sm leading-snug mb-1">
                       {c.statCard.stat1.pre}
                     </p>
-                    <p className="text-white text-5xl font-bold">{c.statCard.stat1.number}</p>
-                    <p className="text-blue-200 text-sm leading-snug mt-1">
+                    <p className="text-white text-3xl sm:text-4xl md:text-5xl font-bold leading-none">
+                      {c.statCard.stat1.number}
+                    </p>
+                    <p className="text-blue-200 text-[11px] sm:text-xs md:text-sm leading-snug mt-1">
                       {c.statCard.stat1.post}
                     </p>
                   </div>
 
                   <div>
-                    <p className="text-blue-200 text-sm leading-snug mb-1">
+                    <p className="text-blue-200 text-[11px] sm:text-xs md:text-sm leading-snug mb-1">
                       {c.statCard.stat2.pre}
                     </p>
-                    <p className="text-white text-5xl font-bold">{c.statCard.stat2.number}</p>
-                    <p className="text-blue-200 text-sm leading-snug mt-1">
+                    <p className="text-white text-3xl sm:text-4xl md:text-5xl font-bold leading-none">
+                      {c.statCard.stat2.number}
+                    </p>
+                    <p className="text-blue-200 text-[11px] sm:text-xs md:text-sm leading-snug mt-1">
                       {c.statCard.stat2.post}
                     </p>
                   </div>
 
                   <div>
-                    <p className="text-blue-200 text-sm leading-snug mb-1">
+                    <p className="text-blue-200 text-[11px] sm:text-xs md:text-sm leading-snug mb-1">
                       {c.statCard.stat3.pre}
                     </p>
-                    <p className="text-white text-5xl font-bold">{c.statCard.stat3.number}</p>
-                    <p className="text-blue-200 text-sm leading-snug mt-1">
+                    <p className="text-white text-3xl sm:text-4xl md:text-5xl font-bold leading-none">
+                      {c.statCard.stat3.number}
+                    </p>
+                    <p className="text-blue-200 text-[11px] sm:text-xs md:text-sm leading-snug mt-1">
                       {c.statCard.stat3.post}
                     </p>
                   </div>
-
                 </div>
-                
 
-                <div className="flex items-center gap-3 mt-6">
-                  <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center shrink-0">
+                <div className="flex items-center gap-2 sm:gap-3 mt-4 sm:mt-6">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-500 flex items-center justify-center shrink-0">
                     <FiUsers className="text-white text-sm" />
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center shrink-0">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-500 flex items-center justify-center shrink-0">
                     <FiCheckCircle className="text-white text-sm" />
                   </div>
-                  <p className="text-blue-200 text-xs">{c.statCard.badge}</p>
+                  <p className="text-blue-200 text-[10px] sm:text-xs">{c.statCard.badge}</p>
                 </div>
               </motion.div>
             </AnimatePresence>
