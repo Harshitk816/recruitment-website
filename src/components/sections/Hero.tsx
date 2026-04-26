@@ -25,6 +25,11 @@ const content = {
     statCard: {
       stat1: { pre: "We simplify hiring for", number: "80+", post: "partner companies" },
       stat2: { pre: "And have successfully placed", number: "500+", post: "candidates in the last two years" },
+      stat3: {
+        pre: "Time-to-Hire",
+        number: "2X",
+        post: "Faster hiring with a pre-screened talent pool ready to interview.",
+      },
       badge: "Verified outcomes",
     },
   },
@@ -46,6 +51,11 @@ const content = {
     statCard: {
       stat1: { pre: "Candidates placed in", number: "500+", post: "roles across industries" },
       stat2: { pre: "Companies actively", number: "80+", post: "hiring through Workeraa" },
+      stat3: {
+        pre: "Time-to-Hire",
+        number: "2X",
+        post: "Faster hiring with a pre-screened talent pool ready to interview.",
+      },
       badge: "Real placements, real careers",
     },
   },
@@ -147,7 +157,19 @@ export const Hero: React.FC = () => {
                       {c.statCard.stat2.post}
                     </p>
                   </div>
+
+                  <div>
+                    <p className="text-blue-200 text-sm leading-snug mb-1">
+                      {c.statCard.stat3.pre}
+                    </p>
+                    <p className="text-white text-5xl font-bold">{c.statCard.stat3.number}</p>
+                    <p className="text-blue-200 text-sm leading-snug mt-1">
+                      {c.statCard.stat3.post}
+                    </p>
+                  </div>
+
                 </div>
+                
 
                 <div className="flex items-center gap-3 mt-6">
                   <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center shrink-0">
