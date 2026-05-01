@@ -20,11 +20,19 @@ interface LeadData {
   name: string;
   email: string;
   phone: string;
+  company: string;
+  location: string;
   requirement: string;
   submittedAt: string;
 }
 
-type Step = "intent" | "name" | "email" | "phone" | "requirement" | "done";
+// hiring:    intent → name → email → phone → company → location → requirement → done
+// jobseeker: intent → name → email → phone → location → requirement → done
+type Step = "intent" | "name" | "email" | "phone" | "company" | "location" | "requirement" | "done";
+
+// ─── Location options ─────────────────────────────────────────────────────────
+
+const LOCATION_OPTIONS = ["Delhi", "Noida", "Gurugram", "Others"];
 
 // ─── Validation ───────────────────────────────────────────────────────────────
 
@@ -40,11 +48,14 @@ const validators: Partial<Record<Step, (val: string) => string | null>> = {
     return null;
   },
   phone: (val) => {
-    // Allow explicit skip
     if (val.trim().toLowerCase() === "skip") return null;
     const digits = val.replace(/\D/g, "");
     if (digits.length !== 10) return "Please enter a valid 10-digit phone number.";
     if (!/^[6-9]/.test(digits)) return "Indian mobile numbers must start with 6, 7, 8, or 9.";
+    return null;
+  },
+  company: (val) => {
+    if (val.trim().length < 2) return "Please enter your company name (at least 2 characters).";
     return null;
   },
   requirement: (val) => {
@@ -58,20 +69,21 @@ const validators: Partial<Record<Step, (val: string) => string | null>> = {
 
 const saveLead = (lead: LeadData) => {
   try {
-    const existing = JSON.parse(
-      sessionStorage.getItem("workeraa_leads") || "[]"
-    );
+    const existing = JSON.parse(sessionStorage.getItem("workeraa_leads") || "[]");
     existing.push(lead);
     sessionStorage.setItem("workeraa_leads", JSON.stringify(existing));
-    // TODO: POST to /api/leads when backend is ready
     console.log("[Workeraa Lead Captured]", lead);
   } catch (e) {
     console.error("Failed to save lead", e);
   }
 };
 
+// const GOOGLE_SCRIPT_URL =
+//   "https://script.google.com/macros/s/AKfycbw3Z4jUKr6W6ZrB3k1hhoePyDTCiBhtvxXxBPHWfPVEyoZeGy_Xq0h2nrjkR0IFImci/exec";
+
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbz5mlNrtrDeIA2llHoyaTOpQ0HlWHfyOLyO0lAiXRmshAl7kfRkbxNDaBui9LgtwkFS/exec";
+"https://script.google.com/macros/s/AKfycbyEJIGob7dQAlPv2Gdf0HjeZdJIDS0VYsoNDK82uBAHYmyD-19cdw8xmUTZTYmPgz8Dyg/exec"
+
 
 const submitToSheet = async (lead: LeadData) => {
   try {
@@ -79,6 +91,8 @@ const submitToSheet = async (lead: LeadData) => {
     body.append("name", lead.name);
     body.append("email", lead.email);
     body.append("phone", lead.phone);
+    body.append("company", lead.company);
+    body.append("location", lead.location);
     body.append("service", lead.intent === "hiring" ? "Hiring Enquiry" : "Job Seeker Enquiry");
     body.append("message", lead.requirement);
     body.append("source_url", "CHATBOT");
@@ -95,6 +109,8 @@ const PROMPTS: Record<Step, string> = {
   name:        "Great! What's your name?",
   email:       "Nice to meet you, {name}! What's your email address?",
   phone:       "Got it! What's your 10-digit phone number? (type **skip** to skip)",
+  company:     "What's the name of your company?",
+  location:    "Which city are you based in?",
   requirement: "Almost done! Briefly describe your requirement — the role, industry, or anything we should know.",
   done:        "Thanks {name}! 🎉 Our team will reach out shortly. You can also connect with us directly on WhatsApp right now.",
 };
@@ -116,33 +132,43 @@ export const SupportWidget: React.FC<{ phoneNumber?: string }> = ({
   const [retryCount, setRetryCount]       = useState(0);
   const [lead, setLead]                   = useState<Partial<LeadData>>({});
   const [shake, setShake]                 = useState(false);
-  const messagesEndRef                    = useRef<HTMLDivElement>(null);
-  const inputRef                          = useRef<HTMLInputElement>(null);
 
-  // Auto-open after 5s, once
+  // Location chip selection state
+  const [showLocationChips, setShowLocationChips] = useState(false);
+  const [customLocationMode, setCustomLocationMode] = useState(false);
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef       = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     if (hasAutoOpened) return;
-    const t = setTimeout(() => {
-      setIsOpen(true);
-      setHasAutoOpened(true);
-    }, 5000);
+    const t = setTimeout(() => { setIsOpen(true); setHasAutoOpened(true); }, 5000);
     return () => clearTimeout(t);
   }, [hasAutoOpened]);
 
-  // Greet on first open
   useEffect(() => {
     if (isOpen && messages.length === 0) botSay(PROMPTS.intent);
   }, [isOpen]);
 
-  // Scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  // Focus input when step changes
   useEffect(() => {
-    if (step !== "intent" && step !== "done") inputRef.current?.focus();
+    if (step !== "intent" && step !== "done" && step !== "location") {
+      inputRef.current?.focus();
+    }
   }, [step]);
+
+  // Show location chips when bot finishes typing on location step
+  useEffect(() => {
+    if (step === "location" && !isTyping) {
+      setShowLocationChips(true);
+    } else {
+      setShowLocationChips(false);
+      setCustomLocationMode(false);
+    }
+  }, [step, isTyping]);
 
   const botSay = (text: string, delay = 700) => {
     setIsTyping(true);
@@ -154,10 +180,7 @@ export const SupportWidget: React.FC<{ phoneNumber?: string }> = ({
 
   const botError = (text: string) => {
     triggerShake();
-    setMessages((p) => [
-      ...p,
-      { id: crypto.randomUUID(), from: "bot", text, isError: true },
-    ]);
+    setMessages((p) => [...p, { id: crypto.randomUUID(), from: "bot", text, isError: true }]);
   };
 
   const userSay = (text: string) =>
@@ -178,10 +201,43 @@ export const SupportWidget: React.FC<{ phoneNumber?: string }> = ({
     botSay(resolve("name", updated));
   };
 
+  // ── Location chip selected ──
+  const handleLocationSelect = (option: string) => {
+    if (option === "Others") {
+      setCustomLocationMode(true);
+      setShowLocationChips(false);
+      setTimeout(() => inputRef.current?.focus(), 100);
+    } else {
+      userSay(option);
+      const updated = { ...lead, location: option };
+      setLead(updated);
+      setCustomLocationMode(false);
+      setShowLocationChips(false);
+      advanceFromLocation(updated);
+    }
+  };
+
+  // ── Advance after location is resolved ──
+  const advanceFromLocation = (updated: Partial<LeadData>) => {
+    setStep("requirement");
+    botSay(resolve("requirement", updated));
+  };
+
   // ── Submit text input ──
   const handleSubmit = () => {
     const value = input.trim();
     if (!value) return;
+
+    // Custom location submission
+    if (step === "location" && customLocationMode) {
+      userSay(value);
+      setInput("");
+      const updated = { ...lead, location: value };
+      setLead(updated);
+      setCustomLocationMode(false);
+      advanceFromLocation(updated);
+      return;
+    }
 
     const validate = validators[step];
     if (validate) {
@@ -191,7 +247,6 @@ export const SupportWidget: React.FC<{ phoneNumber?: string }> = ({
         setInput("");
         const newRetry = retryCount + 1;
         setRetryCount(newRetry);
-        // Show skip hint after 2 failures on phone step
         if (newRetry >= 2 && step === "phone") {
           botError(`${error}\n\nTip: You can type **skip** to continue without a phone number.`);
         } else {
@@ -229,10 +284,23 @@ export const SupportWidget: React.FC<{ phoneNumber?: string }> = ({
         const isSkip = value.trim().toLowerCase() === "skip";
         updated.phone = isSkip ? "—" : value.replace(/\D/g, "");
         setLead(updated);
-        setStep("requirement");
-        botSay(resolve("requirement", updated));
+        // hiring → company next; jobseeker → location next
+        if (updated.intent === "hiring") {
+          setStep("company");
+          botSay(resolve("company", updated));
+        } else {
+          setStep("location");
+          botSay(resolve("location", updated));
+        }
         break;
       }
+
+      case "company":
+        updated.company = value;
+        setLead(updated);
+        setStep("location");
+        botSay(resolve("location", updated));
+        break;
 
       case "requirement": {
         updated.requirement = value;
@@ -241,12 +309,14 @@ export const SupportWidget: React.FC<{ phoneNumber?: string }> = ({
           name:        updated.name || "",
           email:       updated.email || "",
           phone:       updated.phone || "",
+          company:     updated.company || "—",
+          location:    updated.location || "—",
           requirement: value,
           submittedAt: new Date().toISOString(),
         };
         setLead(final);
         saveLead(final);
-        submitToSheet(final); // ← add this line
+        submitToSheet(final);
         setStep("done");
         botSay(resolve("done", final), 900);
         break;
@@ -257,75 +327,57 @@ export const SupportWidget: React.FC<{ phoneNumber?: string }> = ({
   const handleWhatsApp = () => {
     const lines = [
       `Hi! I'm ${lead.name} from the Workeraa website.`,
-      lead.intent === "hiring"
-        ? "I'm looking to hire talent."
-        : "I'm looking for a job.",
+      lead.intent === "hiring" ? "I'm looking to hire talent." : "I'm looking for a job.",
+      lead.company && lead.company !== "—" ? `Company: ${lead.company}` : "",
+      lead.location && lead.location !== "—" ? `Location: ${lead.location}` : "",
       lead.requirement ? `Requirement: ${lead.requirement}` : "",
       lead.phone && lead.phone !== "—" ? `Phone: ${lead.phone}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
+    ].filter(Boolean).join("\n");
 
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(lines)}`;
-
-    // Use anchor trick — bypasses popup blockers unlike window.open
     const a = document.createElement("a");
-    a.href = url;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSubmit();
-    }
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSubmit(); }
   };
 
-  // Show skip button when on phone step (always visible, not just after retries)
-  const showSkipPhone = step === "phone";
-  const canType       = step !== "intent" && step !== "done";
+  const showSkipPhone  = step === "phone";
+  const canType        = step !== "intent" && step !== "done" && !(step === "location" && showLocationChips);
+  const showInput      = canType || (step === "location" && customLocationMode);
 
   const inputPlaceholders: Partial<Record<Step, string>> = {
     name:        "Your full name",
     email:       "your@email.com",
     phone:       "10-digit mobile number",
+    company:     "Your company name",
+    location:    "Enter your city...",
     requirement: "Brief description of your need...",
   };
 
   const progressWidth: Partial<Record<Step, string>> = {
-    name: "20%", email: "40%", phone: "60%", requirement: "80%", done: "100%",
+    name: "14%", email: "28%", phone: "42%", company: "56%", location: "70%", requirement: "85%", done: "100%",
   };
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
 
-      {/* ── FAB ── */}
+      {/* FAB */}
       <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen((o) => !o)}
         aria-label="Open support chat"
         className="relative w-16 h-16 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg flex items-center justify-center"
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
-            <motion.span
-              key="x"
-              initial={{ rotate: 90 }} animate={{ rotate: 0 }} exit={{ rotate: -90 }}
-              transition={{ duration: 0.2 }}
-            >
+            <motion.span key="x" initial={{ rotate: 90 }} animate={{ rotate: 0 }} exit={{ rotate: -90 }} transition={{ duration: 0.2 }}>
               <FiX className="text-2xl" />
             </motion.span>
           ) : (
-            <motion.span
-              key="support"
-              initial={{ rotate: -90 }} animate={{ rotate: 0 }} exit={{ rotate: 90 }}
-              transition={{ duration: 0.2 }}
-            >
+            <motion.span key="support" initial={{ rotate: -90 }} animate={{ rotate: 0 }} exit={{ rotate: 90 }} transition={{ duration: 0.2 }}>
               <FiHeadphones className="text-2xl" />
             </motion.span>
           )}
@@ -341,7 +393,7 @@ export const SupportWidget: React.FC<{ phoneNumber?: string }> = ({
         />
       )}
 
-      {/* ── Chat panel ── */}
+      {/* Chat panel */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -380,10 +432,7 @@ export const SupportWidget: React.FC<{ phoneNumber?: string }> = ({
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#f0f2f5]">
               {messages.map((msg) => (
-                <div
-                  key={msg.id}
-                  className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}
-                >
+                <div key={msg.id} className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}>
                   <div
                     className={`max-w-[82%] px-3 py-2 rounded-2xl text-sm leading-relaxed shadow-sm whitespace-pre-line
                       ${msg.from === "user"
@@ -423,8 +472,7 @@ export const SupportWidget: React.FC<{ phoneNumber?: string }> = ({
                     { label: "💼 I'm looking for a job",  value: "jobseeker" as Intent },
                   ].map((opt) => (
                     <motion.button
-                      key={opt.value}
-                      whileTap={{ scale: 0.97 }}
+                      key={opt.value} whileTap={{ scale: 0.97 }}
                       onClick={() => handleIntent(opt.value)}
                       className="bg-white border border-blue-300 text-blue-700 text-sm px-4 py-2 rounded-full shadow-sm hover:bg-blue-50 transition-colors"
                     >
@@ -434,12 +482,26 @@ export const SupportWidget: React.FC<{ phoneNumber?: string }> = ({
                 </div>
               )}
 
+              {/* Location chips */}
+              {step === "location" && showLocationChips && !isTyping && (
+                <div className="flex flex-wrap gap-2 justify-end mt-1">
+                  {LOCATION_OPTIONS.map((opt) => (
+                    <motion.button
+                      key={opt} whileTap={{ scale: 0.97 }}
+                      onClick={() => handleLocationSelect(opt)}
+                      className="bg-white border border-blue-300 text-blue-700 text-sm px-4 py-2 rounded-full shadow-sm hover:bg-blue-50 transition-colors"
+                    >
+                      {opt}
+                    </motion.button>
+                  ))}
+                </div>
+              )}
+
               {/* Done CTA */}
               {step === "done" && !isTyping && (
                 <div className="flex justify-start mt-1">
                   <motion.button
-                    whileTap={{ scale: 0.97 }}
-                    onClick={handleWhatsApp}
+                    whileTap={{ scale: 0.97 }} onClick={handleWhatsApp}
                     className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white text-sm px-4 py-2.5 rounded-full shadow-md transition-colors"
                   >
                     <BsWhatsapp />
@@ -453,47 +515,39 @@ export const SupportWidget: React.FC<{ phoneNumber?: string }> = ({
             </div>
 
             {/* Input */}
-            {canType && (
+            {showInput && (
               <motion.div
                 animate={shake ? { x: [-6, 6, -4, 4, 0] } : { x: 0 }}
                 transition={{ duration: 0.4 }}
                 className="px-3 py-3 bg-white border-t border-gray-100 shrink-0 space-y-2"
               >
-                {/* Skip button for phone step — always visible */}
                 {showSkipPhone && (
                   <div className="flex justify-end">
                     <button
-                      onClick={() => {
-                        userSay("Skip");
-                        setInput("");
-                        setRetryCount(0);
-                        advance("skip");
-                      }}
+                      onClick={() => { userSay("Skip"); setInput(""); setRetryCount(0); advance("skip"); }}
                       className="text-xs text-gray-400 hover:text-blue-500 underline underline-offset-2 transition-colors"
                     >
                       Skip phone number →
                     </button>
                   </div>
                 )}
-
                 <div className="flex items-center gap-2">
                   <input
                     ref={inputRef}
-                    type={
-                      step === "email" ? "email"
-                      : step === "phone" ? "tel"
-                      : "text"
-                    }
+                    type={step === "email" ? "email" : step === "phone" ? "tel" : "text"}
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    placeholder={inputPlaceholders[step] || "Type your answer..."}
+                    placeholder={
+                      step === "location" && customLocationMode
+                        ? "Enter your city..."
+                        : inputPlaceholders[step] || "Type your answer..."
+                    }
                     maxLength={step === "phone" ? 15 : step === "name" ? 60 : undefined}
                     className="flex-1 text-sm px-3 py-2 rounded-full bg-gray-100 border-none outline-none text-gray-800 placeholder-gray-400"
                   />
                   <motion.button
-                    whileTap={{ scale: 0.9 }}
-                    onClick={handleSubmit}
+                    whileTap={{ scale: 0.9 }} onClick={handleSubmit}
                     disabled={!input.trim()}
                     className="w-9 h-9 rounded-full bg-blue-600 disabled:bg-gray-300 flex items-center justify-center shrink-0 transition-colors"
                   >

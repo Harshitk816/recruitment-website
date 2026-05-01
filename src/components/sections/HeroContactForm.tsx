@@ -77,13 +77,13 @@ export const HeroContactForm: React.FC<HeroContactFormProps> = ({
               {subheading}
             </p>
 
-            <Link
+            {/* <Link
               href={ctaHref}
               className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-7 py-3.5 rounded-xl font-semibold transition-colors"
             >
               {ctaLabel}
               <FiArrowRight />
-            </Link>
+            </Link> */}
           </motion.div>
 
           {/* RIGHT — Form (passed as prop) */}

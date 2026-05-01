@@ -12,9 +12,11 @@ import {
   FiCheckCircle,
 } from "react-icons/fi";
 
-const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbz5mlNrtrDeIA2llHoyaTOpQ0HlWHfyOLyO0lAiXRmshAl7kfRkbxNDaBui9LgtwkFS/exec";
+// const GOOGLE_SCRIPT_URL =
+// "https://script.google.com/macros/s/AKfycbw3Z4jUKr6W6ZrB3k1hhoePyDTCiBhtvxXxBPHWfPVEyoZeGy_Xq0h2nrjkR0IFImci/exec"
 
+const GOOGLE_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbyEJIGob7dQAlPv2Gdf0HjeZdJIDS0VYsoNDK82uBAHYmyD-19cdw8xmUTZTYmPgz8Dyg/exec"
 function Form() {
   const [formData, setFormData] = useState({
     name: "",

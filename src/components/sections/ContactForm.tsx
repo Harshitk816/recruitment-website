@@ -2,28 +2,22 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  FiUser,
-  FiMail,
-  FiBriefcase,
-  FiMessageSquare,
-  FiSend,
-  FiLoader,
+  FiUser, FiMail, FiBriefcase, FiMessageSquare,
+  FiSend, FiLoader, FiMapPin,
 } from "react-icons/fi";
 
-//testing - https://script.google.com/macros/s/AKfycby2yPRVLjEbR_oTHet8XBmsofjm1IZTFWG4cOl0DkWjLnIn0PQ7IJMTfKeDzH2JvpF-/exec
+// const GOOGLE_SCRIPT_URL =
+//   "https://script.google.com/macros/s/AKfycbw3Z4jUKr6W6ZrB3k1hhoePyDTCiBhtvxXxBPHWfPVEyoZeGy_Xq0h2nrjkR0IFImci/exec";
+
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbz5mlNrtrDeIA2llHoyaTOpQ0HlWHfyOLyO0lAiXRmshAl7kfRkbxNDaBui9LgtwkFS/exec";
+  "https://script.google.com/macros/s/AKfycbyEJIGob7dQAlPv2Gdf0HjeZdJIDS0VYsoNDK82uBAHYmyD-19cdw8xmUTZTYmPgz8Dyg/exec"
 
 export type ContactFormStatus = "idle" | "success" | "error";
 
 interface ContactFormProps {
-  /** Called when submission succeeds — parent can swap to a success screen */
   onSuccess?: (email: string) => void;
-  /** Pre-select a service option e.g. "it-recruitment" */
   defaultService?: string;
-  /** Override the card heading */
   title?: string;
-  /** Optional wrapper className for the outer motion.div */
   className?: string;
 }
 
@@ -43,6 +37,8 @@ const SERVICES = [
   { value: "saas-recruitment", label: "SaaS & Cybersecurity" },
 ];
 
+const LOCATION_OPTIONS = ["Delhi", "Noida", "Gurugram", "Others"];
+
 export const ContactForm: React.FC<ContactFormProps> = ({
   onSuccess,
   defaultService = "",
@@ -56,13 +52,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     service: defaultService,
     message: "",
   });
+  const [locationSelect, setLocationSelect] = useState("");
+  const [customLocation, setCustomLocation] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<ContactFormStatus>("idle");
 
   const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -72,24 +68,22 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
+    const resolvedLocation =
+      locationSelect === "Others" ? customLocation.trim() : locationSelect;
+
     try {
       const body = new FormData();
       Object.entries(formData).forEach(([k, v]) => body.append(k, v));
       body.append("source_url", window.location.href);
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        body,
-      });
+      body.append("location", resolvedLocation);
+
+      await fetch(GOOGLE_SCRIPT_URL, { method: "POST", mode: "no-cors", body });
+
       setSubmitStatus("success");
       onSuccess?.(formData.email);
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        service: defaultService,
-        message: "",
-      });
+      setFormData({ name: "", email: "", company: "", service: defaultService, message: "" });
+      setLocationSelect("");
+      setCustomLocation("");
     } catch {
       setSubmitStatus("error");
     } finally {
@@ -107,20 +101,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       <h2 className="text-2xl font-bold text-gray-900 mb-6">{title}</h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
+
         {/* Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Full Name *
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
           <div className="relative">
             <FiUser className="absolute left-3 top-3 text-gray-400" />
             <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              required
-              disabled={isSubmitting}
+              type="text" name="name" value={formData.name}
+              onChange={handleInputChange} required disabled={isSubmitting}
               placeholder="Your full name"
               className="w-full pl-10 pr-4 py-3 border text-gray-900 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
             />
@@ -129,37 +118,26 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
         {/* Email */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Email Address *
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
           <div className="relative">
             <FiMail className="absolute left-3 top-3 text-gray-400" />
             <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-              disabled={isSubmitting}
+              type="email" name="email" value={formData.email}
+              onChange={handleInputChange} required disabled={isSubmitting}
               placeholder="your@email.com"
               className="w-full pl-10 pr-4 py-3 border text-gray-900 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
             />
           </div>
         </div>
 
-        {/* Company */}
+        {/* Company — now required */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Company Name
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
           <div className="relative">
             <FiBriefcase className="absolute left-3 top-3 text-gray-400" />
             <input
-              type="text"
-              name="company"
-              value={formData.company}
-              onChange={handleInputChange}
-              disabled={isSubmitting}
+              type="text" name="company" value={formData.company}
+              onChange={handleInputChange} required disabled={isSubmitting}
               placeholder="Your company name"
               className="w-full pl-10 pr-4 py-3 border text-gray-900 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
             />
@@ -168,78 +146,97 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
         {/* Service */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Service Interested In *
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Service Interested In *</label>
           <select
-            name="service"
-            value={formData.service}
-            onChange={handleInputChange}
-            disabled={isSubmitting}
+            name="service" value={formData.service}
+            onChange={handleInputChange} required disabled={isSubmitting}
             className="w-full px-4 py-3 border text-gray-900 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
-            required
           >
             <option value="">Select a service</option>
             {SERVICES.map((s) => (
-              <option key={s.value} value={s.value}>
-                {s.label}
-              </option>
+              <option key={s.value} value={s.value}>{s.label}</option>
             ))}
           </select>
         </div>
 
+        {/* Location dropdown */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Location *</label>
+          <div className="relative">
+            <FiMapPin className="absolute left-3 top-3 text-gray-400 pointer-events-none z-10" />
+            <select
+              required disabled={isSubmitting}
+              value={locationSelect}
+              onChange={(e) => {
+                setLocationSelect(e.target.value);
+                if (e.target.value !== "Others") setCustomLocation("");
+              }}
+              className="w-full pl-10 pr-4 py-3 border text-gray-900 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+            >
+              <option value="" disabled>Select your location</option>
+              {LOCATION_OPTIONS.map((opt) => (
+                <option key={opt} value={opt}>{opt}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {/* Custom location — shown only when "Others" selected */}
+        {locationSelect === "Others" && (
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Enter Location *</label>
+            <div className="relative">
+              <FiMapPin className="absolute left-3 top-3 text-gray-400" />
+              <input
+                type="text" placeholder="Enter your city / location"
+                required disabled={isSubmitting}
+                value={customLocation}
+                onChange={(e) => setCustomLocation(e.target.value)}
+                autoFocus
+                className="w-full pl-10 pr-4 py-3 border text-gray-900 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+              />
+            </div>
+          </div>
+        )}
+
         {/* Message */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Message 
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
           <div className="relative">
             <FiMessageSquare className="absolute left-3 top-3 text-gray-400" />
             <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleInputChange}
-              rows={5}
-              disabled={isSubmitting}
+              name="message" value={formData.message}
+              onChange={handleInputChange} rows={5} disabled={isSubmitting}
               placeholder="Tell us about your hiring needs..."
               className="w-full pl-10 pr-4 py-3 border text-gray-900 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none disabled:bg-gray-100"
             />
           </div>
         </div>
 
-        {/* Submit Button */}
+        {/* Submit */}
         <button
-          type="submit"
-          disabled={isSubmitting}
+          type="submit" disabled={isSubmitting}
           className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white py-3 rounded-lg flex items-center justify-center space-x-2 transition-all font-medium"
         >
           {isSubmitting ? (
-            <>
-              <FiLoader className="text-sm animate-spin" />
-              <span>Sending...</span>
-            </>
+            <><FiLoader className="text-sm animate-spin" /><span>Sending...</span></>
           ) : (
-            <>
-              <FiSend className="text-sm" />
-              <span>Send Message</span>
-            </>
+            <><FiSend className="text-sm" /><span>Send Message</span></>
           )}
         </button>
 
-        {/* Error Message */}
+        {/* Error */}
         {submitStatus === "error" && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <p className="text-red-600 text-sm">
               There was an error sending your message. Please try again or{" "}
-              <a
-                href="mailto:connect@workeraa.co.in"
-                className="underline hover:text-red-800"
-              >
+              <a href="mailto:connect@workeraa.co.in" className="underline hover:text-red-800">
                 contact us directly at connect@workeraa.co.in
               </a>
             </p>
           </div>
         )}
+
       </form>
     </motion.div>
   );
