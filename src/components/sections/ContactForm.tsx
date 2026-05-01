@@ -1,18 +1,16 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   FiUser, FiMail, FiBriefcase, FiMessageSquare,
   FiSend, FiLoader, FiMapPin,
 } from "react-icons/fi";
 
-// const GOOGLE_SCRIPT_URL =
-//   "https://script.google.com/macros/s/AKfycbw3Z4jUKr6W6ZrB3k1hhoePyDTCiBhtvxXxBPHWfPVEyoZeGy_Xq0h2nrjkR0IFImci/exec";
-
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbyEJIGob7dQAlPv2Gdf0HjeZdJIDS0VYsoNDK82uBAHYmyD-19cdw8xmUTZTYmPgz8Dyg/exec"
+  "https://script.google.com/macros/s/AKfycbyEJIGob7dQAlPv2Gdf0HjeZdJIDS0VYsoNDK82uBAHYmyD-19cdw8xmUTZTYmPgz8Dyg/exec";
 
-export type ContactFormStatus = "idle" | "success" | "error";
+export type ContactFormStatus = "idle" | "error";
 
 interface ContactFormProps {
   onSuccess?: (email: string) => void;
@@ -22,19 +20,19 @@ interface ContactFormProps {
 }
 
 const SERVICES = [
-  { value: "executive-search", label: "Executive Search" },
-  { value: "permanent-hiring", label: "Permanent Hiring" },
-  { value: "contract-staffing", label: "Contract Staffing" },
-  { value: "temporary-staffing", label: "Temporary Staffing" },
-  { value: "it-recruitment", label: "IT & Technology Recruitment" },
-  { value: "finance-recruitment", label: "Finance & Accounting Recruitment" },
-  { value: "sales-recruitment", label: "Sales & Marketing Recruitment" },
-  { value: "healthcare-recruitment", label: "Healthcare & Pharma Recruitment" },
+  { value: "executive-search",         label: "Executive Search" },
+  { value: "permanent-hiring",          label: "Permanent Hiring" },
+  { value: "contract-staffing",         label: "Contract Staffing" },
+  { value: "temporary-staffing",        label: "Temporary Staffing" },
+  { value: "it-recruitment",            label: "IT & Technology Recruitment" },
+  { value: "finance-recruitment",       label: "Finance & Accounting Recruitment" },
+  { value: "sales-recruitment",         label: "Sales & Marketing Recruitment" },
+  { value: "healthcare-recruitment",    label: "Healthcare & Pharma Recruitment" },
   { value: "manufacturing-recruitment", label: "Manufacturing & Operations" },
-  { value: "retail-recruitment", label: "Retail & E-Commerce" },
-  { value: "logistics-recruitment", label: "Logistics & Supply Chain" },
-  { value: "bpo-recruitment", label: "BPO & Customer Support" },
-  { value: "saas-recruitment", label: "SaaS & Cybersecurity" },
+  { value: "retail-recruitment",        label: "Retail & E-Commerce" },
+  { value: "logistics-recruitment",     label: "Logistics & Supply Chain" },
+  { value: "bpo-recruitment",           label: "BPO & Customer Support" },
+  { value: "saas-recruitment",          label: "SaaS & Cybersecurity" },
 ];
 
 const LOCATION_OPTIONS = ["Delhi", "Noida", "Gurugram", "Others"];
@@ -45,17 +43,19 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   title = "Send Us a Message",
   className = "",
 }) => {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    name:    "",
+    email:   "",
     company: "",
     service: defaultService,
     message: "",
   });
   const [locationSelect, setLocationSelect] = useState("");
   const [customLocation, setCustomLocation] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<ContactFormStatus>("idle");
+  const [isSubmitting, setIsSubmitting]     = useState(false);
+  const [submitStatus, setSubmitStatus]     = useState<ContactFormStatus>("idle");
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -79,14 +79,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
       await fetch(GOOGLE_SCRIPT_URL, { method: "POST", mode: "no-cors", body });
 
-      setSubmitStatus("success");
       onSuccess?.(formData.email);
-      setFormData({ name: "", email: "", company: "", service: defaultService, message: "" });
-      setLocationSelect("");
-      setCustomLocation("");
+
+
     } catch {
       setSubmitStatus("error");
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -130,7 +127,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           </div>
         </div>
 
-        {/* Company — now required */}
+        {/* Company */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
           <div className="relative">
@@ -159,7 +156,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           </select>
         </div>
 
-        {/* Location dropdown */}
+        {/* Location */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Location *</label>
           <div className="relative">
@@ -181,7 +178,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           </div>
         </div>
 
-        {/* Custom location — shown only when "Others" selected */}
+        {/* Custom location */}
         {locationSelect === "Others" && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Enter Location *</label>
@@ -216,7 +213,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         {/* Submit */}
         <button
           type="submit" disabled={isSubmitting}
-          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white py-3 rounded-lg flex items-center justify-center space-x-2 transition-all font-medium"
+          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white py-3 rounded-lg flex items-center justify-center gap-2 transition-all font-medium"
         >
           {isSubmitting ? (
             <><FiLoader className="text-sm animate-spin" /><span>Sending...</span></>
@@ -225,13 +222,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           )}
         </button>
 
-        {/* Error */}
+        {/* Error only — success is handled by redirect */}
         {submitStatus === "error" && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <p className="text-red-600 text-sm">
-              There was an error sending your message. Please try again or{" "}
+              Something went wrong. Please try again or email us at{" "}
               <a href="mailto:connect@workeraa.co.in" className="underline hover:text-red-800">
-                contact us directly at connect@workeraa.co.in
+                connect@workeraa.co.in
               </a>
             </p>
           </div>

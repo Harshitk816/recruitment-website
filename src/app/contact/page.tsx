@@ -1,62 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
+import { useRouter } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { motion } from "framer-motion";
 import { SupportWidget } from "@/components/sections/Whatsapp";
 import { ContactForm } from "@/components/sections/ContactForm";
 import {
-  FiMail,
-  FiPhone,
-  FiMapPin,
-  FiClock,
-  FiZap,
-  FiShield,
-  FiUsers,
-  FiAward,
-  FiCheckCircle,
+  FiMail, FiPhone, FiMapPin, FiClock,
+  FiZap, FiShield, FiUsers, FiAward,
 } from "react-icons/fi";
 
 export default function ContactPage() {
-  const [successEmail, setSuccessEmail] = useState<string | null>(null);
+  const router = useRouter();
 
-  // ── Success screen ──────────────────────────────────────────
-  if (successEmail !== null) {
-    return (
-      <main className="py-20 bg-gradient-to-b from-blue-50 to-white">
-        <Container>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center max-w-2xl mx-auto"
-          >
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <FiCheckCircle className="text-3xl text-green-600" />
-            </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Thank You!
-            </h1>
-            <p className="text-xl text-gray-600 mb-6">
-              Your message has been sent successfully. We&apos;ll get back to
-              you within 24 hours.
-            </p>
-            <button
-              onClick={() => setSuccessEmail(null)}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center space-x-2"
-            >
-              <FiMail className="text-sm" />
-              <span>Send Another Message</span>
-            </button>
-          </motion.div>
-        </Container>
-        <SupportWidget phoneNumber="918700192565" />
-      </main>
-    );
-  }
-
-  // ── Main contact page ───────────────────────────────────────
   return (
     <main className="py-20 bg-gradient-to-b from-blue-50 to-white">
       <Container>
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -80,8 +40,9 @@ export default function ContactPage() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form Component */}
-          <ContactForm onSuccess={(email) => setSuccessEmail(email)} />
+
+          {/* Contact Form */}
+          <ContactForm onSuccess={() => router.push("/thankyou")} />
 
           {/* Right column */}
           <motion.div
@@ -96,51 +57,42 @@ export default function ContactPage() {
                 Contact Information
               </h3>
               <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                    <FiMail className="text-xl text-blue-600" />
+                {[
+                  {
+                    icon: <FiMail className="text-xl text-blue-600" />,
+                    bg: "bg-blue-100",
+                    label: "Email",
+                    value: "connect@workeraa.co.in",
+                  },
+                  {
+                    icon: <FiPhone className="text-xl text-green-600" />,
+                    bg: "bg-green-100",
+                    label: "Phone",
+                    value: "+91 8700192565, +91 9599656760",
+                  },
+                  {
+                    icon: <FiMapPin className="text-xl text-purple-600" />,
+                    bg: "bg-purple-100",
+                    label: "Location",
+                    value: "Sector 23, Dwarka, Delhi",
+                  },
+                  {
+                    icon: <FiClock className="text-xl text-orange-600" />,
+                    bg: "bg-orange-100",
+                    label: "Business Hours",
+                    value: "Mon - Fri: 9:00 AM - 6:00 PM IST",
+                  },
+                ].map(({ icon, bg, label, value }) => (
+                  <div key={label} className="flex items-center space-x-4">
+                    <div className={`w-12 h-12 ${bg} rounded-xl flex items-center justify-center shrink-0`}>
+                      {icon}
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">{label}</h4>
+                      <p className="text-gray-600">{value}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Email</h4>
-                    <p className="text-gray-600">connect@workeraa.co.in</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-                    <FiPhone className="text-xl text-green-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Phone</h4>
-                    <p className="text-gray-600">
-                      +91 8700192565, +91 9599656760
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
-                    <FiMapPin className="text-xl text-purple-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Location</h4>
-                    <p className="text-gray-600">Sector 23, Dwarka, Delhi</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
-                    <FiClock className="text-xl text-orange-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">
-                      Business Hours
-                    </h4>
-                    <p className="text-gray-600">
-                      Mon - Fri: 9:00 AM - 6:00 PM IST
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
@@ -149,30 +101,10 @@ export default function ContactPage() {
               <h3 className="text-2xl font-bold mb-6">Why Choose Workeraa?</h3>
               <div className="grid grid-cols-2 gap-6">
                 {[
-                  {
-                    icon: <FiZap className="text-xl text-yellow-400" />,
-                    label: "Speed & Quality",
-                    sub: "Fast, precise hiring",
-                    delay: 0.1,
-                  },
-                  {
-                    icon: <FiShield className="text-xl text-blue-300" />,
-                    label: "Expert Guidance",
-                    sub: "Industry specialists",
-                    delay: 0.2,
-                  },
-                  {
-                    icon: <FiUsers className="text-xl text-green-300" />,
-                    label: "Trusted Partner",
-                    sub: "Long-term relationships",
-                    delay: 0.3,
-                  },
-                  {
-                    icon: <FiAward className="text-xl text-orange-300" />,
-                    label: "Proven Results",
-                    sub: "500+ placements",
-                    delay: 0.4,
-                  },
+                  { icon: <FiZap className="text-xl text-yellow-400" />,  label: "Speed & Quality",   sub: "Fast, precise hiring",      delay: 0.1 },
+                  { icon: <FiShield className="text-xl text-blue-300" />, label: "Expert Guidance",   sub: "Industry specialists",      delay: 0.2 },
+                  { icon: <FiUsers className="text-xl text-green-300" />, label: "Trusted Partner",   sub: "Long-term relationships",   delay: 0.3 },
+                  { icon: <FiAward className="text-xl text-orange-300" />,label: "Proven Results",    sub: "500+ placements",           delay: 0.4 },
                 ].map(({ icon, label, sub, delay }) => (
                   <motion.div
                     key={label}
@@ -181,7 +113,7 @@ export default function ContactPage() {
                     transition={{ delay }}
                     className="flex flex-col items-center text-center"
                   >
-                    <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-3">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-3">
                       {icon}
                     </div>
                     <div className="text-lg font-semibold">{label}</div>
@@ -221,6 +153,7 @@ export default function ContactPage() {
             />
           </div>
         </motion.div>
+
       </Container>
 
       <SupportWidget phoneNumber="918700192565" />
