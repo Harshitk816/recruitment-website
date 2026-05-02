@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { LoadingWrapper } from "@/components/layout/LoadingWrapper";
 import Script from "next/script";
 import { UserModeProvider } from "@/contexts/UserModeContext";
+import LocalBusinessSchema from "@/components/sections/LocalBusinessSchema";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +35,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <LocalBusinessSchema />   {/* ← every page */}
+      </head>
       <body className={inter.className} suppressHydrationWarning>
 
         {/* GTM noscript — must be first inside body */}

@@ -9,10 +9,15 @@ import { TestimonialSection } from "@/components/sections/Testimonial";
 import { AchievementHero } from "@/components/sections/AchievementHero";
 import { JobSeekerForm } from "@/components/sections/JobSeekerForm";
 import { QuickContact } from "@/components/sections/QuickContact";
+import FaqSchema from "@/components/sections/FaqSchema";
+import { faqGeneral } from "@/lib/faq-data";
+
+
 
 export default function Home() {
   return (
     <>
+      <FaqSchema faqs={faqGeneral}/>
       <Hero />
       <CompanyCarousel/>
       <Services />
