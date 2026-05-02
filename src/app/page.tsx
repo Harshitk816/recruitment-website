@@ -8,6 +8,7 @@ import { FAQSection } from "@/components/sections/Faq";
 import { TestimonialSection } from "@/components/sections/Testimonial";
 import { AchievementHero } from "@/components/sections/AchievementHero";
 import { JobSeekerForm } from "@/components/sections/JobSeekerForm";
+import { QuickContact } from "@/components/sections/QuickContact";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <SupportWidget
         phoneNumber="918700192565"
       />
+      <QuickContact/>
       {/* Other sections will go here */}
     </>
   );
