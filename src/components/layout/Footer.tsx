@@ -13,6 +13,12 @@ import {
   FiChevronDown,
 } from "react-icons/fi";
 
+const locationLinks = [
+  { href: "/location/delhi", label: "Delhi" },
+  { href: "/location/noida", label: "Noida" },
+  { href: "/location/gurgaon", label: "Gurgaon" },
+];
+
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   const [openSection, setOpenSection] = useState<string | null>(null);
@@ -30,12 +36,7 @@ export const Footer: React.FC = () => {
       { label: "Manufacturing & Operations Recruitment", href: "/services/manufacturing-operation-recruitment-services" },
       { label: "BPO & Customer Support Recruitment", href: "/services/bpo-customer-support-recruitment-services" },
     ],
-    industries: [
-      { label: "IT & Technology", href: "/industries" },
-      { label: "Finance & Accounting", href: "/industries" },
-      { label: "Sales & Marketing", href: "/industries" },
-      { label: "View All Industries", href: "/industries" },
-    ],
+    locations: locationLinks,
     company: [
       { label: "About Us", href: "/about" },
       { label: "Our Services", href: "/services" },
@@ -94,11 +95,11 @@ export const Footer: React.FC = () => {
   return (
     <footer className="relative bg-gray-900 text-white overflow-hidden">
 
-      {/* ── Same glow blobs as JobSeekerForm ── */}
+      {/* Glow blobs */}
       <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-blue-400/10 rounded-full blur-3xl pointer-events-none" />
 
-      {/* ── Same grid texture as JobSeekerForm ── */}
+      {/* Grid texture */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
         style={{
@@ -111,14 +112,14 @@ export const Footer: React.FC = () => {
       <Container className="relative z-10">
         <div className="py-16 space-y-8">
 
-          {/* ── ROW 1: Description ── */}
+          {/* ROW 1: Description */}
           <p className="text-gray-400 leading-relaxed text-sm w-full border-b border-white/10 pb-8">
             Connecting exceptional talent with innovative companies across India
             and beyond. We specialize in IT, Finance, Sales & Marketing
             recruitment with a proven track record of success.
           </p>
 
-          {/* ── ROW 2: Logo+Contact LEFT | Nav Links RIGHT ── */}
+          {/* ROW 2: Logo+Contact LEFT | Nav Links RIGHT */}
           <div className="grid lg:grid-cols-6 gap-8 lg:gap-12">
 
             {/* LEFT */}
@@ -165,22 +166,22 @@ export const Footer: React.FC = () => {
             </div>
 
             {/* RIGHT: Nav */}
-            <div className="lg:col-span-5 grid grid-cols-1 lg:grid-cols-4 lg:gap-8">
-              <div className="lg:col-span-2">
+            <div className="lg:col-span-5 grid grid-cols-1 lg:grid-cols-[minmax(0,auto)_minmax(0,auto)_minmax(0,auto)] lg:gap-12">
+              <div className="lg:w-max">
                 <NavSection
                   title="Services"
                   links={footerLinks.services}
                   sectionKey="services"
                 />
               </div>
-              <div className="lg:col-span-1">
+              <div>
                 <NavSection
-                  title="Industries"
-                  links={footerLinks.industries}
-                  sectionKey="industries"
+                  title="Locations"
+                  links={footerLinks.locations}
+                  sectionKey="locations"
                 />
               </div>
-              <div className="lg:col-span-1">
+              <div>
                 <NavSection
                   title="Company"
                   links={footerLinks.company}
@@ -192,7 +193,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* ── Bottom Bar ── */}
+        {/* Bottom Bar */}
         <div className="border-t border-white/10 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-500 text-sm">

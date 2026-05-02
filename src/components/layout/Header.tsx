@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { Logo } from "../ui/Logo";
-import { FiMenu, FiX, FiPhone, FiMail, FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { FiMenu, FiX, FiPhone, FiMail, FiChevronDown, FiChevronUp, FiMapPin } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useUserMode, UserMode } from "@/contexts/UserModeContext";
 import { ContactFormDialog } from "../sections/ContactFormDialog";
@@ -18,12 +18,19 @@ const serviceLinks = [
   { href: "/services/bpo-customer-support-recruitment-services", label: "BPO & Customer Support" },
 ];
 
+const locationLinks = [
+  { href: "/location/delhi", label: "Delhi" },
+  { href: "/location/noida", label: "Noida" },
+  { href: "/location/gurgaon", label: "Gurgaon" }
+];
+
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [locationsOpen, setLocationsOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [locationsDropdownOpen, setLocationsDropdownOpen] = useState(false);
   const { mode, setMode } = useUserMode();
 
   useEffect(() => {
@@ -39,24 +46,6 @@ export const Header: React.FC = () => {
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  const ModePill = () => (
-    <div className="flex items-center bg-gray-100 rounded-lg p-0.5 gap-0.5">
-      {(["employer", "jobseeker"] as UserMode[]).map((m) => (
-        <button
-          key={m}
-          onClick={() => setMode(m)}
-          className={`relative px-4 py-1.5 rounded-md text-xs font-semibold transition-all duration-200 ${
-            mode === m
-              ? "bg-blue-600 text-white shadow-sm"
-              : "text-gray-500 hover:text-gray-700 hover:bg-gray-200"
-          }`}
-        >
-          {m === "employer" ? "Employer" : "Job Seeker"}
-        </button>
-      ))}
-    </div>
-  );
 
   return (
     <>
@@ -103,29 +92,35 @@ export const Header: React.FC = () => {
             <Logo size="xxs" />
 
             <nav className="hidden lg:flex items-center space-x-8">
-              <Link href="/" className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group">
+              <Link
+                href="/"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group"
+              >
                 Home
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full" />
               </Link>
 
               {/* Services Dropdown */}
               <div
-                ref={dropdownRef}
                 className="relative"
-                onMouseEnter={() => setDropdownOpen(true)}
-                onMouseLeave={() => setDropdownOpen(false)}
+                onMouseEnter={() => setServicesDropdownOpen(true)}
+                onMouseLeave={() => setServicesDropdownOpen(false)}
               >
                 <Link
                   href="/services"
                   className="flex items-center gap-1 text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group"
                 >
                   Services
-                  <FiChevronDown className={`text-sm transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`} />
+                  <FiChevronDown
+                    className={`text-sm transition-transform duration-200 ${
+                      servicesDropdownOpen ? "rotate-180" : ""
+                    }`}
+                  />
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full" />
                 </Link>
 
                 <AnimatePresence>
-                  {dropdownOpen && (
+                  {servicesDropdownOpen && (
                     <motion.div
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -156,6 +151,57 @@ export const Header: React.FC = () => {
                 </AnimatePresence>
               </div>
 
+              {/* Locations Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setLocationsDropdownOpen(true)}
+                onMouseLeave={() => setLocationsDropdownOpen(false)}
+              >
+                <button
+                  className="flex items-center gap-1 text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group"
+                >
+                  Locations
+                  <FiChevronDown
+                    className={`text-sm transition-transform duration-200 ${
+                      locationsDropdownOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full" />
+                </button>
+
+                <AnimatePresence>
+                  {locationsDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50"
+                    >
+                      <div className="p-2">
+                        <div className="flex items-center gap-2 px-4 py-2 mb-1">
+                          <FiMapPin className="text-blue-500 shrink-0" size={13} />
+                          <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                            We operate in
+                          </span>
+                        </div>
+                        <div className="h-px bg-gray-100 mb-1" />
+                        {locationLinks.map((loc) => (
+                          <Link
+                            key={loc.href}
+                            href={loc.href}
+                            className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          >
+                            <FiMapPin className="text-gray-300 shrink-0" size={13} />
+                            {loc.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
               {navItems.map((item) => (
                 <Link
                   key={item.href}
@@ -170,13 +216,8 @@ export const Header: React.FC = () => {
 
             {/* Desktop right side */}
             <div className="hidden lg:flex items-center gap-3">
-              {/* <ModePill /> */}
               <ContactFormDialog
-                trigger={
-                  <Button variant="outline">
-                    Get In Touch
-                  </Button>
-                }
+                trigger={<Button variant="outline">Get In Touch</Button>}
               />
             </div>
 
@@ -226,9 +267,12 @@ export const Header: React.FC = () => {
                       className="w-full flex items-center justify-between text-gray-700 hover:text-blue-600 font-medium py-2 text-lg transition-colors"
                     >
                       Services
-                      {servicesOpen ? <FiChevronUp className="text-blue-600" /> : <FiChevronDown className="text-gray-400" />}
+                      {servicesOpen ? (
+                        <FiChevronUp className="text-blue-600" />
+                      ) : (
+                        <FiChevronDown className="text-gray-400" />
+                      )}
                     </button>
-
                     <AnimatePresence>
                       {servicesOpen && (
                         <motion.div
@@ -254,6 +298,46 @@ export const Header: React.FC = () => {
                                 className="block text-gray-600 hover:text-blue-600 py-1.5 text-sm transition-colors"
                               >
                                 {service.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Mobile Locations Accordion */}
+                  <div>
+                    <button
+                      onClick={() => setLocationsOpen(!locationsOpen)}
+                      className="w-full flex items-center justify-between text-gray-700 hover:text-blue-600 font-medium py-2 text-lg transition-colors"
+                    >
+                      Locations
+                      {locationsOpen ? (
+                        <FiChevronUp className="text-blue-600" />
+                      ) : (
+                        <FiChevronDown className="text-gray-400" />
+                      )}
+                    </button>
+                    <AnimatePresence>
+                      {locationsOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pl-4 pb-2 space-y-1 border-l-2 border-blue-100 ml-2 mt-1">
+                            {locationLinks.map((loc) => (
+                              <Link
+                                key={loc.href}
+                                href={loc.href}
+                                onClick={() => { setIsMenuOpen(false); setLocationsOpen(false); }}
+                                className="flex items-center gap-2 text-gray-600 hover:text-blue-600 py-1.5 text-sm transition-colors"
+                              >
+                                <FiMapPin size={12} className="text-gray-300 shrink-0" />
+                                {loc.label}
                               </Link>
                             ))}
                           </div>
@@ -291,19 +375,9 @@ export const Header: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Mobile Mode Toggle */}
-                  <div className="pt-2">
-                    <p className="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wide">I am a...</p>
-                    {/* <ModePill /> */}
-                  </div>
-
                   <div className="pt-2 space-y-3">
                     <ContactFormDialog
-                      trigger={
-                        <Button variant="outline">
-                          Get In Touch
-                        </Button>
-                      }
+                      trigger={<Button variant="outline">Get In Touch</Button>}
                     />
                   </div>
                 </nav>
