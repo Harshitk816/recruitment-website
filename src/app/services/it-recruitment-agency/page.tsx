@@ -27,6 +27,7 @@ import { LeadForm } from "@/components/sections/LeadForm";
 import { CompanyCarousel } from "@/components/sections/CompanyCarousel";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { HiringChallengesSolution } from "@/components/sections/HiringChallengesSolution";
+import { QuickContact } from "@/components/sections/QuickContact";
 
 // ─── DATA ───────────────────────────────────────────────────────────────────
 
@@ -459,7 +460,7 @@ export default function ITRecruitmentPage() {
           </motion.div>
         </Container>
       </section>
-
+      <QuickContact/>
       {/* ── WHATSAPP ── */}
       <SupportWidget
         phoneNumber="918700192565"

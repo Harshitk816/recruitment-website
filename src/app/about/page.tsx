@@ -1,5 +1,6 @@
 'use client'
 import { About } from "@/components/sections/About";
+import { QuickContact } from "@/components/sections/QuickContact";
 import { TestimonialSection } from "@/components/sections/Testimonial";
 import { SupportWidget } from "@/components/sections/Whatsapp";
 import { Container } from "@/components/ui/Container";
@@ -144,6 +145,7 @@ export default function AboutPage() {
       <About />
       <TestimonialSection />
       {/* WhatsApp Widget */}
+      <QuickContact/>
       <SupportWidget
         phoneNumber="918700192565"
       />

@@ -9,6 +9,7 @@ import {
   FiMail, FiPhone, FiMapPin, FiClock,
   FiZap, FiShield, FiUsers, FiAward,
 } from "react-icons/fi";
+import { QuickContact } from "@/components/sections/QuickContact";
 
 export default function ContactPage() {
   const router = useRouter();
@@ -155,7 +156,7 @@ export default function ContactPage() {
         </motion.div>
 
       </Container>
-
+      <QuickContact/>
       <SupportWidget phoneNumber="918700192565" />
     </main>
   );

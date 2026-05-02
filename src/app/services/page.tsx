@@ -4,6 +4,7 @@ import { SupportWidget } from "@/components/sections/Whatsapp";
 import { Container } from "@/components/ui/Container";
 import { motion, AnimatePresence } from "framer-motion";
 import { useUserMode } from "@/contexts/UserModeContext";
+import { QuickContact } from "@/components/sections/QuickContact";
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 
@@ -200,7 +201,7 @@ export default function ServicesPage() {
           </AnimatePresence>
         </Container>
       </section>
-
+      <QuickContact/>
       <SupportWidget phoneNumber="918700192565" />
     </main>
   );

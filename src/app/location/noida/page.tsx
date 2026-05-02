@@ -24,6 +24,7 @@ import {
   FiMessageSquare,
   FiLayers,
 } from "react-icons/fi";
+import { QuickContact } from "@/components/sections/QuickContact";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -612,7 +613,7 @@ export default function NoidaRecruitmentPage() {
           </motion.div>
         </Container>
       </section>
-
+      <QuickContact/>
       <SupportWidget />
     </main>
   );

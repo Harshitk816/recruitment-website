@@ -23,6 +23,7 @@ import {
 } from "react-icons/fi";
 import { LeadForm } from "@/components/sections/LeadForm";
 import { HeroContactForm } from "@/components/sections/HeroContactForm";
+import { QuickContact } from "@/components/sections/QuickContact";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -566,7 +567,7 @@ export default function GurgaonRecruitmentPage() {
           </motion.div>
         </Container>
       </section>
-
+      <QuickContact/>
       <SupportWidget phoneNumber="918700192565" />
     </main>
   );

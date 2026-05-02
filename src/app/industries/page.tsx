@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMonitor, FiDollarSign, FiTrendingUp } from "react-icons/fi";
 import { useUserMode } from "@/contexts/UserModeContext";
+import { QuickContact } from "@/components/sections/QuickContact";
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 
@@ -329,7 +330,7 @@ export default function IndustriesPage() {
           </AnimatePresence>
         </Container>
       </section>
-
+      <QuickContact/>
       <SupportWidget
         phoneNumber="918700192565"
       />
