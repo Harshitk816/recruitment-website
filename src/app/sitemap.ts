@@ -4,6 +4,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   return [
+    // ── Core pages ──────────────────────────────────────────────────────────
     {
       url: "https://www.workeraa.co.in",
       lastModified: now,
@@ -30,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
 
-    // Service pages
+    // ── Service pages ────────────────────────────────────────────────────────
     {
       url: "https://www.workeraa.co.in/services/it-recruitment-agency",
       lastModified: now,
@@ -60,6 +61,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: "https://www.workeraa.co.in/services/bpo-customer-support-recruitment-services",
       lastModified: now,
       priority: 0.9,
+    },
+
+    // ── Location pages ───────────────────────────────────────────────────────
+    {
+      url: "https://www.workeraa.co.in/location/delhi",
+      lastModified: now,
+      priority: 0.9,
+    },
+    {
+      url: "https://www.workeraa.co.in/location/noida",
+      lastModified: now,
+      priority: 0.9,
+    },
+    {
+      url: "https://www.workeraa.co.in/location/gurgaon",
+      lastModified: now,
+      priority: 0.9,
+    },
+
+    // ── Thank you page ───────────────────────────────────────────────────────
+    {
+      url: "https://www.workeraa.co.in/thankyou",
+      lastModified: now,
+      priority: 0.2,
     },
   ];
 }
