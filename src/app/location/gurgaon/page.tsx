@@ -556,8 +556,8 @@ export default function GurgaonRecruitmentPage() {
               trigger={
                 <Button
                   size="lg"
-                  variant="secondary"
-                  className="bg-white !text-blue-600 hover:bg-blue-50 group"
+                  variant="outline"
+                  className="bg-white text-blue-600 hover:bg-blue-50 group"
                 >
                   Talk to Our Gurgaon Recruitment Team
                   <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />

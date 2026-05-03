@@ -569,27 +569,15 @@ export default function DelhiRecruitmentPage() {
                 trigger={
                   <Button
                     size="lg"
-                    variant="secondary"
-                    className="bg-white !text-blue-600 hover:bg-blue-50 group"
+                    variant="outline"
+                    className="bg-white group"
                   >
                     Submit a Requirement
                     <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
                 }
               />
-              <ContactFormDialog
-                defaultService="recruitment-delhi"
-                trigger={
-                  <Button
-                    size="lg"
-                    variant="primary"
-                    className="text-white border border-white/30 hover:bg-white/10 group"
-                  >
-                    Talk to Our Team
-                    <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                }
-              />
+             
             </div>
           </motion.div>
         </Container>

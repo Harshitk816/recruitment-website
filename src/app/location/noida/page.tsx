@@ -592,7 +592,7 @@ export default function NoidaRecruitmentPage() {
                   <Button
                     variant="secondary"
                     size="lg"
-                    className="bg-white text-blue-600 hover:bg-blue-50 font-semibold whitespace-nowrap"
+                    className="bg-blue-500 text-blue-600 hover:bg-blue-50 font-semibold whitespace-nowrap"
                   >
                     Submit Your Requirement
                   </Button>
