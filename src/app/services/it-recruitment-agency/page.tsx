@@ -110,13 +110,13 @@ const differentiators = [
     color: "bg-orange-100",
     iconColor: "text-orange-600",
   },
-  {
-    icon: FiRefreshCw,
-    title: "Zero-Replacement Guarantee",
-    description: "If a placed candidate does not perform within the guarantee period, we provide a free replacement.",
-    color: "bg-red-100",
-    iconColor: "text-red-600",
-  },
+  // {
+  //   icon: FiRefreshCw,
+  //   title: "Zero-Replacement Guarantee",
+  //   description: "If a placed candidate does not perform within the guarantee period, we provide a free replacement.",
+  //   color: "bg-red-100",
+  //   iconColor: "text-red-600",
+  // },
 ];
 
 const faqs = [
@@ -138,7 +138,7 @@ const faqs = [
   },
   {
     q: "Is there a replacement policy if the hired candidate leaves early?",
-    a: "Yes. We offer a replacement guarantee on all permanent placements within a defined period, at no additional charge.",
+    a: "Yes. We offer a replacement on all permanent placements within a defined period.",
   },
 ];
 

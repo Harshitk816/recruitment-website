@@ -287,7 +287,7 @@ export default function GurgaonRecruitmentPage() {
                 <p className="text-sm font-medium opacity-80 mb-1">Our commitment</p>
                 <p className="font-bold text-lg leading-snug">
                   Positions filled within 7 to 15 working days. First shortlist
-                  within 48 hours — guaranteed.
+                  within 48 hours.
                 </p>
               </div>
             </motion.div>
