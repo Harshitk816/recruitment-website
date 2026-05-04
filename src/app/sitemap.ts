@@ -78,13 +78,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: "https://www.workeraa.co.in/location/gurgaon",
       lastModified: now,
       priority: 0.9,
-    },
-
-    // ── Thank you page ───────────────────────────────────────────────────────
-    {
-      url: "https://www.workeraa.co.in/thankyou",
-      lastModified: now,
-      priority: 0.2,
-    },
+    }
   ];
 }
