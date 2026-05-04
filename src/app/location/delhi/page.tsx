@@ -24,6 +24,7 @@ import {
 import { LeadForm } from "@/components/sections/LeadForm";
 import { HeroContactForm } from "@/components/sections/HeroContactForm";
 import { QuickContact } from "@/components/sections/QuickContact";
+import { ServicesCompact } from "@/components/sections/ServicesCompact";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -252,6 +253,9 @@ export default function DelhiRecruitmentPage() {
         }
       />
 
+
+      <ServicesCompact/>
+
       {/* ── SECTION 1: Why Delhi Trusts Workeraa — Stats + Points ── */}
       <section className="py-20 bg-white">
         <Container>
@@ -458,6 +462,7 @@ export default function DelhiRecruitmentPage() {
           </div>
         </Container>
       </section>
+
 
       {/* ── SECTION 4: What Sets Workeraa Apart — large label left style ── */}
       <section className="py-20 bg-gray-50">

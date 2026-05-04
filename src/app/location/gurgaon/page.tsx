@@ -24,6 +24,7 @@ import {
 import { LeadForm } from "@/components/sections/LeadForm";
 import { HeroContactForm } from "@/components/sections/HeroContactForm";
 import { QuickContact } from "@/components/sections/QuickContact";
+import { ServicesCompact } from "@/components/sections/ServicesCompact";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -256,6 +257,9 @@ export default function GurgaonRecruitmentPage() {
           />
         }
       />
+
+
+      <ServicesCompact/>
 
       {/* ── SECTION 1: Why Workeraa — What Makes Us Right ── */}
       <section className="py-20 bg-white">

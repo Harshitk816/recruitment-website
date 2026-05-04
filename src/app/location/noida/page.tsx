@@ -25,6 +25,7 @@ import {
   FiLayers,
 } from "react-icons/fi";
 import { QuickContact } from "@/components/sections/QuickContact";
+import { ServicesCompact } from "@/components/sections/ServicesCompact";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -255,6 +256,9 @@ export default function NoidaRecruitmentPage() {
           />
         }
       />
+
+
+      <ServicesCompact/>
 
       {/* ── SECTION 1: Market Map — Noida Sectors ── */}
       <section className="py-20 bg-white">
