@@ -7,7 +7,7 @@ export const siteContent = {
     website: "www.workeraa.com",
     founder: {
       name: "Alisha Aneja",
-      title: "Founder & CEO",
+      title: "Founder & COO",
       bio: "Passionate about connecting exceptional talent with innovative companies, Alisha founded Workeraa to revolutionize how businesses find and hire top performers across India and beyond.",
     },
   },

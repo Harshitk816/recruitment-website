@@ -228,7 +228,7 @@ export const About: React.FC = () => {
     // UPDATED: Alisha - More Realistic Achievements
     {
       name: "Alisha Sharma",
-      title: "Co-Founder & CEO",
+      title: "Co-Founder & COO",
       phone: "8700192565",
       email: "alisha@workeraa.co.in",
       description:
@@ -245,7 +245,7 @@ export const About: React.FC = () => {
     // UPDATED: Akash - More Realistic Achievements
     {
       name: "Akash Sehrawat",
-      title: "Co-Founder & COO",
+      title: "Co-Founder & CEO",
       phone: "9599656760",
       email: "akash@workeraa.co.in",
       description:
