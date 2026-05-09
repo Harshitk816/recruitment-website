@@ -23,8 +23,6 @@ import {
 import { HeroContactForm } from "@/components/sections/HeroContactForm";
 import { LeadForm } from "@/components/sections/LeadForm";
 import { QuickContact } from "@/components/sections/QuickContact";
-import { faqSalesMarketing } from "@/lib/faq-data";
-import FaqSchema from "@/components/sections/FaqSchema";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -203,7 +201,57 @@ const FAQItem: React.FC<{ q: string; a: string; index: number }> = ({
 export default function SalesMarketingRecruitmentPage() {
   return (
     <main>
-      <FaqSchema faqs={faqSalesMarketing} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How quickly can you share relevant candidates?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For most roles, we begin sharing well-matched profiles within a few days. More specialised or senior positions may take slightly longer depending on complexity."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do your marketing recruitment services cover both digital and offline roles?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, we support hiring across digital marketing, performance marketing, brand strategy, and traditional sales functions."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can you help build an entire sales team?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, we regularly support businesses hiring multiple roles simultaneously, especially during expansion or new market entry."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you work with startups as well as large companies?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutely. Our approach works equally well for early-stage startups and established organisations."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do you ensure candidate quality?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We follow a structured evaluation process focused on performance, skills, and role alignment before sharing profiles."
+                }
+              }
+            ]
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       {/* ── HERO ── */}
       <HeroContactForm
       backgroundImage="/images/misc/sales.jpg"

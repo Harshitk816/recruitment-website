@@ -22,8 +22,6 @@ import {
 import { LeadForm } from "@/components/sections/LeadForm";
 import { HeroContactForm } from "@/components/sections/HeroContactForm";
 import { QuickContact } from "@/components/sections/QuickContact";
-import FaqSchema from "@/components/sections/FaqSchema";
-import { faqManufacturingOperations } from "@/lib/faq-data";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -186,7 +184,57 @@ const FAQItem: React.FC<{ q: string; a: string; index: number }> = ({
 export default function ManufacturingRecruitmentPage() {
   return (
     <main>
-      <FaqSchema faqs={faqManufacturingOperations} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Can you support hiring across multiple plants?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, we regularly manage hiring requirements across different locations while maintaining consistency in quality."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What if our requirement is very specialised?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We work on niche roles and focus on sourcing candidates with the exact technical and industry background needed."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do you ensure candidates understand our operations?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We evaluate candidates based on their industry exposure, technical knowledge, and practical experience before sharing profiles."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do you make sure the candidates you send are the right fit for our role?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We carefully screen and shortlist candidates based on role-specific criteria, ensuring only the most relevant and qualified profiles reach you, saving time and improving hiring accuracy."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you handle both leadership and operational roles?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, we support hiring across all levels, from shop floor positions to senior leadership roles."
+                }
+              }
+            ]
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       {/* ── HERO — dark industrial tone ── */}
       <HeroContactForm
       backgroundImage="/images/misc/manufacturing.jpg"

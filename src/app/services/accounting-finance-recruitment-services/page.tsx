@@ -20,8 +20,6 @@ import {
 import { HeroContactForm } from "@/components/sections/HeroContactForm";
 import { LeadForm } from "@/components/sections/LeadForm";
 import { QuickContact } from "@/components/sections/QuickContact";
-import FaqSchema from "@/components/sections/FaqSchema";
-import { faqFinanceRecruitment } from "@/lib/faq-data";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -200,7 +198,57 @@ const FAQItem: React.FC<{ q: string; a: string; index: number }> = ({
 export default function FinanceRecruitmentPage() {
   return (
     <main>
-      <FaqSchema faqs={faqFinanceRecruitment} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How do your Accounting Recruitment Services work?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our Accounting Recruitment Services focus on understanding your role and sharing only relevant, pre-screened candidates."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can your finance staffing agency handle urgent hiring?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, our finance staffing agency can quickly provide suitable candidates through our ready talent network."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What roles are included in your Finance Accounting Services?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our Finance Accounting Services cover roles from accountants to senior finance leaders including CFOs."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How are you different from other accounting recruitment agencies?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Unlike typical accounting recruitment agencies, we focus on quality screening and role-specific matching rather than volume."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you support long-term hiring needs?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, our finance staffing agency helps you hire candidates who fit both immediate and long-term business goals."
+                }
+              }
+            ]
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       {/* ── HERO ── */}
       <HeroContactForm
       backgroundImage="/images/misc/finance.jpg"

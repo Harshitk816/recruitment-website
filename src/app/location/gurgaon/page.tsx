@@ -25,8 +25,6 @@ import { LeadForm } from "@/components/sections/LeadForm";
 import { HeroContactForm } from "@/components/sections/HeroContactForm";
 import { QuickContact } from "@/components/sections/QuickContact";
 import { ServicesCompact } from "@/components/sections/ServicesCompact";
-import FaqSchema from "@/components/sections/FaqSchema";
-import { faqGurgaonLocation } from "@/lib/faq-data";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -217,7 +215,57 @@ const FAQItem: React.FC<{ q: string; a: string; index: number }> = ({
 export default function GurgaonRecruitmentPage() {
   return (
     <main>
-      <FaqSchema faqs={faqGurgaonLocation} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How long does it take Workeraa to fill a position in Gurgaon?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For most mid-level roles, we submit shortlisted profiles within 48 hours. Full placement typically takes 7 to 15 working days."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What industries does your HR consultancy in Gurgaon cover?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We work across IT, BFSI, manufacturing, retail, logistics, healthcare, and D2C brands. Our recruiters are organized by industry so you work with someone who knows your market."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you handle contract staffing along with permanent hiring?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Workeraa covers permanent recruitment, contract staffing, and bulk hiring under one roof with a single point of contact."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do you screen candidates before sharing profiles?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Every candidate goes through a resume review, structured phone screen, and employment verification. Technical roles include domain assessments. Senior roles go through competency-based interviews."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How is Workeraa different from other staffing companies in Gurgaon?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We assign a dedicated recruiter to your account, maintain an active pre-verified talent pool, and work to strict timelines. You get fewer profiles but better ones, every time."
+                }
+              }
+            ]
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       {/* ── HERO ── */}
       <HeroContactForm
         backgroundImage="/images/location/gurgaon.jpg"

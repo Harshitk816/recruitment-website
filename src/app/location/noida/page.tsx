@@ -26,8 +26,6 @@ import {
 } from "react-icons/fi";
 import { QuickContact } from "@/components/sections/QuickContact";
 import { ServicesCompact } from "@/components/sections/ServicesCompact";
-import FaqSchema from "@/components/sections/FaqSchema";
-import { faqNoidaLocation } from "@/lib/faq-data";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -216,7 +214,57 @@ const FAQItem = ({ q, a, index }: { q: string; a: string; index: number }) => {
 export default function NoidaRecruitmentPage() {
   return (
     <main>
-      <FaqSchema faqs={faqNoidaLocation} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is Workeraa's typical turnaround as a recruitment agency in Noida?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Shortlisted profiles are submitted within 48 hours for mid-level roles. End-to-end closure takes 10 to 18 working days for most positions."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which industries does your HR consultancy in Noida work across?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We place across IT, BFSI, GCCs, manufacturing, retail, logistics, and healthcare with vertical-specific recruiters for each domain."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can you manage permanent and contract hiring simultaneously?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Workeraa handles permanent recruitment, contract staffing, executive search, and bulk hiring through a single account manager."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do you ensure candidates are qualified before sharing profiles?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Each candidate goes through a structured screening call, experience validation, and role alignment check. Senior profiles include an additional assessment round."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What separates Workeraa from other best recruitment agencies in Noida?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Context retention and recruiter accountability. Your dedicated recruiter owns the process from start to finish and does not hand it off after the contract is signed."
+                }
+              }
+            ]
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       {/* ── HERO ── */}
       <HeroContactForm
         backgroundImage="/images/location/noida.jpg"

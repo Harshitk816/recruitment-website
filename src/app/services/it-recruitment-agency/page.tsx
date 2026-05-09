@@ -28,8 +28,6 @@ import { CompanyCarousel } from "@/components/sections/CompanyCarousel";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { HiringChallengesSolution } from "@/components/sections/HiringChallengesSolution";
 import { QuickContact } from "@/components/sections/QuickContact";
-import FaqSchema from "@/components/sections/FaqSchema";
-import { faqITRecruitment } from "@/lib/faq-data";
 
 // ─── DATA ───────────────────────────────────────────────────────────────────
 
@@ -175,7 +173,6 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   return (
     
     <div className="border border-gray-200 rounded-xl overflow-hidden">
-      <FaqSchema faqs={faqITRecruitment} />
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between px-6 py-5 text-left bg-white hover:bg-gray-50 transition-colors"
@@ -201,6 +198,57 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 export default function ITRecruitmentPage() {
   return (
     <main className="bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How fast can you fill an IT role?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Shortlisted profiles are typically sent within 48 to 72 hours. Niche or senior roles may take 5–7 business days depending on the specifics of each role."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you handle both permanent and contract IT staffing?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Our services encompass permanent hiring, contract staffing, and project-based IT staffing based on what your business requires."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can you hire for very specific tech stacks like Go, Rust, or Kubernetes?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutely. Niche tech hiring is one of our strengths. We have placed professionals across specialized stacks that generalist agencies struggle to fill."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do your IT recruitment agencies work with startups?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We work with startups regularly. Our flexible engagement models fit lean teams with fast-moving requirements."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is there a replacement policy if the hired candidate leaves early?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. We offer a replacement on all permanent placements within a defined period."
+                }
+              }
+            ]
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       <HeroContactForm
       backgroundImage="/images/misc/tech.jpg"
       mobileBackgroundImage="/images/misc/tech-small.jpg"

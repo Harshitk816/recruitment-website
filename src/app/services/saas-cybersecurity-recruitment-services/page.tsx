@@ -24,8 +24,6 @@ import {
 import { HeroContactForm } from "@/components/sections/HeroContactForm";
 import { LeadForm } from "@/components/sections/LeadForm";
 import { QuickContact } from "@/components/sections/QuickContact";
-import FaqSchema from "@/components/sections/FaqSchema";
-import { faqSaaSCybersecurity } from "@/lib/faq-data";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -204,7 +202,57 @@ const FAQItem: React.FC<{ q: string; a: string; index: number }> = ({
 export default function SaaSCybersecurityRecruitmentPage() {
   return (
     <main>
-      <FaqSchema faqs={faqSaaSCybersecurity} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How quickly can you share relevant candidates?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For most roles, we begin sharing suitable profiles within a few days. More specialised or senior positions may take slightly longer depending on the requirements."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you work with startups as well as large enterprises?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, we support both early-stage SaaS companies building their teams and established organisations expanding their cybersecurity capabilities."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can you find candidates with specific certifications or niche skills?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, we regularly work on specialised roles and prioritise candidates with verified credentials and relevant experience."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you cover both technical and business roles within SaaS?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutely. As a full-scale SaaS Recruitment Agency, we hire across product, engineering, sales, and customer success functions."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do you ensure candidates are a strong match?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We follow a structured screening process that focuses on real experience, technical understanding, and role alignment before sharing profiles."
+                }
+              }
+            ]
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       {/* ── HERO ── */}
         <HeroContactForm
         backgroundImage="/images/misc/cybersecurity.jpg"

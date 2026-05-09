@@ -25,8 +25,6 @@ import { LeadForm } from "@/components/sections/LeadForm";
 import { HeroContactForm } from "@/components/sections/HeroContactForm";
 import { QuickContact } from "@/components/sections/QuickContact";
 import { ServicesCompact } from "@/components/sections/ServicesCompact";
-import FaqSchema from "@/components/sections/FaqSchema";
-import { faqDelhiLocation } from "@/lib/faq-data";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -212,7 +210,57 @@ const FAQItem: React.FC<{ q: string; a: string; index: number }> = ({
 export default function DelhiRecruitmentPage() {
   return (
     <main>
-      <FaqSchema faqs={faqDelhiLocation} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How quickly can Workeraa fill a position as a recruitment agency in Delhi?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For most mid-level roles, shortlisted profiles are submitted within 48 hours. Full closures typically happen within 10 to 18 working days depending on role complexity."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which industries does your HR consultancy in Delhi work with?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We place across IT, BFSI, manufacturing, retail, logistics, media, healthcare, and government-adjacent sectors. Our recruiters are sector-specific, not generalist."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can you handle both permanent and contract hiring?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Workeraa covers permanent placement, contract staffing, executive search, and bulk hiring. One partner, one point of contact."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do you ensure candidate quality before sharing profiles?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Every candidate is screened for experience, role alignment, and availability. Technical and senior roles go through additional assessment rounds before the profile reaches you."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What makes Workeraa one of the best recruitment agencies in Delhi?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Speed, accuracy, and accountability. We assign dedicated recruiters, work to define SLAs, and keep you informed at every stage without chasing us for updates."
+                }
+              }
+            ]
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       {/* ── HERO ── */}
       <HeroContactForm
         backgroundImage="/images/location/delhi.avif"
