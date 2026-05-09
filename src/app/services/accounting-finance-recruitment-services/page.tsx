@@ -20,6 +20,8 @@ import {
 import { HeroContactForm } from "@/components/sections/HeroContactForm";
 import { LeadForm } from "@/components/sections/LeadForm";
 import { QuickContact } from "@/components/sections/QuickContact";
+import FaqSchema from "@/components/sections/FaqSchema";
+import { faqFinanceRecruitment } from "@/lib/faq-data";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -198,7 +200,7 @@ const FAQItem: React.FC<{ q: string; a: string; index: number }> = ({
 export default function FinanceRecruitmentPage() {
   return (
     <main>
-
+      <FaqSchema faqs={faqFinanceRecruitment} />
       {/* ── HERO ── */}
       <HeroContactForm
       backgroundImage="/images/misc/finance.jpg"

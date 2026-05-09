@@ -25,6 +25,8 @@ import { LeadForm } from "@/components/sections/LeadForm";
 import { HeroContactForm } from "@/components/sections/HeroContactForm";
 import { QuickContact } from "@/components/sections/QuickContact";
 import { ServicesCompact } from "@/components/sections/ServicesCompact";
+import FaqSchema from "@/components/sections/FaqSchema";
+import { faqDelhiLocation } from "@/lib/faq-data";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -210,7 +212,7 @@ const FAQItem: React.FC<{ q: string; a: string; index: number }> = ({
 export default function DelhiRecruitmentPage() {
   return (
     <main>
-
+      <FaqSchema faqs={faqDelhiLocation} />
       {/* ── HERO ── */}
       <HeroContactForm
         backgroundImage="/images/location/delhi.avif"

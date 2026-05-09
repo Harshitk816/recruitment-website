@@ -26,6 +26,8 @@ import {
 } from "react-icons/fi";
 import { QuickContact } from "@/components/sections/QuickContact";
 import { ServicesCompact } from "@/components/sections/ServicesCompact";
+import FaqSchema from "@/components/sections/FaqSchema";
+import { faqNoidaLocation } from "@/lib/faq-data";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -214,7 +216,7 @@ const FAQItem = ({ q, a, index }: { q: string; a: string; index: number }) => {
 export default function NoidaRecruitmentPage() {
   return (
     <main>
-
+      <FaqSchema faqs={faqNoidaLocation} />
       {/* ── HERO ── */}
       <HeroContactForm
         backgroundImage="/images/location/noida.jpg"

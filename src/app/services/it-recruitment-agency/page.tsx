@@ -28,6 +28,8 @@ import { CompanyCarousel } from "@/components/sections/CompanyCarousel";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { HiringChallengesSolution } from "@/components/sections/HiringChallengesSolution";
 import { QuickContact } from "@/components/sections/QuickContact";
+import FaqSchema from "@/components/sections/FaqSchema";
+import { faqITRecruitment } from "@/lib/faq-data";
 
 // ─── DATA ───────────────────────────────────────────────────────────────────
 
@@ -171,7 +173,9 @@ const overallStats = [
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
+    
     <div className="border border-gray-200 rounded-xl overflow-hidden">
+      <FaqSchema faqs={faqITRecruitment} />
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between px-6 py-5 text-left bg-white hover:bg-gray-50 transition-colors"
