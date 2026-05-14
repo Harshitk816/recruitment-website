@@ -82,9 +82,7 @@ const saveLead = (lead: LeadData) => {
 //   "https://script.google.com/macros/s/AKfycbw3Z4jUKr6W6ZrB3k1hhoePyDTCiBhtvxXxBPHWfPVEyoZeGy_Xq0h2nrjkR0IFImci/exec";
 
 const GOOGLE_SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbyEJIGob7dQAlPv2Gdf0HjeZdJIDS0VYsoNDK82uBAHYmyD-19cdw8xmUTZTYmPgz8Dyg/exec"
-
-
+"https://script.google.com/macros/s/AKfycbxgGgjguu1gOfL4-HT2FeD19LPvje2Cym0Fi7YbPOXJj715YUK0hsu1nIiR6QE0E07bqQ/exec";
 const submitToSheet = async (lead: LeadData) => {
   try {
     const body = new FormData();

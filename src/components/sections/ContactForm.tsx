@@ -8,7 +8,7 @@ import {
 } from "react-icons/fi";
 
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbyEJIGob7dQAlPv2Gdf0HjeZdJIDS0VYsoNDK82uBAHYmyD-19cdw8xmUTZTYmPgz8Dyg/exec";
+"https://script.google.com/macros/s/AKfycbxgGgjguu1gOfL4-HT2FeD19LPvje2Cym0Fi7YbPOXJj715YUK0hsu1nIiR6QE0E07bqQ/exec"
 
 export type ContactFormStatus = "idle" | "error";
 
