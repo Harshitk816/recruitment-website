@@ -9,7 +9,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useUserMode, UserMode } from "@/contexts/UserModeContext";
 import { ContactFormDialog } from "../sections/ContactFormDialog";
 
-const
 
 const serviceLinks = [
   { href: "/services/it-recruitment-agency", label: "IT & Technology" },

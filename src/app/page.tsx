@@ -17,7 +17,7 @@ import { faqGeneral } from "@/lib/faq-data";
 export default function Home() {
   return (
     <>
-      <FaqSchema faqs={faqGeneral}/>
+      {/* <FaqSchema faqs={faqGeneral}/>
       <Hero />
       <CompanyCarousel/>
       <Services />
@@ -28,7 +28,7 @@ export default function Home() {
       <SupportWidget
         phoneNumber="918700192565"
       />
-      <QuickContact/>
+      <QuickContact/> */}
       {/* Other sections will go here */}
     </>
   );

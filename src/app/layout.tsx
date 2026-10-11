@@ -51,9 +51,9 @@ export default function RootLayout({
         </noscript>
         <UserModeProvider>
         <LoadingWrapper>
-          <Header />
+          {/* <Header /> */}
           <main>{children}</main>
-          <Footer />
+          {/* <Footer /> */}
         </LoadingWrapper>
         </UserModeProvider>
 
